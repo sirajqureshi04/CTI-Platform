@@ -1,0 +1,2 @@
+"""Alert cache directory."""
+

@@ -1,0 +1,2 @@
+"""Email alert templates."""
+

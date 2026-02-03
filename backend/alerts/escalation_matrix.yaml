@@ -1,0 +1,33 @@
+# Alert Escalation Matrix
+
+escalation_rules:
+  - severity: critical
+    notify_immediately: true
+    channels:
+      - email
+      - sms  # If configured
+    recipients:
+      - security-team@example.com
+      - incident-response@example.com
+  
+  - severity: high
+    notify_within: 1h
+    channels:
+      - email
+    recipients:
+      - security-team@example.com
+  
+  - severity: medium
+    notify_within: 4h
+    channels:
+      - email
+    recipients:
+      - security-team@example.com
+  
+  - severity: low
+    notify_daily: true
+    channels:
+      - email
+    recipients:
+      - security-team@example.com
+

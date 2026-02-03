@@ -1,0 +1,394 @@
+2026-01-17 16:25:38 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-17 16:26:16 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-17 16:29:14 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-17 16:31:46 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: ransomware_live
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from ransomware_live...
+2026-01-17 16:31:47 | ERROR    | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:112 | [DRY RUN] ✗ ransomware_live failed: RansomwareLiveFeed.fetch() got an unexpected keyword argument 'last_run'
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: cisa_kev
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from cisa_kev...
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:42 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items, validation passed
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: alienvault_otx
+2026-01-17 16:31:47 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from alienvault_otx...
+2026-01-17 16:31:48 | ERROR    | [cti_platform.backend.core.http_client] | fetch:114 | Failed to fetch https://otx.alienvault.com/api/v1/pulses/public: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-16T16%3A31%3A47.858874&limit=100
+2026-01-17 16:31:48 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-16T16%3A31%3A47.858874&limit=100
+2026-01-17 16:31:48 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items, validation passed
+2026-01-17 16:31:48 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: malpedia
+2026-01-17 16:31:48 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from malpedia...
+2026-01-17 16:31:48 | ERROR    | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:112 | [DRY RUN] ✗ malpedia failed: MalpediaFeed.fetch() got an unexpected keyword argument 'last_run'
+2026-01-17 17:16:55 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-17 17:16:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: ransomware_live
+2026-01-17 17:16:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from ransomware_live...
+2026-01-17 17:16:57 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ ransomware_live: Fetched 412 items, validation passed
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: cisa_kev
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from cisa_kev...
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items, validation passed
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: alienvault_otx
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from alienvault_otx...
+2026-01-17 17:16:59 | ERROR    | [cti_platform.backend.core.http_client] | fetch:114 | Failed to fetch https://otx.alienvault.com/api/v1/pulses/public: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-16T17%3A16%3A59.570490&limit=100
+2026-01-17 17:16:59 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-16T17%3A16%3A59.570490&limit=100
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items, validation passed
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: malpedia
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from malpedia...
+2026-01-17 17:16:59 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-17 17:16:59 | WARNING  | [cti_platform.backend.core.http_client] | fetch:89 | Malpedia access attempted without credentials. Skipping...
+2026-01-17 17:16:59 | ERROR    | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:70 | Malpedia feed failed: 401 Client Error: None for url: None
+2026-01-17 17:16:59 | ERROR    | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:112 | [DRY RUN] ✗ malpedia failed: 401 Client Error: None for url: None
+2026-01-17 17:19:07 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-17 17:19:08 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: ransomware_live
+2026-01-17 17:19:08 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from ransomware_live...
+2026-01-17 17:19:09 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ ransomware_live: Fetched 412 items, validation passed
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: cisa_kev
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from cisa_kev...
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items, validation passed
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: alienvault_otx
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from alienvault_otx...
+2026-01-17 17:19:11 | ERROR    | [cti_platform.backend.core.http_client] | fetch:106 | Failed to fetch https://otx.alienvault.com/api/v1/pulses/public: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-16T17%3A19%3A11.383530&limit=100
+2026-01-17 17:19:11 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-16T17%3A19%3A11.383530&limit=100
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items, validation passed
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: malpedia
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from malpedia...
+2026-01-17 17:19:11 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-17 17:19:14 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3637 malware families.
+2026-01-17 17:19:14 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ malpedia: Fetched 3637 items, validation passed
+2026-01-19 11:20:22 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 11:20:22 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: ransomware_live
+2026-01-19 11:20:22 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from ransomware_live...
+2026-01-19 11:20:24 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 11:20:26 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 11:20:26 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ ransomware_live: Fetched 412 items, validation passed
+2026-01-19 11:20:26 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: cisa_kev
+2026-01-19 11:20:26 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from cisa_kev...
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items, validation passed
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: alienvault_otx
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from alienvault_otx...
+2026-01-19 11:20:27 | ERROR    | [cti_platform.backend.core.http_client] | fetch:106 | Failed to fetch https://otx.alienvault.com/api/v1/pulses/public: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-18T11%3A20%3A27.076262&limit=100
+2026-01-19 11:20:27 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-18T11%3A20%3A27.076262&limit=100
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items, validation passed
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:33 | Initialized feed: malpedia
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:92 | [DRY RUN] Fetching data from malpedia...
+2026-01-19 11:20:27 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 11:20:30 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3637 malware families.
+2026-01-19 11:20:30 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:105 | [DRY RUN] ✓ malpedia: Fetched 3637 items, validation passed
+2026-01-19 12:05:07 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 12:05:08 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 12:05:08 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 12:05:09 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 12:05:12 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'modified_since': '2026-01-18T12:05:12.373028', 'limit': 100}
+2026-01-19 12:05:12 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'modified_since': '2026-01-18T12:05:12.373028', 'limit': 100}
+2026-01-19 12:05:12 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-18T12%3A05%3A12.373028&limit=100
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 12:05:12 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 12:05:14 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3637 malware families.
+2026-01-19 12:05:14 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3637 items
+2026-01-19 12:07:21 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 12:07:24 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'modified_since': '2026-01-18T12:07:24.068743', 'limit': 100}
+2026-01-19 12:07:24 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'modified_since': '2026-01-18T12:07:24.068743', 'limit': 100}
+2026-01-19 12:07:24 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-18T12%3A07%3A24.068743&limit=100
+2026-01-19 12:07:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 12:07:25 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 12:07:25 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3637 malware families.
+2026-01-19 12:07:25 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3637 items
+2026-01-19 12:07:27 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 12:07:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 12:34:40 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 12:34:40 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 12:34:41 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 12:34:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 12:34:41 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'modified_since': '2026-01-18T12:34:40.964061', 'limit': 100}
+2026-01-19 12:34:41 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'modified_since': '2026-01-18T12:34:40.964061', 'limit': 100}
+2026-01-19 12:34:41 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:59 | Incremental fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-01-18T12%3A34%3A40.964061&limit=100
+2026-01-19 12:34:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 12:34:42 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 12:34:42 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3637 malware families.
+2026-01-19 12:34:42 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3637 items
+2026-01-19 12:34:44 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 12:34:44 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 12:43:09 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 12:43:40 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 12:43:41 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 12:43:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 12:43:42 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-19 12:43:42 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-19 12:43:42 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-19 12:43:42 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 12:43:43 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3637 malware families.
+2026-01-19 12:43:43 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3637 items
+2026-01-19 12:43:43 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 12:43:45 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 12:43:45 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 17:12:28 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 17:13:17 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 17:14:23 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 17:14:24 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 17:14:24 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-19 17:14:25 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:14:25 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:14:25 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-19 17:14:25 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 17:14:25 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 17:14:25 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 17:14:26 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 17:14:27 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 17:14:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 17:14:28 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3640 malware families.
+2026-01-19 17:14:28 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3640 items
+2026-01-19 17:16:26 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 17:16:27 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-19 17:16:27 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:16:27 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:16:27 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 17:16:27 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 17:16:28 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 17:16:28 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3640 malware families.
+2026-01-19 17:16:28 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3640 items
+2026-01-19 17:16:30 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 17:16:30 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 17:17:40 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 17:17:41 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-19 17:17:41 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:17:41 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:17:41 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 17:17:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 17:17:43 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3641 malware families.
+2026-01-19 17:17:43 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3641 items
+2026-01-19 17:17:43 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 17:17:44 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 17:17:44 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 17:27:16 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 17:27:17 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 17:27:17 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-19 17:27:18 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:27:18 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-19 17:27:18 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-19 17:27:18 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 17:27:18 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 17:27:18 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 17:27:19 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3641 malware families.
+2026-01-19 17:27:19 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3641 items
+2026-01-19 17:27:19 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 17:27:21 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 17:27:21 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 18:24:36 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-19 18:24:39 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-19 18:24:39 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-19 18:24:40 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-19 18:24:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-19 18:24:40 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-19 18:24:40 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-19 18:24:40 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-19 18:24:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-19 18:24:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-19 18:24:42 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-19 18:24:42 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-19 18:24:42 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3642 malware families.
+2026-01-19 18:24:42 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3642 items
+2026-01-20 10:27:57 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-01-20 10:28:01 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1488 items
+2026-01-20 10:28:01 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-20 10:28:01 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-20 10:28:01 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:67 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-20 10:28:01 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items
+2026-01-20 10:28:03 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 312 groups entries
+2026-01-20 10:28:04 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-20 10:28:04 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 412 items
+2026-01-20 10:28:04 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3642 malware families.
+2026-01-20 10:28:04 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3642 items
+2026-01-20 16:00:15 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-20 16:00:19 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-20 16:00:19 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-20 16:00:19 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-20 16:00:19 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:33 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-20 16:00:19 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-20 16:00:19 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:55 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-20 16:00:19 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-20 16:00:20 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-20 16:00:20 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-20 16:00:20 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:66 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-20 16:00:20 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-20 16:00:21 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3642 malware families.
+2026-01-20 16:00:27 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 313 groups entries
+2026-01-20 16:00:27 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://api.ransomware.live/v2/recentvictims | Status: 429 | Params: {}
+2026-01-20 16:00:27 | ERROR    | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:59 | Failed to fetch victims from https://api.ransomware.live/v2/recentvictims: 429 Client Error: TOO MANY REQUESTS for url: https://api.ransomware.live/v2/recentvictims
+2026-01-20 16:46:36 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-20 16:46:37 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-20 16:46:37 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-20 16:46:37 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-20 16:46:37 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-20 16:46:37 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-20 16:46:37 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:33 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-20 16:46:37 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:55 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-20 16:46:38 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.13 (1488 entries)
+2026-01-20 16:46:38 | ERROR    | [cti_platform.backend.core.http_client] | fetch:95 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public | Params: {'limit': 50, 'page': 1}
+2026-01-20 16:46:38 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://otx.alienvault.com/api/v1/pulses/public | Status: 404 | Params: {'limit': 50, 'page': 1}
+2026-01-20 16:46:38 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:66 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=50&page=1
+2026-01-20 16:46:39 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 313 groups entries
+2026-01-20 16:46:39 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3642 malware families.
+2026-01-20 16:46:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-01-26 12:59:55 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-26 13:03:59 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-01-26 13:04:00 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:33 | AlienVault OTX initialized WITHOUT API Key (Public Mode).
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:55 | Performing FULL fetch for OTX (Incremental Disabled).
+2026-01-26 13:04:00 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.23 (1494 entries)
+2026-01-26 13:04:01 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:66 | OTX fetch failed: Expecting value: line 1 column 1 (char 0)
+2026-01-26 13:04:01 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3644 malware families.
+2026-01-26 13:04:30 | ERROR    | [cti_platform.backend.core.http_client] | fetch:105 | Network Error: https://api.ransomware.live/v2/groups | Error: HTTPSConnectionPool(host='api.ransomware.live', port=443): Read timed out. (read timeout=30)
+2026-01-26 13:04:30 | ERROR    | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:59 | Failed to fetch groups from https://api.ransomware.live/v2/groups: HTTPSConnectionPool(host='api.ransomware.live', port=443): Read timed out. (read timeout=30)
+2026-01-26 13:05:00 | ERROR    | [cti_platform.backend.core.http_client] | fetch:105 | Network Error: https://api.ransomware.live/v2/recentvictims | Error: HTTPSConnectionPool(host='api.ransomware.live', port=443): Read timed out. (read timeout=30)
+2026-01-26 13:05:00 | ERROR    | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:59 | Failed to fetch victims from https://api.ransomware.live/v2/recentvictims: HTTPSConnectionPool(host='api.ransomware.live', port=443): Read timed out. (read timeout=30)
+2026-02-03 13:36:10 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:37:09 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:37:26 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:37:26 | ERROR    | [cti_platform.__main__] | test_feed_worker:84 | Ingestion failed for alienvault_otx: BaseFeed.__init__() missing 1 required positional argument: 'name'
+2026-02-03 13:37:26 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-02-03 13:37:26 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-03 13:37:26 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-02-03 13:37:26 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-03 13:37:27 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.29 (1501 entries)
+2026-02-03 13:37:28 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3660 malware families.
+2026-02-03 13:37:29 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 315 groups entries
+2026-02-03 13:37:29 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-02-03 13:45:32 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:45:33 | ERROR    | [cti_platform.__main__] | test_feed_worker:84 | Ingestion failed for alienvault_otx: BaseFeed.__init__() missing 1 required positional argument: 'name'
+2026-02-03 13:45:33 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-03 13:45:33 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-02-03 13:45:33 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-02-03 13:45:33 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-03 13:45:34 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.29 (1501 entries)
+2026-02-03 13:45:35 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 315 groups entries
+2026-02-03 13:45:36 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3660 malware families.
+2026-02-03 13:45:37 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-02-03 13:50:58 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:51:18 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:52:06 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:52:37 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-02-03 13:52:38 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:29 | OTX running in PUBLIC MODE. Rate limits apply (1 req/min).
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:49 | Full fetch triggered (Incremental: False)
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-03 13:52:38 | ERROR    | [cti_platform.backend.core.http_client] | fetch:105 | Network Error: https://otx.alienvault.com/api/v1/pulses/public | Error: requests.sessions.Session.get() got multiple values for keyword argument 'timeout'
+2026-02-03 13:52:38 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:81 | OTX Error [TypeError]: requests.sessions.Session.get() got multiple values for keyword argument 'timeout'
+2026-02-03 13:52:38 | ERROR    | [cti_platform.__main__] | test_feed_worker:84 | Ingestion failed for alienvault_otx: requests.sessions.Session.get() got multiple values for keyword argument 'timeout'
+2026-02-03 13:52:38 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.01.29 (1501 entries)
+2026-02-03 13:52:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 315 groups entries
+2026-02-03 13:52:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-02-03 13:52:41 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3660 malware families.

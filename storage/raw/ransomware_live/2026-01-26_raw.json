@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "ingested_at": "2026-01-26T13:05:00.788645",
+        "source": "ransomware_live"
+    },
+    "data": {
+        "source": "ransomware.live",
+        "timestamp": "2026-01-26T13:05:00.787850",
+        "data": {
+            "groups": [],
+            "victims": []
+        }
+    }
+}

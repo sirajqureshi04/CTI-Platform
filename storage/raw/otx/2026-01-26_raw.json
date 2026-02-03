@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "ingested_at": "2026-01-26T13:04:01.693864",
+        "source": "alienvault_otx"
+    },
+    "data": {
+        "source": "alienvault_otx",
+        "timestamp": "2026-01-26T13:04:01.693187",
+        "data": {
+            "pulses": []
+        }
+    }
+}

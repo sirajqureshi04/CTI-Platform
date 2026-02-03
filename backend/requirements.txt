@@ -1,0 +1,31 @@
+# CTI Platform Requirements
+
+# Core dependencies
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Web framework
+Flask>=2.3.0
+Werkzeug>=2.3.0
+
+# Database (mysql-connector-python OR pymysql - both work with MariaDB)
+mysql-connector-python>=8.1.0
+# Alternative: pymysql>=1.1.0  # Uncomment if mysql-connector-python fails
+
+# Data processing
+python-dateutil>=2.8.2
+
+# Security
+cryptography>=41.0.0
+
+# Optional: For enhanced GeoIP (uncomment if using MaxMind)
+# geoip2>=4.7.0
+
+# Optional: For WHOIS lookups (uncomment if using python-whois)
+# python-whois>=0.8.0
+
+# Development (optional)
+# pytest>=7.4.0
+# black>=23.7.0
+# flake8>=6.1.0
+

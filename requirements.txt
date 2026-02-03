@@ -1,0 +1,5 @@
+# CTI Platform Root Requirements
+
+# Include backend requirements
+-r backend/requirements.txt
+

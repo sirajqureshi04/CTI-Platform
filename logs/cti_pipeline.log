@@ -1,0 +1,2 @@
+2026-01-08 15:06:47 | INFO     | cti_platform.backend.api.auth | __init__:31 | Initialized API authentication
+2026-01-08 15:06:47 | INFO     | cti_platform.__main__ | create_app:60 | Flask application created
