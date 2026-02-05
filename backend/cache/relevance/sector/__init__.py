@@ -1,2 +1,0 @@
-"""Sector relevance cache."""
-

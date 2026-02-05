@@ -1,2 +1,0 @@
-"""Pending alerts cache."""
-

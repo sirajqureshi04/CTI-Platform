@@ -1,2 +1,0 @@
-"""Deduplication cache directory."""
-

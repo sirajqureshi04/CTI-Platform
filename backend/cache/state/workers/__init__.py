@@ -1,2 +1,0 @@
-"""Worker state cache."""
-

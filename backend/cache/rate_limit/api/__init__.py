@@ -1,2 +1,0 @@
-"""API rate limit cache."""
-

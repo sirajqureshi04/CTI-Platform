@@ -1,2 +1,0 @@
-"""Relevance cache directory."""
-

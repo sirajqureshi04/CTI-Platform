@@ -1,2 +1,0 @@
-"""UAE relevance cache."""
-

@@ -1,2 +1,0 @@
-"""Rate limit cache directory."""
-
