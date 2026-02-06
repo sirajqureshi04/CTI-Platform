@@ -1,6 +1,3 @@
--- CTI Platform Database Schema - Enrichment Aligned Version
-CREATE DATABASE IF NOT EXISTS cti_platform;
-USE cti_platform;
 
 -- 1. Feeds Table: Tracks Scraper Health
 CREATE TABLE IF NOT EXISTS feeds (
