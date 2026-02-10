@@ -1,90 +1,87 @@
 """
-AlienVault OTX feed with automatic configuration from settings.
-Fully compatible with UAE NESA compliance and OTX v1 API specs.
+AlienVault OTX feed with incremental loading.
 """
+
 from typing import Any, Dict, Optional
-from datetime import datetime
-from requests.exceptions import HTTPError, RequestException
+from datetime import datetime, timedelta
 
 from backend.core.logger import CTILogger
-from backend.core.config import settings
 from backend.feeds.clearweb.base_feed import BaseFeed
 
 logger = CTILogger.get_logger(__name__)
 
 class AlienVaultOTXFeed(BaseFeed):
     BASE_URL = "https://otx.alienvault.com/api/v1"
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
-        # ✅ FIXED: Correct dunder method name (double underscores)
+    
+    def __init__(self, api_key: Optional[str] = None, config: Dict[str, Any] = None):
+        self.api_key = api_key or (config.get("api_key") if config else None)
         super().__init__(name="alienvault_otx", config=config or {})
         
-        self.supports_incremental = settings.OTX_INCREMENTAL_ENABLED
-        self.api_key = self.config.get("api_key") or settings.OTX_API_KEY
-        
         if self.api_key:
-            masked_key = f"{self.api_key[:4]}...{self.api_key[-4:]}"
             self.http_client.session.headers["X-OTX-API-KEY"] = self.api_key
-            logger.info(f"OTX initialized with API Key: {masked_key}")
-        else:
-            logger.warning("OTX running in PUBLIC MODE. Rate limits apply (1 req/min).")
 
     def fetch(self, last_run: Optional[str] = None) -> Dict[str, Any]:
         """
-        Fetch pulses from OTX. Handles both 'subscribed' and 'public' flows.
+        Fetch data modified since last_run_time.
+        Args:
+            last_run_time: ISO format timestamp (e.g., "2023-10-27T10:00:00")
         """
-        # ✅ FIXED: Official endpoint mapping
+        data = {"pulses": []}
+        
+        # Define the pulse source
         pulse_endpoint = "/pulses/subscribed" if self.api_key else "/pulses/public"
         url = f"{self.BASE_URL}{pulse_endpoint}"
         
+        # Setup the 'Modified Since' filter
+        # If no last_run is provided, default to last 24 hours
+        if not last_run:
+            last_run = (datetime.now() - timedelta(days=1)).isoformat()
+            
         params = {
-            "limit": min(self.config.get("limit", 50), 50),
-            "page": 1
+            "modified_since": last_run,
+            "limit": self.config.get("limit", 100)
         }
 
-        # Apply modified_since only if enabled and a last_run exists
-        if self.supports_incremental and last_run:
-            params["modified_since"] = last_run
-            logger.debug(f"Incremental fetch: modified_since={last_run}")
-        else:
-            logger.info(f"Full fetch triggered (Incremental: {self.supports_incremental})")
-
         try:
-            response = self.http_client.get(url, params=params, timeout=30)
+            logger.debug(f"Fetching OTX pulses modified since {last_run}")
+            response = self.http_client.get(url, params=params)
             response.raise_for_status()
             
             payload = response.json()
+            data["pulses"] = payload.get("results", [])
             
-            # ✅ FIXED: OTX API varies between a dict with 'results' and a raw list
-            if isinstance(payload, dict):
-                pulses = payload.get("results", [])
-            elif isinstance(payload, list):
-                pulses = payload
-            else:
-                pulses = []
-
-            logger.info(f"Successfully fetched {len(pulses)} pulses from {pulse_endpoint}")
+            # Note: OTX results are paginated. For a high-volume feed, 
+            # you might need to loop through payload['next']
             
-            return {
-                "source": "alienvault_otx",
-                "timestamp": datetime.now().isoformat(),
-                "data": {"pulses": pulses}
-            }
+            logger.info(f"Fetched {len(data['pulses'])} new/updated pulses")
             
-        except HTTPError as e:
-            if e.response.status_code == 429:
-                logger.error("OTX Rate Limit Exceeded. Implement backoff or use API Key.")
-            elif e.response.status_code == 404:
-                logger.error(f"OTX Endpoint 404: Check if {pulse_endpoint} is valid for your key.")
-            raise
         except Exception as e:
-            # ✅ FIXED: Correct way to log exception types
-            logger.error(f"OTX Error [{type(e).__name__}]: {str(e)[:200]}")
-            raise
+            logger.error(f"Incremental fetch failed: {e}")
+
+        return {
+            "source": "alienvault_otx",
+            "timestamp": datetime.now().isoformat(),
+            "data": data
+        }
 
     def validate(self, data: Dict[str, Any]) -> bool:
-        """Validate the returned OTX structure."""
-        if not isinstance(data, dict) or data.get("source") != "alienvault_otx":
+        """Validate AlienVault OTX feed data structure."""
+        if not isinstance(data, dict):
+            logger.error("Data is not a dictionary")
             return False
         
-        pulses = data.get("data", {}).get("pulses", [])
-        return isinstance(pulses, list)
+        if data.get("source") != "alienvault_otx":
+            logger.error("Invalid source identifier")
+            return False
+        
+        inner_data = data.get("data", {})
+        if not isinstance(inner_data, dict):
+            logger.error("Data field is missing or not a dictionary")
+            return False
+        
+        pulses = inner_data.get("pulses", [])
+        if not isinstance(pulses, list):
+            logger.error("Pulses data is not a list")
+            return False
+        
+        return True
