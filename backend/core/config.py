@@ -24,8 +24,6 @@ class Settings(BaseSettings):
     # --------------------------------------------------
     # .env File Configuration (NEW & OPTIMIZED)
     # --------------------------------------------------
-    # This tells Pydantic exactly where to find your .env file
-    # relative to this file's location.
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parent.parent.parent / ".env",
         env_file_encoding='utf-8',
