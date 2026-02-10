@@ -7,7 +7,7 @@ logger = CTILogger.get_logger(__name__)
 class DatabaseConnection:
     """
     Database connection manager.
-    Now implements REAL connection pooling for high-frequency CTI feeds.
+    Implements connection pooling for high-frequency CTI feeds.
     """
     
     def __init__(self):
@@ -22,12 +22,12 @@ class DatabaseConnection:
         logger.info("Initialized database connection manager")
 
     def connect(self):
-        """Establish connection or initialize pool."""
+        """Establish connection pool or fallback to single connection."""
         try:
             import mysql.connector
             from mysql.connector import pooling
             
-            # Create a pool of 5 connections (perfect for parallel scrapers)
+            # Initialize the pool
             self._pool = pooling.MySQLConnectionPool(
                 pool_name="cti_pool",
                 pool_size=5,
@@ -44,7 +44,7 @@ class DatabaseConnection:
         except ImportError:
             try:
                 import pymysql
-                # pymysql doesn't have a built-in pooler, so we fallback to a single connection
+                # Fallback to a single connection if mysql-connector is missing
                 self._connection = pymysql.connect(
                     host=self.host,
                     port=self.port,
@@ -64,17 +64,32 @@ class DatabaseConnection:
 
     def get_connection(self):
         """Returns a connection from the pool or the fallback connection."""
-        if self._pool:
-            return self._pool.get_connection()
-        if self._connection is None:
+        # 1. If neither pool nor fallback exists, try to connect/initialize
+        if self._pool is None and self._connection is None:
             return self.connect()
+
+        # 2. If pool exists, get a connection from it
+        if self._pool:
+            try:
+                return self._pool.get_connection()
+            except Exception as e:
+                logger.error(f"Error getting connection from pool: {e}")
+                # Re-attempting initialization if pool is exhausted or broken
+                return self.connect()
+
+        # 3. Otherwise return the single fallback connection
         return self._connection
 
     def close(self):
-        """Close the active connection or pool."""
+        """Close the active fallback connection or clean up pool."""
         if self._connection:
             self._connection.close()
-            logger.info("Database connection closed")
-        # Note: Pooled connections returned via .close() go back to the pool automatically.
+            self._connection = None
+            logger.info("Fallback database connection closed")
+        
+        # Note: In pooling, you don't 'close' the pool itself usually, 
+        # but you close individual connections returned by get_connection()
+        # to return them to the pool.
 
+# Instantiate the manager so other modules can import 'db'
 db = DatabaseConnection()
