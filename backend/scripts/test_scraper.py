@@ -53,13 +53,15 @@ def run_diagnostic():
             
             if count > 0:
                 print("📝 Sample Victims:")
-                for v in info.get("victims", [])[:3]: # Show first 3
-                    print(f"   - {v['title']}")
-                    
+                for v in info.get("victims", [])[:3]:  # Show first 3
+                    print(f"   - {v.get('title', 'N/A')}")
+
         print("\n" + "="*50)
         
     except Exception as e:
         logger.error(f"Test Failed: {e}", exc_info=True)
+        print(f"\n❌ ERROR: {e}")
+        print("💡 Make sure Tor is running and SOCKS proxy is available on port 9050")
 
 if __name__ == "__main__":
     run_diagnostic()
