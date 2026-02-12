@@ -1,58 +1,68 @@
-import cloudscraper
-from datetime import datetime
-from typing import Any, Dict
+from typing import Any, Dict, List, Set
+
 from backend.core.logger import CTILogger
-from backend.feeds.clearweb.base_feed import BaseFeed
+from backend.parser.base_parser import BaseParser
 
 logger = CTILogger.get_logger(__name__)
 
-class RansomwareLiveScraper(BaseFeed):
+
+class RansomwareParser(BaseParser):
     """
-    Scraper for Ransomware.live using cloudscraper to bypass 
-    Cloudflare anti-bot protections.
+    Parser for ransomware-focused feeds (e.g., ransomware.live victims).
+    Converts raw feed structures into normalized IOC-style records.
     """
-    
-    # Target the primary structured endpoints
-    GROUPS_URL = "https://data.ransomware.live/groups.json"
-    VICTIMS_URL = "https://data.ransomware.live/victims.json"
 
     def __init__(self, config: Dict[str, Any] = None):
-        super().__init__(name="ransomware_live", config=config or {})
-        # Initialize the stealth scraper
-        self.scraper = cloudscraper.create_scraper(
-            browser={
-                'browser': 'chrome',
-                'platform': 'windows',
-                'desktop': True
-            }
+        super().__init__(
+            name="ransomware_parser",
+            config=config or {}
         )
 
-    def fetch(self) -> Dict[str, Any]:
-        """Fetches groups and victims in parallel to feed the parser."""
-        try:
-            logger.info("Fetching structured data from Ransomware.live...")
-            
-            # 1. Fetch Groups
-            groups_resp = self.scraper.get(self.GROUPS_URL)
-            groups_resp.raise_for_status()
-            groups_data = groups_resp.json()
+    def parse(self, raw_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+        Parse ransomware feed data into a flat list of normalized items.
 
-            # 2. Fetch Victims (Latest)
-            victims_resp = self.scraper.get(self.VICTIMS_URL)
-            victims_resp.raise_for_status()
-            victims_data = victims_resp.json()
+        Current support:
+        - source == "ransomware.live": expects raw_data["data"]["victims"] as a list of dicts.
+        """
+        source = raw_data.get("source", "unknown")
+        items: List[Dict[str, Any]] = []
 
-            logger.info(f"Retrieved {len(groups_data)} groups and {len(victims_data)} victims.")
-
-            return {
-                "source": "ransomware_live",
-                "timestamp": datetime.utcnow().isoformat(),
-                "data": {
-                    "groups": groups_data,
-                    "victims": victims_data
+        if source == "ransomware.live":
+            victims = raw_data.get("data", {}).get("victims", [])
+            for v in victims:
+                name = v.get("name") or v.get("victim") or str(v.get("id", "unknown"))
+                metadata = {
+                    "group": v.get("group") or v.get("group_name"),
+                    "discovered": v.get("discovered") or v.get("discovered_at"),
+                    "published": v.get("published"),
+                    "raw": v,
                 }
-            }
+                items.append(
+                    self.normalize_ioc(
+                        ioc_type="ransomware_victim",
+                        ioc_value=name,
+                        metadata=metadata,
+                    )
+                )
+        else:
+            logger.warning(f"Unsupported source for RansomwareParser: {source}")
 
-        except Exception as e:
-            logger.error(f"Ransomware.live fetch failed: {e}")
-            raise
+        return items
+
+    def extract_iocs(self, parsed_data: List[Dict[str, Any]]) -> Dict[str, Set[str]]:
+        """
+        Group normalized items by IOC type, using sets for deduplication.
+        """
+        iocs_by_type: Dict[str, Set[str]] = {}
+
+        for ioc in parsed_data:
+            itype = ioc["ioc_type"]
+            ivalue = ioc["ioc_value"]
+
+            if itype not in iocs_by_type:
+                iocs_by_type[itype] = set()
+
+            iocs_by_type[itype].add(ivalue)
+
+        return iocs_by_type

@@ -24,8 +24,9 @@ class Settings(BaseSettings):
     # --------------------------------------------------
     # .env File Configuration (NEW & OPTIMIZED)
     # --------------------------------------------------
+    # Load from the existing backend/.env file in this project.
     model_config = SettingsConfigDict(
-        env_file=Path(__file__).resolve().parent.parent.parent / ".env",
+        env_file=Path(__file__).resolve().parent.parent / ".env",
         env_file_encoding='utf-8',
         case_sensitive=True,
         extra='ignore'

@@ -3,7 +3,7 @@
 # Explicit exports for easier importing
 from backend.Orchestration.pipeline import CTIPipeline
 from backend.Orchestration.scheduler import Scheduler
-from backend.Orchestration.feed_manager import FeedManager
+from backend.Orchestration.Feed_manager import FeedManager
 
 __all__ = [
     "CTIPipeline",

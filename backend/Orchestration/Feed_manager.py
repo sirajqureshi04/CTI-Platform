@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional, Type
 
 from backend.core.logger import CTILogger
-from backend.database.daos.feed_dao import FeedDAO
+from backend.db.feed_dao import FeedDAO
 
 logger = CTILogger.get_logger(__name__)
 

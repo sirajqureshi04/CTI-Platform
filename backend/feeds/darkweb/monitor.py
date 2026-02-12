@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import List, Dict, Any, Optional
 
 from bs4 import BeautifulSoup
-from backend.feeds.base_feed import BaseFeed
+from backend.feeds.clearweb.base_feed import BaseFeed
 from backend.core.logger import CTILogger
 
 logger = CTILogger.get_logger(__name__)

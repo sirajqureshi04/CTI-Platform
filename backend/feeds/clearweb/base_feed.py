@@ -75,7 +75,12 @@ class BaseFeed(ABC):
         return filepath
 
     def dry_run(self) -> Dict[str, Any]:
-        """Fetch and validate data without saving, respecting capability flags."""
+        """
+        Fetch and validate data while **also** writing a raw JSON snapshot
+        into the standard `data/raw/<feed_name>/` folder when validation passes.
+        This is used by test utilities like `test_feeds_dry_run.py` so
+        that every dry-run still leaves an auditable raw file on disk.
+        """
         last_run = self.get_last_run_time()
         current_run_time = datetime.now().isoformat()
         
@@ -102,8 +107,14 @@ class BaseFeed(ABC):
             result["validation_passed"] = validation_passed
             
             if validation_passed:
+                # Persist raw JSON into data/raw/<feed_name>/ for inspection.
+                filepath = self.save_raw_data(raw_data)
                 result["success"] = True
-                logger.info(f"[DRY RUN] ✓ {self.name}: Fetched {data_summary.get('total_items', 0)} items")
+                result["saved_file"] = str(filepath)
+                logger.info(
+                    f"[DRY RUN] ✓ {self.name}: Fetched {data_summary.get('total_items', 0)} "
+                    f"items and saved snapshot to {filepath}"
+                )
             else:
                 result["error"] = "Validation failed"
                 
