@@ -11,7 +11,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 # Parsers & unified model
 from backend.parser.ransomware_parser import RansomwareParser
 from backend.parser.vulnerability_parser import VulnerabilityParser
-from backend.parser.malware_parser import MalwareParser
+from backend.parser.malpedia_parser import MalpediaParser
 from backend.models.indcator import ProcessedIndicator
 
 

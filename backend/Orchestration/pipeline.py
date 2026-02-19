@@ -13,7 +13,7 @@ from backend.db.victim_dao import VictimDAO
 from backend.db.feed_dao import FeedDAO
 
 # Parsers
-from backend.parser.malware_parser import MalwareParser
+from backend.parser.malpedia_parser import MalpediaParser
 from backend.parser.ransomware_parser import RansomwareParser
 from backend.parser.vulnerability_parser import VulnerabilityParser
 
