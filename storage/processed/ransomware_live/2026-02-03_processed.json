@@ -1,0 +1,902 @@
+[
+    {
+        "value": "encompass-inc",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591753",
+        "tags": []
+    },
+    {
+        "value": "family health center",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591782",
+        "tags": []
+    },
+    {
+        "value": "medinah school district 11",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591791",
+        "tags": []
+    },
+    {
+        "value": "muebles dico",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591798",
+        "tags": []
+    },
+    {
+        "value": "erickson thorpe & swainston",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591804",
+        "tags": []
+    },
+    {
+        "value": "elabs",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591811",
+        "tags": []
+    },
+    {
+        "value": "workers health & safety centre",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591817",
+        "tags": []
+    },
+    {
+        "value": "range cooperatives",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591823",
+        "tags": []
+    },
+    {
+        "value": "the hechtman group",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591829",
+        "tags": []
+    },
+    {
+        "value": "exterior worlds",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591836",
+        "tags": []
+    },
+    {
+        "value": "liberia electricity corporation (lec)",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591842",
+        "tags": []
+    },
+    {
+        "value": "liberia revenue authority",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591848",
+        "tags": []
+    },
+    {
+        "value": "national investment commission liberia",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591854",
+        "tags": []
+    },
+    {
+        "value": "jcm agricola",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591861",
+        "tags": []
+    },
+    {
+        "value": "sprokkit",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591868",
+        "tags": []
+    },
+    {
+        "value": "stephenson ziegenhorn & bernard",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591875",
+        "tags": []
+    },
+    {
+        "value": "polycom",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591881",
+        "tags": []
+    },
+    {
+        "value": "iron mountain",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591888",
+        "tags": []
+    },
+    {
+        "value": "h-behbehani brothers wll",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591895",
+        "tags": []
+    },
+    {
+        "value": "ingus",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591902",
+        "tags": []
+    },
+    {
+        "value": "kilograph",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591909",
+        "tags": []
+    },
+    {
+        "value": "ferretti construction",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591916",
+        "tags": []
+    },
+    {
+        "value": "zurfl\u00fch-feller",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591926",
+        "tags": []
+    },
+    {
+        "value": "kouei",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591937",
+        "tags": []
+    },
+    {
+        "value": "jst power equipment",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591947",
+        "tags": []
+    },
+    {
+        "value": "www.pucobre.cl",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591954",
+        "tags": []
+    },
+    {
+        "value": "chokchey finance",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591961",
+        "tags": []
+    },
+    {
+        "value": "shinwa co ltd",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591969",
+        "tags": []
+    },
+    {
+        "value": "hosowaka micron group",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591976",
+        "tags": []
+    },
+    {
+        "value": "deatak",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591982",
+        "tags": []
+    },
+    {
+        "value": "stellium",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591989",
+        "tags": []
+    },
+    {
+        "value": "acu trans solutions llc",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.591996",
+        "tags": []
+    },
+    {
+        "value": "sigma processing group",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592002",
+        "tags": []
+    },
+    {
+        "value": "odyssey academy",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592009",
+        "tags": []
+    },
+    {
+        "value": "blystone & bailey",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592017",
+        "tags": []
+    },
+    {
+        "value": "socal roc",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592034",
+        "tags": []
+    },
+    {
+        "value": "foamtec international",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592045",
+        "tags": []
+    },
+    {
+        "value": "*****",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592055",
+        "tags": []
+    },
+    {
+        "value": "hawk law group",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592066",
+        "tags": []
+    },
+    {
+        "value": "nobel hygiene pvt",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592076",
+        "tags": []
+    },
+    {
+        "value": "handsome manufacturing",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592086",
+        "tags": []
+    },
+    {
+        "value": "softcore tech solutions",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592095",
+        "tags": []
+    },
+    {
+        "value": "prime port authorities",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592146",
+        "tags": []
+    },
+    {
+        "value": "titan mining corp",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592152",
+        "tags": []
+    },
+    {
+        "value": "skyline logistics group",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592205",
+        "tags": []
+    },
+    {
+        "value": "evergreen agricultural",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592218",
+        "tags": []
+    },
+    {
+        "value": "lumina advertising",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592228",
+        "tags": []
+    },
+    {
+        "value": "zenith aerospace",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592238",
+        "tags": []
+    },
+    {
+        "value": "metro food wholesalers",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592246",
+        "tags": []
+    },
+    {
+        "value": "ironclad security services",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592254",
+        "tags": []
+    },
+    {
+        "value": "cloudlink systems",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592285",
+        "tags": []
+    },
+    {
+        "value": "edupro university group",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592488",
+        "tags": []
+    },
+    {
+        "value": "horizon energy partners",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592528",
+        "tags": []
+    },
+    {
+        "value": "alex retail solutions",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592543",
+        "tags": []
+    },
+    {
+        "value": "purestream water corp",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592598",
+        "tags": []
+    },
+    {
+        "value": "biogenix pharmaceuticals",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592617",
+        "tags": []
+    },
+    {
+        "value": "global media alliance",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592637",
+        "tags": []
+    },
+    {
+        "value": "vertex law chambers",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592655",
+        "tags": []
+    },
+    {
+        "value": "silverline auto mfg",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592667",
+        "tags": []
+    },
+    {
+        "value": "oceanic cruise lines",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592680",
+        "tags": []
+    },
+    {
+        "value": "terraform real estate",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592693",
+        "tags": []
+    },
+    {
+        "value": "bar s services",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592704",
+        "tags": []
+    },
+    {
+        "value": "nai plotkin",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592715",
+        "tags": []
+    },
+    {
+        "value": "transaction packing",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592726",
+        "tags": []
+    },
+    {
+        "value": "neuviz",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592746",
+        "tags": []
+    },
+    {
+        "value": "cigamsoftware",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592764",
+        "tags": []
+    },
+    {
+        "value": "pellenc",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592780",
+        "tags": []
+    },
+    {
+        "value": "dolby laboratories",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592796",
+        "tags": []
+    },
+    {
+        "value": "all data",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592807",
+        "tags": []
+    },
+    {
+        "value": "wieson technologies",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592819",
+        "tags": []
+    },
+    {
+        "value": "beacon mutual insurance",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592829",
+        "tags": []
+    },
+    {
+        "value": "woodwardoralsurgery.com",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592837",
+        "tags": []
+    },
+    {
+        "value": "we will be back soon",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592846",
+        "tags": []
+    },
+    {
+        "value": "wjnklaw.com",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592853",
+        "tags": []
+    },
+    {
+        "value": "casamedica.com.gt",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592860",
+        "tags": []
+    },
+    {
+        "value": "mbc",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592867",
+        "tags": []
+    },
+    {
+        "value": "trace",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592874",
+        "tags": []
+    },
+    {
+        "value": "esperance communications",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592884",
+        "tags": []
+    },
+    {
+        "value": "littlefield companies",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592890",
+        "tags": []
+    },
+    {
+        "value": "rich sport public",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592897",
+        "tags": []
+    },
+    {
+        "value": "www.roschvisionary.com",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592904",
+        "tags": []
+    },
+    {
+        "value": "shorelinenyc.com",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592911",
+        "tags": []
+    },
+    {
+        "value": "diehl & cella advogados associados",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592918",
+        "tags": []
+    },
+    {
+        "value": "pk pinh\u00e3o & koiffman attorneys at law",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592924",
+        "tags": []
+    },
+    {
+        "value": "tulsa international airport",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592931",
+        "tags": []
+    },
+    {
+        "value": "bryant consultants",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592940",
+        "tags": []
+    },
+    {
+        "value": "northeast industrialmanufacturing",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592948",
+        "tags": []
+    },
+    {
+        "value": "cooperativa de hosteler\u00eda de navarra",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592955",
+        "tags": []
+    },
+    {
+        "value": "fulcrum construction",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592962",
+        "tags": []
+    },
+    {
+        "value": "t & m electric llc",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592971",
+        "tags": []
+    },
+    {
+        "value": "hallauer law firm",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592980",
+        "tags": []
+    },
+    {
+        "value": "atlantic national trust",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.592999",
+        "tags": []
+    },
+    {
+        "value": "rocky mountain associated physicians",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593014",
+        "tags": []
+    },
+    {
+        "value": "mullinax ford",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593025",
+        "tags": []
+    },
+    {
+        "value": "best attorneys",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593065",
+        "tags": []
+    },
+    {
+        "value": "r\u00f6ben tonbaustoffe gmbh",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593072",
+        "tags": []
+    },
+    {
+        "value": "[internal database pack 1] warren county sheriff\u2019s office",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593079",
+        "tags": []
+    },
+    {
+        "value": "hydrometrics",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593087",
+        "tags": []
+    },
+    {
+        "value": "abatix",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593119",
+        "tags": []
+    },
+    {
+        "value": "lawsoft",
+        "type": "ransomware_victim",
+        "source": "ransomware_parser",
+        "severity": "medium",
+        "confidence": 50,
+        "timestamp": "2026-02-12 14:17:30.593129",
+        "tags": []
+    }
+]

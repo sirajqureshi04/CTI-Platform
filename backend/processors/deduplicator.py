@@ -1,11 +1,13 @@
 import json
 import pickle
 from pathlib import Path
+from datetime import datetime
 from typing import Dict, List, Any
 
-# 1. Update your Source Map here
+# factor 3: Map internal parser keys to professional display sources
 SOURCE_MAP = {
-    "vulnerability_parser": "CISA KEV",
+    "cisa_parser": "CISA KEV",
+    "alienvault_parser": "AlienVault OTX",
     "malpedia": "Malpedia",
     "ransomware_parser": "Ransomware.live",
     "unknown": "Community OSINT"
@@ -13,19 +15,54 @@ SOURCE_MAP = {
 
 class Deduplicator:
     def __init__(self, cache_dir: Path = None):
-        # Resolve the root directory of your project
-        # This assumes deduplicator.py is in backend/processors/
-        self.root_dir = Path(__file__).resolve().parent.parent.parent
-        
-        # Ensure cache and storage directories are absolute
-        self.cache_dir = cache_dir or self.root_dir / "backend" / "cache" / "deduplication"
+        self.root_dir = Path(__file__).resolve().parents[2] 
         self.final_dir = self.root_dir / "storage" / "final"
+        self.cache_dir = cache_dir or (self.root_dir / "backend" / "cache" / "deduplication")
         
-        self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.final_dir.mkdir(parents=True, exist_ok=True)
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
         
-        self._cached_records: Dict[str, Dict[str, Any]] = {}
+        self._cached_records = {}
         self._load_cache()
+
+    def deduplicate(self, iocs: List[Dict]) -> List[Dict]:
+        """
+        Merges IOCs and outputs unique daily files.
+        """
+        for ioc in iocs:
+            val = ioc.get("value")
+            if not val: continue
+            
+            # Factor 1 & 3: Resolve specific parser name to clean display name
+            raw_src = ioc.get("source") or (ioc.get("sources")[0] if ioc.get("sources") else "unknown")
+            clean_src = SOURCE_MAP.get(raw_src, raw_src)
+
+            if val in self._cached_records:
+                master = self._cached_records[val]
+                if "sources" not in master: master["sources"] = []
+                if clean_src not in master["sources"]: 
+                    master["sources"].append(clean_src)
+                
+                # Merge tags and update timestamp
+                master["tags"] = list(set(master.get("tags", []) + ioc.get("tags", [])))
+                master["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            else:
+                # Initialize new record with mapped source
+                ioc["sources"] = [clean_src]
+                ioc.pop("source", None) # Remove technical parser name
+                ioc["first_seen"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                self._cached_records[val] = ioc
+        
+        self._save_cache()
+        
+        # Factor 2: Save as separate JSON files with the date
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        output_path = self.final_dir / f"intel_report_{current_date}.json"
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(list(self._cached_records.values()), f, indent=4)
+            
+        return list(self._cached_records.values())
 
     def _load_cache(self):
         cache_file = self.cache_dir / "master_records.pkl"
@@ -36,45 +73,3 @@ class Deduplicator:
     def _save_cache(self):
         with open(self.cache_dir / "master_records.pkl", "wb") as f:
             pickle.dump(self._cached_records, f)
-
-    def deduplicate(self, iocs: List[Dict]) -> List[Dict]:
-        """
-        Processes IOCs: Standardizes ID to 'value', renames sources via mapping,
-        and saves output to storage/final/final_intelligence.json.
-        """
-        for ioc in iocs:
-            # FIX: Force use of 'value' as identifier
-            val = ioc.get("value")
-            if not val:
-                continue
-            
-            # FIX: Map the source names immediately
-            raw_src = ioc.get("source") or (ioc.get("sources")[0] if ioc.get("sources") else "unknown")
-            clean_src = SOURCE_MAP.get(raw_src, raw_src)
-
-            if val in self._cached_records:
-                master = self._cached_records[val]
-                # Ensure 'sources' exists as a list in the master record
-                if "sources" not in master:
-                    master["sources"] = []
-                
-                if clean_src not in master["sources"]:
-                    master["sources"].append(clean_src)
-                
-                # Merge tags
-                master["tags"] = list(set(master.get("tags", []) + ioc.get("tags", [])))
-            else:
-                # First time seeing this IOC
-                ioc["sources"] = [clean_src]
-                ioc.pop("source", None) # Remove singular key
-                self._cached_records[val] = ioc
-        
-        self._save_cache()
-        
-        # FIX: Explicitly save to the storage/final folder
-        output_file = self.final_dir / "final_intelligence.json"
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(list(self._cached_records.values()), f, indent=4)
-            
-        print(f"✅ Success: Data saved to {output_file}")
-        return list(self._cached_records.values())

@@ -392,3 +392,112 @@
 2026-02-03 13:52:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 315 groups entries
 2026-02-03 13:52:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
 2026-02-03 13:52:41 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3660 malware families.
+2026-02-10 17:38:11 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 17:38:11 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-10 17:38:26 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 17:38:26 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-10 17:40:26 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 17:40:26 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-10 17:42:37 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 17:42:37 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-10 17:47:47 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 17:47:47 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-10 18:10:17 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 18:10:17 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-10 18:11:59 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-10 18:11:59 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-12 17:21:51 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-12 17:21:51 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-12 17:24:32 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-12 17:24:32 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-12 17:24:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-12 17:30:49 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-12 17:30:49 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-12 17:30:49 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-02-12 17:30:49 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-02-12 17:30:50 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Fetched 4 new/updated pulses
+2026-02-12 17:30:50 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 4 items
+2026-02-12 17:31:40 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from malpedia...
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-12 17:31:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:93 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-02-12 17:31:41 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.02.11 (1513 entries)
+2026-02-12 17:31:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ cisa_kev: Fetched 1513 items
+2026-02-12 17:31:41 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Fetched 4 new/updated pulses
+2026-02-12 17:31:41 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ alienvault_otx: Fetched 4 items
+2026-02-12 17:31:42 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3662 malware families.
+2026-02-12 17:31:42 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ malpedia: Fetched 3662 items
+2026-02-12 17:31:42 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 318 groups entries
+2026-02-12 17:31:44 | ERROR    | [cti_platform.backend.core.http_client] | fetch:102 | Request Failed: https://api.ransomware.live/v2/recentvictims | Status: 429 | Params: {}
+2026-02-12 17:31:44 | ERROR    | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:59 | Failed to fetch victims from https://api.ransomware.live/v2/recentvictims: 429 Client Error: TOO MANY REQUESTS for url: https://api.ransomware.live/v2/recentvictims
+2026-02-12 17:31:44 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:106 | [DRY RUN] ✓ ransomware_live: Fetched 318 items
+2026-02-12 18:17:27 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-12 18:17:27 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-12 18:17:28 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: vulnerability_parser
+2026-02-12 18:17:28 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: malpedia
+2026-02-12 18:17:30 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: vulnerability_parser
+2026-02-12 18:17:30 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: ransomware_parser
+2026-02-13 15:23:33 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 15:23:33 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 15:24:15 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 15:24:15 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 15:25:14 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 15:25:14 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 15:25:14 | INFO     | [cti_platform.backend.processors.deduplicator] | __init__:36 | Initialized deduplicator with 0 records in cache
+2026-02-13 15:25:15 | INFO     | [cti_platform.backend.processors.deduplicator] | deduplicate:98 | Deduplication complete: 0 unique, 0 merged.
+2026-02-13 16:39:58 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 16:39:58 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 16:57:52 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 16:57:52 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 16:57:53 | INFO     | [cti_platform.backend.processors.deduplicator] | deduplicate:85 | Deduplication complete. 22693 records in final storage.
+2026-02-13 16:58:24 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 16:58:24 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 16:58:59 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 16:58:59 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 17:25:19 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 17:25:19 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 17:31:03 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-13 17:31:03 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-13 17:31:04 | INFO     | [cti_platform.backend.processors.deduplicator] | __init__:36 | Initialized deduplicator with 22693 records in cache
+2026-02-13 17:31:05 | INFO     | [cti_platform.backend.processors.deduplicator] | deduplicate:98 | Deduplication complete: 22693 unique, 0 merged.
+2026-02-14 11:43:20 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-14 11:43:20 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-14 11:44:01 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-14 11:44:01 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-14 11:47:47 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-14 11:47:47 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-14 11:58:38 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-14 11:58:38 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-14 12:06:54 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-14 12:06:54 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-14 12:32:55 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from malpedia...
+2026-02-14 12:32:55 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-14 12:32:56 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.02.13 (1518 entries)
+2026-02-14 12:32:56 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\cisa_kev\cisa_kev_20260214_123256.json
+2026-02-14 12:32:56 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ cisa_kev: Fetched 1518 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\cisa_kev\cisa_kev_20260214_123256.json
+2026-02-14 12:32:56 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:56 | Fetched 1 new/updated pulses
+2026-02-14 12:32:56 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\alienvault_otx\alienvault_otx_20260214_123256.json
+2026-02-14 12:32:56 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ alienvault_otx: Fetched 1 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\alienvault_otx\alienvault_otx_20260214_123256.json
+2026-02-14 12:32:57 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 318 groups entries
+2026-02-14 12:32:59 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3662 malware families.
+2026-02-14 12:32:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\malpedia\malpedia_20260214_123259.json
+2026-02-14 12:32:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ malpedia: Fetched 3662 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\malpedia\malpedia_20260214_123259.json
+2026-02-14 12:32:59 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-02-14 12:32:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\ransomware_live\ransomware_live_20260214_123259.json
+2026-02-14 12:32:59 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ ransomware_live: Fetched 418 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\ransomware_live\ransomware_live_20260214_123259.json

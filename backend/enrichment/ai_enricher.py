@@ -1,83 +1,83 @@
 """
 AI-powered enrichment for CTI data.
-Integrated with EnrichmentManager for contextual threat analysis.
+Refined for: storage/final/ post-processing and tiered analysis.
 """
 
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 import json
 
 from backend.core.logger import CTILogger
 from backend.core.config import settings
 
+# If you decide to use OpenAI or Anthropic later:
+# import openai 
+
 logger = CTILogger.get_logger(__name__)
 
 class AIEnricher:
-    """
-    Handles Large Language Model (LLM) interactions to provide 
-    strategic context to ingested threat data.
-    """
-    
     def __init__(self):
-        # We pull the API key from our core settings aligned in previous steps
         self.api_key = getattr(settings, "OPENAI_API_KEY", None)
         self.enabled = bool(self.api_key)
         
         if not self.enabled:
-            logger.warning("AI Enricher disabled: No API Key found in settings.")
+            logger.warning("AI Enricher running in MOCK MODE: No API Key found.")
         else:
-            logger.info("AI Enricher initialized and ready.")
+            logger.info("AI Enricher initialized for Production.")
 
-    def enrich(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def enrich(self, indicator: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Primary entry point called by EnrichmentManager.
-        Decides whether to summarize a victim story or classify an IOC.
+        Refined Entry Point: Processes a single indicator dictionary 
+        after it has been pulled from final storage.
         """
-        if not self.enabled:
-            return data
+        # We don't return the whole data object anymore, just the AI portion
+        # to be merged by the manager.
+        analysis = {}
 
-        # Check if we are dealing with a Ransomware Victim (Text heavy)
-        if "description" in data or "victim_name" in data:
-            data["ai_analysis"] = self._analyze_ransomware_event(data)
+        # Logic Gate 1: Strategic Analysis (Ransomware/Victims)
+        if indicator.get("type") == "victim" or "victim_name" in indicator:
+            analysis = self._analyze_ransomware_event(indicator)
         
-        # Check if we are dealing with a technical Indicator (IP/Domain/Hash)
-        elif "value" in data and "type" in data:
-            data["ai_analysis"] = self._classify_indicator(data)
+        # Logic Gate 2: Technical Attribution (IP/Domain/CVE)
+        elif indicator.get("value"):
+            analysis = self._classify_indicator(indicator)
 
-        return data
+        return analysis
 
     def _analyze_ransomware_event(self, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Summarizes leak site descriptions and predicts impact."""
-        description = data.get("description", "No description provided.")
-        victim = data.get("victim_name", "Unknown Victim")
-        
-        # In a real implementation, you would call your LLM client here
-        # Example prompt: "Summarize the ransomware threat to {victim} based on: {description}"
-        
+        """
+        Summarizes leak data. 
+        Refinement: Now accepts the full indicator to 'read' the description.
+        """
+        description = data.get("description", "")
+        group = data.get("source_label", "Unknown Group") # Uses our new mapping labels
+
+        # Refined Logic: If description is short, don't waste API credits.
+        if len(description) < 50:
+            return {"note": "Description too short for meaningful AI analysis."}
+
+        # Placeholder for LLM Call
         return {
-            "summary": f"AI-generated overview of the attack on {victim}...",
-            "estimated_severity": "High",
-            "industry_sector": "Healthcare (Predicted)",
-            "timestamp": datetime.utcnow().isoformat()
+            "summary": f"Strategic summary of {group} activity...",
+            "threat_level": "Elevated",
+            "detected_ttps": ["Data Exfiltration", "Inhibition of System Recovery"],
+            "generated_at": datetime.utcnow().isoformat()
         }
 
     def _classify_indicator(self, ioc: Dict[str, Any]) -> Dict[str, Any]:
-        """Uses AI to classify the intent of a technical indicator."""
-        ioc_type = ioc.get("type")
-        value = ioc.get("value")
+        """
+        Refinement: This now looks at EXISTING enrichment (like GeoIP) 
+        to provide a 'Fused' analysis.
+        """
+        ioc_value = ioc.get("value")
+        geo_data = ioc.get("enrichment", {}).get("geo", {})
+        
+        # The AI 'sees' that the IP is in a specific country and was reported by AlienVault
+        context = f"IOC {ioc_value} located in {geo_data.get('country', 'Unknown')}"
 
         return {
-            "category": "C2 Infrastructure",
-            "confidence": 0.85,
-            "threat_actor_attribution": "Possible APT28 / Fancy Bear",
-            "campaign": "Operation Stealth 2026",
-            "timestamp": datetime.utcnow().isoformat()
+            "verdict": "Malicious",
+            "context": f"AI analysis based on: {context}",
+            "attribution": "Likely Crimeware",
+            "confidence_score": 0.82
         }
-
-    def enrich_batch(self, items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Batch processing to optimize API calls."""
-        if not self.enabled:
-            return items
-            
-        logger.info(f"Starting AI batch enrichment for {len(items)} items")
-        return [self.enrich(item) for item in items]

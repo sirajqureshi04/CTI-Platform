@@ -1,13 +1,9 @@
-"""
-GeoIP lookup enrichment for IP addresses.
-Integrated with EnrichmentManager and optimized with local caching.
-"""
-
 import json
+import requests
+import ipaddress
 from pathlib import Path
 from typing import Any, Dict, Optional
 from datetime import datetime
-import ipaddress
 
 # Industry standard for GeoIP
 try:
@@ -21,25 +17,24 @@ from backend.core.config import settings
 
 logger = CTILogger.get_logger(__name__)
 
-class GeoIPLookup:
+class GeoIPEnricher: # Renamed to match Manager's expectations
     """
     Performs GeoIP lookups for IP addresses.
-    Uses local MaxMind DBs with a fallback to a JSON cache.
+    Priority: Local MaxMind DB -> Local Cache -> Public API Fallback.
     """
     
     def __init__(self, cache_dir: Optional[Path] = None):
-        # 1. Setup Caching
+        # 1. Setup Caching path
+        base_path = getattr(settings, "BASE_DIR", os.getcwd())
         if cache_dir is None:
-            # Aligned with your project structure
-            self.cache_dir = Path(settings.BASE_DIR) / "cache" / "enrichment" / "ip"
+            self.cache_dir = Path(base_path) / "backend" / "cache" / "enrichment" / "ip"
         else:
             self.cache_dir = Path(cache_dir)
         
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
-        # 2. Initialize MaxMind Reader (GeoLite2-City.mmdb)
-        # Ensure you have this file in your resources folder
-        self.db_path = Path(settings.BASE_DIR) / "resources" / "GeoLite2-City.mmdb"
+        # 2. Initialize MaxMind Reader
+        self.db_path = Path(base_path) / "resources" / "GeoLite2-City.mmdb"
         self.reader = None
         
         if HAS_GEOIP_LIB and self.db_path.exists():
@@ -49,47 +44,46 @@ class GeoIPLookup:
             except Exception as e:
                 logger.error(f"Failed to load MaxMind DB: {e}")
         else:
-            logger.warning("MaxMind DB not found. Falling back to cache-only/mock lookups.")
+            logger.warning("MaxMind DB missing. Using Public API fallback for dry run.")
 
-    def lookup(self, ip: str) -> Dict[str, Any]:
+    def get_data(self, ip: str) -> Dict[str, Any]:
         """
-        Lookup geographic information for an IP address.
-        Called by EnrichmentManager.
+        Main entry point called by EnrichmentManager.
         """
-        # Validate IP format
+        # Validate IP format & skip private ranges (RFC1918)
         try:
             ip_obj = ipaddress.ip_address(ip)
             if ip_obj.is_private:
-                return {"ip": ip, "note": "Private/Internal IP", "status": "skipped"}
+                return {"status": "skipped", "note": "Private/Internal IP"}
         except ValueError:
-            return {"ip": ip, "error": "Invalid IP format", "status": "error"}
+            return {"status": "error", "note": "Invalid IP format"}
 
-        # Check Cache
+        # 1. Check local JSON cache first
         cached = self._load_cache(ip)
         if cached:
             return cached
         
-        # Perform Real Lookup
+        # 2. Perform Lookup (DB or API)
         geo_info = self._perform_lookup(ip)
         
-        # Save to Cache
+        # 3. Save to Cache
         self._save_cache(ip, geo_info)
         
         return geo_info
 
     def _perform_lookup(self, ip: str) -> Dict[str, Any]:
-        """The actual engine that queries MaxMind or a fallback."""
+        """Queries MaxMind or falls back to an HTTP API."""
         data = {
-            "ip": ip,
             "country": "Unknown",
             "country_code": "XX",
             "city": "Unknown",
             "latitude": None,
             "longitude": None,
-            "asn": None,
+            "provider": "Unknown",
             "lookup_timestamp": datetime.utcnow().isoformat()
         }
 
+        # Attempt MaxMind Local Lookup
         if self.reader:
             try:
                 response = self.reader.city(ip)
@@ -99,9 +93,27 @@ class GeoIPLookup:
                     "city": response.city.name,
                     "latitude": response.location.latitude,
                     "longitude": response.location.longitude,
+                    "provider": "MaxMind Local"
                 })
-            except Exception as e:
-                logger.debug(f"IP {ip} not found in database: {e}")
+                return data
+            except Exception:
+                logger.debug(f"IP {ip} not in local DB, trying API...")
+
+        # Fallback to Public API (Useful for Dry Runs)
+        try:
+            # ip-api.com is free for non-commercial use, no key needed
+            resp = requests.get(f"http://ip-api.com/json/{ip}", timeout=5).json()
+            if resp.get("status") == "success":
+                data.update({
+                    "country": resp.get("country"),
+                    "country_code": resp.get("countryCode"),
+                    "city": resp.get("city"),
+                    "latitude": resp.get("lat"),
+                    "longitude": resp.get("lon"),
+                    "provider": "ip-api.com"
+                })
+        except Exception as e:
+            logger.error(f"API Fallback failed for {ip}: {e}")
         
         return data
 
@@ -123,7 +135,7 @@ class GeoIPLookup:
         except Exception as e:
             logger.warning(f"Cache save failed for {ip}: {e}")
 
-    def close(self):
-        """Clean up resources."""
-        if self.reader:
+    def __del__(self):
+        """Ensure reader is closed when object is destroyed."""
+        if hasattr(self, 'reader') and self.reader:
             self.reader.close()
