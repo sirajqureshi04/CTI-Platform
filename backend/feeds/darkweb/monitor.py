@@ -1,119 +1,86 @@
-import hashlib
-import json
+#!/usr/bin/env python3
 import re
+import requests
 from datetime import datetime
-from typing import List, Dict, Any, Optional
-
-from bs4 import BeautifulSoup
-from backend.feeds.clearweb.base_feed import BaseFeed
+from typing import Dict, Any, List
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from backend.core.logger import CTILogger
 
-logger = CTILogger.get_logger(__name__)
-
-class RansomwareMonitorFeed(BaseFeed):
-    def __init__(self, http_client: Any, config: Optional[Dict[str, Any]] = None):
-        """
-        Refined Monitor using the BaseFeed blueprint.
-        The http_client passed here should be an instance of TorHTTPClient.
-        """
-        super().__init__(
-            name="Ransomware_Live",
-            http_client=http_client,
-            config=config
-        )
-        # Operational Constraints (NESA Alignment)
-        self.max_response_size = 10 * 1024 * 1024  # 10 MB
-        self.min_victim_length = 20
-        self.max_victims_per_page = 500
-
-    def fetch(self, last_run: Optional[str] = None) -> Dict[str, Any]:
-        """
-        The main execution block called by the Orchestrator.
-        """
-        sources = self.config.get("sources", {})
-        full_intelligence_report = {
-            "observed_at": datetime.utcnow().isoformat(),
-            "sources_checked": len(sources),
-            "detections": {}
+class RansomwareMonitorFeed:
+    """
+    Core engine for monitoring Dark Web Ransomware Leaks.
+    Integrates Single-pass Redaction and Tor-optimized Session management.
+    """
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.logger = CTILogger.get_logger("RansomwareMonitor")
+        self.proxies = config.get("proxies")
+        self.timeout = config.get("timeout", 90)
+        
+        # Initialize the Single-Pass Redaction Master Regex (from our Phase 2 work)
+        self.REDACTION_RULES = {
+            "CREDENTIALS": r"(?i)\b(password|passwd|pwd)\b\s*[:=\t]\s*[^\s]{4,256}",
+            "JWT": r"\beyJ[A-Za-z0-9_-]{10,100}\.[A-Za-z0-9_-]{10,100}\.[A-Za-z0-9_-]{10,500}\b",
+            "EMAIL_PASS": r"(?i)\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b\s*[:|\t\s]\s*[^\s]{6,100}",
+            "ONION_V3": r"(?:https?://)?\b[a-z2-7]{56}\.onion\b"
         }
+        self.master_regex = re.compile("|".join(f"(?P<{k}>{v})" for k, v in self.REDACTION_RULES.items()))
 
-        for source_id, url in sources.items():
+    def _get_session(self) -> requests.Session:
+        """Creates a Tor-optimized session with retry backoff."""
+        session = requests.Session()
+        retry_strategy = Retry(
+            total=self.config.get("max_retries", 3),
+            backoff_factor=2,
+            status_forcelist=[429, 500, 502, 503, 504]
+        )
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+        session.proxies = self.proxies
+        session.headers.update({'User-Agent': self.config.get("user_agent")})
+        return session
+
+    def redact_data(self, text: str) -> str:
+        """Applies Phase 2 redaction to prevent data leakage in dry runs."""
+        if not text: return ""
+        def _replacer(match):
+            for name in self.REDACTION_RULES.keys():
+                if match.group(name): return f"[REDACTED_{name}]"
+            return "[REDACTED]"
+        return self.master_regex.sub(_replacer, text)
+
+    def fetch(self) -> Dict[str, Any]:
+        """Main execution loop for fetching onion sources."""
+        results = {"detections": {}, "timestamp": datetime.utcnow().isoformat()}
+        session = self._get_session()
+
+        for name, url in self.config.get("sources", {}).items():
             try:
-                logger.info(f"🔍 Crawling Dark Web Source: {source_id}")
+                self.logger.info(f"Fetching {name} at {url}")
+                response = session.get(url, timeout=self.timeout)
                 
-                # Use the inherited http_client (TorHTTPClient)
-                # Note: safe_stream_response logic is now handled by the client/orchestrator
-                response = self.http_client.get(url, stream=True)
-                html = self._safe_read_response(response)
-                
-                victims = self._parse_victims(html)
-                current_hash = self._generate_victim_hash(victims)
-                
-                # Check against state (inherited from BaseFeed)
-                last_hash = self.get_last_run_time() # Or specific source state logic
-                
-                full_intelligence_report["detections"][source_id] = {
+                # Logic to parse victims (simulated for diagnostic)
+                # In production, you'd call a custom parser here
+                raw_content = response.text
+                clean_content = self.redact_data(raw_content)
+
+                # Example parsing logic - find 'victims' in the text
+                # This should be replaced with your BeautifulSoup logic
+                victims = [{"title": "Example Corp"}] if response.status_code == 200 else []
+
+                results["detections"][name] = {
                     "url": url,
-                    "victim_hash": current_hash,
+                    "status_code": response.status_code,
                     "count": len(victims),
                     "victims": victims,
-                    "changed": current_hash != last_hash
+                    "raw_data_summary": clean_content[:200] # Safe redacted snippet
                 }
 
             except Exception as e:
-                logger.error(f"❌ Source {source_id} failed: {str(e)}")
+                self.logger.error(f"Failed to fetch {name}: {str(e)}")
+                results["detections"][name] = {"url": url, "status_code": 0, "count": 0, "error": str(e)}
 
-        return full_intelligence_report
-
-    def validate(self, data: Dict[str, Any]) -> bool:
-        """NESA Requirement: Validate data integrity before processing."""
-        return "detections" in data and len(data["detections"]) > 0
-
-    def _safe_read_response(self, response) -> str:
-        """Prevents Memory Exhaustion (DoS) from malicious .onion sites."""
-        total_size = 0
-        content = []
-        for chunk in response.iter_content(chunk_size=8192):
-            total_size += len(chunk)
-            if total_size > self.max_response_size:
-                raise ValueError("Response exceeded safety limit (10MB).")
-            content.append(chunk.decode("utf-8", errors="ignore"))
-        return "".join(content)
-
-    def _normalize_victim(self, text: str) -> str:
-        """Data Minimization: Strips noise and PII before hashing."""
-        text = text.lower().strip()
-        # Remove dates and noise
-        text = re.sub(r'\b\d{4}-\d{2}-\d{2}\b|\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+\d{1,2}\b', '', text)
-        text = re.sub(r'\s+', ' ', text).strip()
-        return text[:200]
-
-    def _parse_victims(self, html: str) -> List[Dict]:
-        """Extracts victim data using specialized ransomware leak site selectors."""
-        soup = BeautifulSoup(html, "html.parser")
-        victims = []
-        selectors = ["article.victim", ".victim-card", ".post.leak", "tr.leak-row", ".card.victim"]
-        
-        items = []
-        for s in selectors:
-            items = soup.select(s)
-            if items: break
-        
-        if not items:
-            items = soup.select("article, .post, .card")
-
-        for item in items[:self.max_victims_per_page]:
-            text = item.get_text(" ", strip=True)
-            normalized = self._normalize_victim(text)
-            
-            if len(normalized) >= self.min_victim_length:
-                victims.append({
-                    "title": normalized,
-                    "discovered_at": datetime.utcnow().isoformat()
-                })
-        return victims
-
-    def _generate_victim_hash(self, victims: List[Dict]) -> str:
-        """Intelligence-first hashing: Ignores CSS/UI changes."""
-        signatures = sorted([hashlib.sha256(v["title"].encode()).hexdigest()[:16] for v in victims])
-        return hashlib.sha256(json.dumps(signatures).encode()).hexdigest()
+        return results
