@@ -82,3 +82,7 @@ class MalwareParser(BaseParser):
 
         return iocs_by_type
 
+
+# Backwards-compatible export: much of the code imports MalpediaParser.
+# Keep both names pointing to the same implementation.
+MalpediaParser = MalwareParser
