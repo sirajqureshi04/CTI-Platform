@@ -1,34 +1,42 @@
+import os
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 from backend.core.logger import CTILogger
 
+# Ensure .env is loaded
+load_dotenv()
+
 class RansomwareMonitorFeed:
-    def __init__(self, config: dict, http_client=None):
+    def __init__(self, config: dict = None):
         """
-        Refined RansomwareMonitor: Includes real parsing and clearweb failover.
+        RansomwareMonitor: Configured via .env for Tor stability and real parsing.
         """
-        self.config = config
+        self.config = config or {}
         self.logger = CTILogger.get_logger("RansomwareMonitor")
         
-        # Use the passed client, or build a robust Tor session if none provided
-        self.session = http_client if http_client else self._build_tor_session()
+        # Build session using environment variables as defaults
+        self.session = self._build_tor_session()
 
     def _build_tor_session(self):
         """Creates a session configured for .onion high-latency stability."""
         session = requests.Session()
         
-        # Ensure we use socks5h for remote DNS resolution (vital for .onion)
-        proxies = self.config.get("proxies", {
-            "http": "socks5h://127.0.0.1:9050",
-            "https": "socks5h://127.0.0.1:9050"
-        })
+        # Pull proxy from config dict or .env file
+        proxy_url = self.config.get("TOR_SOCKS_PROXY") or os.getenv("TOR_SOCKS_PROXY", "socks5h://127.0.0.1:9050")
         
-        # More aggressive retry strategy for dark web flaky connections
+        proxies = {
+            "http": proxy_url,
+            "https": proxy_url
+        }
+        
+        # Retry strategy: Increased for Tor's 'General SOCKS server failure' errors
+        max_retries = int(self.config.get("max_retries") or os.getenv("SCRAPER_RETRIES", 5))
         retry_strategy = Retry(
-            total=self.config.get("max_retries", 5),
-            backoff_factor=3, # Increased backoff for Tor circuits
+            total=max_retries,
+            backoff_factor=3, 
             status_forcelist=[429, 500, 502, 503, 504]
         )
         
@@ -37,13 +45,12 @@ class RansomwareMonitorFeed:
         session.mount("https://", adapter)
         session.proxies = proxies
         
-        # Tor Browser-like User-Agent to avoid immediate blocks
+        # Standardize headers to look like Tor Browser
+        ua = self.config.get("user_agent") or os.getenv("USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0")
         session.headers.update({
-            'User-Agent': self.config.get("user_agent", "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0"),
+            'User-Agent': ua,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1'
+            'Accept-Language': 'en-US,en;q=0.5'
         })
         return session
 
@@ -51,60 +58,46 @@ class RansomwareMonitorFeed:
         """Extracts victim names based on site-specific HTML structure."""
         victims = []
         soup = BeautifulSoup(html_content, 'html.parser')
-
         try:
             if "lockbit" in source_name.lower():
-                # LockBit structure: usually divs with class 'post-block' or similar
-                # Update these selectors based on the current version of the site
+                # LockBit typical selectors
                 items = soup.select(".post-block .post-title, .post-title")
                 victims = [i.get_text(strip=True) for i in items]
-            
             elif "everest" in source_name.lower():
-                # Everest structure: often uses h2 or specific article headers
+                # Everest typical selectors
                 items = soup.select("article h2, .entry-title")
                 victims = [i.get_text(strip=True) for i in items]
-                
             else:
-                # Generic fallback if the site structure is unknown
-                self.logger.warning(f"No specific parser for {source_name}, attempting generic extraction.")
+                # Fallback generic parsing
                 items = soup.find_all(['h2', 'h3'])
                 victims = [i.get_text(strip=True) for i in items if len(i.get_text()) > 3]
-
         except Exception as e:
             self.logger.error(f"Parsing error for {source_name}: {e}")
-            
-        return list(set(victims)) # Return unique victims
+        return list(set(victims))
 
     def fetch(self):
-        """Standardized fetch method for the test_scraper.py diagnostic."""
+        """Fetches and parses ransomware leak data."""
         results = {"detections": {}}
         sources = self.config.get("sources", {})
 
         for name, url in sources.items():
             try:
-                self.logger.info(f"Attempting to fetch {name} from {url}")
-                
-                # Dark web sites need high timeouts (90s+)
-                response = self.session.get(url, timeout=self.config.get("timeout", 90))
+                timeout = int(self.config.get("timeout") or os.getenv("SCRAPER_TIMEOUT", 90))
+                response = self.session.get(url, timeout=timeout)
                 
                 if response.status_code == 200:
                     victims = self._parse_victims(response.text, name)
                     results["detections"][name] = {
                         "url": url,
                         "count": len(victims),
-                        "status_code": response.status_code,
+                        "status_code": 200,
                         "victims": victims 
                     }
                 else:
-                    self.logger.warning(f"Site {name} returned status {response.status_code}")
                     results["detections"][name] = {"url": url, "count": 0, "status_code": response.status_code, "victims": []}
 
-            except requests.exceptions.ConnectionError as ce:
-                self.logger.error(f"SOCKS5 Connection Failed for {name}: Check if Tor is running or circuit is dead.")
-                results["detections"][name] = {"url": url, "count": 0, "status_code": "CONNECTION_ERROR", "victims": []}
-                
             except Exception as e:
-                self.logger.error(f"Unexpected error for {name}: {e}")
-                results["detections"][name] = {"url": url, "count": 0, "status_code": 0, "victims": []}
+                self.logger.error(f"Fetch failed for {name}: {e}")
+                results["detections"][name] = {"url": url, "count": 0, "status_code": "ERROR", "victims": []}
                 
         return results
