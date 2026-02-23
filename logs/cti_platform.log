@@ -507,3 +507,44 @@
 2026-02-19 14:13:00 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
 2026-02-19 14:14:06 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
 2026-02-19 14:14:06 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 15:25:12 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-21 15:25:12 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 15:53:51 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-21 15:53:51 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 15:58:56 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-21 15:58:56 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 16:01:26 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-21 16:01:26 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 16:04:16 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-21 16:04:16 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 16:06:42 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-21 16:06:42 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-21 16:06:43 | INFO     | [cti_platform.TestRun] | start_dry_run:27 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-21 16:06:43 | INFO     | [cti_platform.TestRun] | prepare_test_data:16 | 📝 No test file found. Creating a sample IOC report...
+2026-02-21 16:06:43 | ERROR    | [cti_platform.TestRun] | start_dry_run:40 | ❌ Test Run Failed: name 'os' is not defined
+2026-02-23 10:30:58 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 10:30:58 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 10:31:01 | INFO     | [cti_platform.TestRun] | start_dry_run:37 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-23 10:31:01 | INFO     | [cti_platform.TestRun] | prepare_test_data:24 | 📝 No test file found. Creating a sample IOC report...
+2026-02-23 10:31:01 | ERROR    | [cti_platform.TestRun] | start_dry_run:50 | ❌ Test Run Failed: name 'os' is not defined
+2026-02-23 10:31:01 | ERROR    | [cti_platform.TestRun] | start_dry_run:52 | Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\CTI-Platform\backend\tests\test_enrichment.py", line 45, in start_dry_run
+    manager = EnrichmentManager()
+  File "C:\Users\HP\Desktop\CTI-Platform\backend\enrichment\manager.py", line 18, in __init__
+    self.geoip = GeoIPEnricher()
+                 ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Desktop\CTI-Platform\backend\enrichment\geoip_lookup.py", line 28, in __init__
+    base_path = getattr(settings, "BASE_DIR", os.getcwd())
+                                              ^^
+NameError: name 'os' is not defined. Did you forget to import 'os'?
+
+2026-02-23 10:33:00 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 10:33:00 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 10:33:01 | INFO     | [cti_platform.TestRun] | start_dry_run:37 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-23 10:33:01 | INFO     | [cti_platform.TestRun] | prepare_test_data:24 | 📝 No test file found. Creating a sample IOC report...
+2026-02-23 10:33:01 | WARNING  | [cti_platform.backend.enrichment.geoip_lookup] | __init__:48 | MaxMind DB missing. Using Public API fallback for dry run.
+2026-02-23 10:33:01 | INFO     | [cti_platform.backend.enrichment.whois_lookup] | __init__:33 | WHOIS Enrichment module initialized.
+2026-02-23 10:33:02 | ERROR    | [cti_platform.backend.enrichment.whois_lookup] | _perform_lookup:80 | Library 'python-whois' not found. Run: pip install python-whois
+2026-02-23 10:33:02 | INFO     | [cti_platform.TestRun] | start_dry_run:56 | --- TEST SUMMARY ---
+2026-02-23 10:33:02 | INFO     | [cti_platform.TestRun] | start_dry_run:57 | Total Time: 1.33 seconds
+2026-02-23 10:33:02 | WARNING  | [cti_platform.TestRun] | start_dry_run:60 | ⚠️ Warning: Run was very fast. Check if data was actually processed.

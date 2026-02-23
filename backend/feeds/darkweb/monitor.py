@@ -1,103 +1,106 @@
-import os
+from stem import Signal
+from stem.control import Controller
 import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-from bs4 import BeautifulSoup
-from dotenv import load_dotenv
-from backend.core.logger import CTILogger
+import time
 
-# Ensure .env is loaded
-load_dotenv()
 
 class RansomwareMonitorFeed:
-    def __init__(self, config: dict = None):
-        """
-        RansomwareMonitor: Configured via .env for Tor stability and real parsing.
-        """
-        self.config = config or {}
-        self.logger = CTILogger.get_logger("RansomwareMonitor")
-        
-        # Build session using environment variables as defaults
-        self.session = self._build_tor_session()
+    """
+    Dark web ransomware monitor feed.
+    Fetches .onion victim pages using Tor and refreshes circuit if blocked.
+    """
 
-    def _build_tor_session(self):
-        """Creates a session configured for .onion high-latency stability."""
-        session = requests.Session()
-        
-        # Pull proxy from config dict or .env file
-        proxy_url = self.config.get("TOR_SOCKS_PROXY") or os.getenv("TOR_SOCKS_PROXY", "socks5h://127.0.0.1:9050")
-        
-        proxies = {
-            "http": proxy_url,
-            "https": proxy_url
+    def __init__(self, config: dict, logger):
+        self.config = config
+        self.logger = logger
+
+        # Session configured for Tor SOCKS proxy
+        self.session = requests.Session()
+        self.session.proxies = {
+            "http": "socks5h://127.0.0.1:9050",
+            "https": "socks5h://127.0.0.1:9050",
         }
-        
-        # Retry strategy: Increased for Tor's 'General SOCKS server failure' errors
-        max_retries = int(self.config.get("max_retries") or os.getenv("SCRAPER_RETRIES", 5))
-        retry_strategy = Retry(
-            total=max_retries,
-            backoff_factor=3, 
-            status_forcelist=[429, 500, 502, 503, 504]
-        )
-        
-        adapter = HTTPAdapter(max_retries=retry_strategy)
-        session.mount("http://", adapter)
-        session.mount("https://", adapter)
-        session.proxies = proxies
-        
-        # Standardize headers to look like Tor Browser
-        ua = self.config.get("user_agent") or os.getenv("USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0")
-        session.headers.update({
-            'User-Agent': ua,
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5'
-        })
-        return session
 
-    def _parse_victims(self, html_content, source_name):
-        """Extracts victim names based on site-specific HTML structure."""
-        victims = []
-        soup = BeautifulSoup(html_content, 'html.parser')
+    # ---------------------------------------------------------
+    # Tor Circuit Refresh
+    # ---------------------------------------------------------
+    def _refresh_tor_circuit(self):
+        """
+        Forces Tor to get a new IP/Circuit to bypass blocks.
+        Requires ControlPort 9051 enabled in torrc.
+        """
         try:
-            if "lockbit" in source_name.lower():
-                # LockBit typical selectors
-                items = soup.select(".post-block .post-title, .post-title")
-                victims = [i.get_text(strip=True) for i in items]
-            elif "everest" in source_name.lower():
-                # Everest typical selectors
-                items = soup.select("article h2, .entry-title")
-                victims = [i.get_text(strip=True) for i in items]
-            else:
-                # Fallback generic parsing
-                items = soup.find_all(['h2', 'h3'])
-                victims = [i.get_text(strip=True) for i in items if len(i.get_text()) > 3]
-        except Exception as e:
-            self.logger.error(f"Parsing error for {source_name}: {e}")
-        return list(set(victims))
+            with Controller.from_port(port=9051) as controller:
+                controller.authenticate()  # Uses CookieAuth
+                controller.signal(Signal.NEWNYM)
 
-    def fetch(self):
-        """Fetches and parses ransomware leak data."""
+            self.logger.info("Tor circuit refreshed. New identity requested.")
+            time.sleep(5)  # Allow Tor to establish new circuit
+
+        except Exception as e:
+            self.logger.error(f"Could not refresh Tor circuit: {e}")
+
+    # ---------------------------------------------------------
+    # Fetch Dark Web Sources
+    # ---------------------------------------------------------
+    def fetch(self) -> dict:
+        """
+        Fetch ransomware victim data from configured onion sources.
+        Retries once with Tor circuit refresh on failure.
+        """
         results = {"detections": {}}
         sources = self.config.get("sources", {})
 
         for name, url in sources.items():
-            try:
-                timeout = int(self.config.get("timeout") or os.getenv("SCRAPER_TIMEOUT", 90))
-                response = self.session.get(url, timeout=timeout)
-                
-                if response.status_code == 200:
-                    victims = self._parse_victims(response.text, name)
-                    results["detections"][name] = {
-                        "url": url,
-                        "count": len(victims),
-                        "status_code": 200,
-                        "victims": victims 
-                    }
-                else:
-                    results["detections"][name] = {"url": url, "count": 0, "status_code": response.status_code, "victims": []}
+            success = False
 
-            except Exception as e:
-                self.logger.error(f"Fetch failed for {name}: {e}")
-                results["detections"][name] = {"url": url, "count": 0, "status_code": "ERROR", "victims": []}
-                
+            for attempt in range(2):  # Try twice (normal + after refresh)
+                try:
+                    response = self.session.get(url, timeout=90)
+
+                    if response.status_code == 200:
+                        victims = self._parse_victims(response.text, name)
+
+                        results["detections"][name] = {
+                            "url": url,
+                            "count": len(victims),
+                            "status_code": 200,
+                            "victims": victims,
+                        }
+
+                        success = True
+                        break
+
+                    else:
+                        self.logger.warning(
+                            f"{name} returned status {response.status_code}"
+                        )
+
+                except Exception as e:
+                    self.logger.warning(
+                        f"Attempt {attempt + 1} failed for {name}: {e}"
+                    )
+
+                # Refresh Tor before retry
+                if attempt == 0:
+                    self._refresh_tor_circuit()
+
+            if not success:
+                results["detections"][name] = {
+                    "url": url,
+                    "count": 0,
+                    "status_code": "FAILED",
+                    "victims": [],
+                }
+
         return results
+
+    # ---------------------------------------------------------
+    # Victim Parser Placeholder
+    # ---------------------------------------------------------
+    def _parse_victims(self, html: str, source_name: str):
+        """
+        Parse victim entries from HTML.
+        Implement your custom parsing logic here.
+        """
+        return []

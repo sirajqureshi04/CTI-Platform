@@ -4,14 +4,13 @@ import glob
 import time
 from datetime import datetime
 
-# Import your existing lookups
-# Assuming your folder structure: enrichment/manager.py
-from geoip_lookup import GeoIPEnricher
-from whois_lookup import WhoisEnricher
-# from providers.epss_cve import EPSSProvider  # Future addition
+# REFINED IMPORTS: Using absolute package paths for reliability
+from backend.enrichment.geoip_lookup import GeoIPEnricher
+from backend.enrichment.whois_lookup import WhoisEnricher
 
 class EnrichmentManager:
     def __init__(self):
+        # Paths relative to the project root (CTI-Platform)
         self.storage_path = "storage/final/"
         self.cache_path = "backend/cache/enrichment_state.json"
         
@@ -21,6 +20,10 @@ class EnrichmentManager:
         
     def get_latest_report(self):
         """Finds the most recent daily intel report."""
+        if not os.path.exists(self.storage_path):
+            os.makedirs(self.storage_path, exist_ok=True)
+            return None
+            
         files = glob.glob(os.path.join(self.storage_path, "intel_report_*.json"))
         if not files:
             return None
@@ -34,18 +37,22 @@ class EnrichmentManager:
 
         print(f"[*] Starting enrichment for: {report_path}")
         
-        with open(report_path, 'r') as f:
-            data = json.load(f)
+        try:
+            with open(report_path, 'r') as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            print(f"[!] Error loading report: {e}")
+            return
 
         enriched_count = 0
         
         # Iterate through the unified indicators
         for indicator in data.get("indicators", []):
-            # Skip if already enriched to save API credits
-            if "enrichment" in indicator and indicator["enrichment"]:
+            # Skip if already enriched to save API credits/time
+            if indicator.get("enrichment"):
                 continue
 
-            ind_type = indicator.get("type")
+            ind_type = indicator.get("type", "").lower()
             ind_value = indicator.get("value")
 
             # Routing Logic
@@ -57,12 +64,7 @@ class EnrichmentManager:
                 indicator["enrichment"] = self.enrich_domain(ind_value)
                 enriched_count += 1
 
-            elif ind_type == "cve":
-                # indicator["enrichment"] = self.enrich_cve(ind_value)
-                pass
-
-            # Respect Free Tier limits (Safety Brake)
-            # time.sleep(1) 
+            # Future expansion: elif ind_type == "cve": ...
 
         # Save back to the SAME file (In-place update)
         with open(report_path, 'w') as f:
@@ -74,21 +76,23 @@ class EnrichmentManager:
         """Coordinates multiple IP lookups"""
         res = {}
         try:
+            # Calls the GeoIPEnricher class
             res["geo"] = self.geoip.get_data(ip)
-            # Add reputation_check logic here later
         except Exception as e:
-            res["error"] = str(e)
+            res["error"] = f"GeoIP Error: {str(e)}"
         return res
 
     def enrich_domain(self, domain):
         """Coordinates domain lookups"""
         res = {}
         try:
+            # Calls the WhoisEnricher class
             res["whois"] = self.whois.get_data(domain)
         except Exception as e:
-            res["error"] = str(e)
+            res["error"] = f"Whois Error: {str(e)}"
         return res
 
 if __name__ == "__main__":
+    # This allows running the manager standalone for manual testing
     manager = EnrichmentManager()
     manager.process_report()

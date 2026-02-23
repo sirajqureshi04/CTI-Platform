@@ -80,4 +80,4 @@ class AIEnricher:
             "context": f"AI analysis based on: {context}",
             "attribution": "Likely Crimeware",
             "confidence_score": 0.82
-        }
+        }    
