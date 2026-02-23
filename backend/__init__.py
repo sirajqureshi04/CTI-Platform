@@ -1,80 +1,34 @@
 """
 CTI Platform backend package.
-This file initializes the backend namespace and exports the public API.
+Initializes the namespace and exports the public API safely.
 """
-
 import logging
 
 # Set up package-level logging
 logger = logging.getLogger(__name__)
 
+# We use "lazy" module registration. 
+# We DO NOT import specific classes here to avoid circular dependencies.
 try:
-    # --------------------------------------------------
-    # 1. Core & Utils
-    # --------------------------------------------------
-    from .core import TorHTTPClient, SecureHTTPClient, CTILogger
-    from .utils import tor_session
-
-    # --------------------------------------------------
-    # 2. Database
-    # --------------------------------------------------
-    from .db import DatabaseConnection, create_tables
-
-    # --------------------------------------------------
-    # 3. Feeds (Clearweb & Darkweb)
-    # --------------------------------------------------
-    from .feeds import (
-        RansomwareMonitorFeed, 
-        AlienVaultOTXFeed, 
-        CISAKEVFeed, 
-        MalpediaFeed, 
-        RansomwareLiveFeed
-    )
-
-    # --------------------------------------------------
-    # 4. Processing & Parsing
-    # --------------------------------------------------
-    from .processors import Deduplicator, IOCNormalizer, RiskEngine
-    from .parser import MalwareParser, RansomwareParser, VulnerabilityParser
-
-    # --------------------------------------------------
-    # 5. Orchestration (The Brain)
-    # --------------------------------------------------
-    from .Orchestration import CTIPipeline, Scheduler, FeedManager
+    from . import core
+    from . import db
+    from . import parser
+    from . import feeds
+    from . import processors
+    from . import Orchestration
+    from . import utils
 
 except ImportError as e:
     logger.critical(f"Failed to initialize backend package: {e}")
-    # We raise the error to prevent the app from running in a broken state
     raise
 
-# --------------------------------------------------
-# Public API Definition
-# --------------------------------------------------
+# Public API Definition: Shortcuts for high-level modules
 __all__ = [
-    # Core
-    "TorHTTPClient",
-    "SecureHTTPClient",
-    "CTILogger",
-    "tor_session",
-    
-    # Database
-    "DatabaseConnection",
-    "create_tables",
-    
-    # Feeds
-    "RansomwareMonitorFeed",
-    "AlienVaultOTXFeed",
-    "CISAKEVFeed",
-    "MalpediaFeed",
-    "RansomwareLiveFeed",
-    
-    # Orchestration
-    "CTIPipeline",
-    "Scheduler",
-    "FeedManager",
-    
-    # Processors
-    "Deduplicator",
-    "IOCNormalizer",
-    "RiskEngine",
+    "core",
+    "db",
+    "parser",
+    "feeds",
+    "processors",
+    "Orchestration",
+    "utils"
 ]

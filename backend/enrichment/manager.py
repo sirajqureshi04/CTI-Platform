@@ -1,6 +1,5 @@
 import os
 import json
-import glob
 import time
 from datetime import datetime
 
@@ -10,29 +9,28 @@ from backend.enrichment.whois_lookup import WhoisEnricher
 
 class EnrichmentManager:
     def __init__(self):
-        # Paths relative to the project root (CTI-Platform)
-        self.storage_path = "storage/final/"
+        # UPDATED: Direct path to your target file as specified
+        self.storage_path = "storage/final"
+        self.target_file = os.path.join(self.storage_path, "final_intelligence.json")
         self.cache_path = "backend/cache/enrichment_state.json"
         
         # Initialize sub-modules
         self.geoip = GeoIPEnricher()
         self.whois = WhoisEnricher()
         
-    def get_latest_report(self):
-        """Finds the most recent daily intel report."""
-        if not os.path.exists(self.storage_path):
-            os.makedirs(self.storage_path, exist_ok=True)
+    def get_report(self):
+        """Validates and returns the specific final intelligence file."""
+        if not os.path.exists(self.target_file):
+            # Fallback check: if the directory exists but file is missing
+            if not os.path.exists(self.storage_path):
+                os.makedirs(self.storage_path, exist_ok=True)
             return None
-            
-        files = glob.glob(os.path.join(self.storage_path, "intel_report_*.json"))
-        if not files:
-            return None
-        return max(files, key=os.path.getctime)
+        return self.target_file
 
     def process_report(self):
-        report_path = self.get_latest_report()
+        report_path = self.get_report()
         if not report_path:
-            print("[-] No reports found in storage/final/ to enrich.")
+            print(f"[-] Target file not found: {self.target_file}")
             return
 
         print(f"[*] Starting enrichment for: {report_path}")
@@ -47,7 +45,12 @@ class EnrichmentManager:
         enriched_count = 0
         
         # Iterate through the unified indicators
-        for indicator in data.get("indicators", []):
+        indicators = data.get("indicators", [])
+        if not indicators:
+            print("[!] No indicators found inside the JSON file.")
+            return
+
+        for indicator in indicators:
             # Skip if already enriched to save API credits/time
             if indicator.get("enrichment"):
                 continue
@@ -64,8 +67,6 @@ class EnrichmentManager:
                 indicator["enrichment"] = self.enrich_domain(ind_value)
                 enriched_count += 1
 
-            # Future expansion: elif ind_type == "cve": ...
-
         # Save back to the SAME file (In-place update)
         with open(report_path, 'w') as f:
             json.dump(data, f, indent=4)
@@ -73,11 +74,19 @@ class EnrichmentManager:
         print(f"[+] Enrichment Complete. Updated {enriched_count} new indicators.")
 
     def enrich_ip(self, ip):
-        """Coordinates multiple IP lookups"""
+        """Coordinates multiple IP lookups including potential clearweb feeds."""
         res = {}
         try:
             # Calls the GeoIPEnricher class
             res["geo"] = self.geoip.get_data(ip)
+            
+            # DRY RUN HOOK: Clearweb Feed Simulation
+            # This is where we will hook in your feed data
+            res["clearweb_context"] = {
+                "source": "OSINT_Feed_DryRun",
+                "last_seen": datetime.now().isoformat(),
+                "status": "active_threat" # Placeholder for your dry run logic
+            }
         except Exception as e:
             res["error"] = f"GeoIP Error: {str(e)}"
         return res
@@ -86,13 +95,11 @@ class EnrichmentManager:
         """Coordinates domain lookups"""
         res = {}
         try:
-            # Calls the WhoisEnricher class
             res["whois"] = self.whois.get_data(domain)
         except Exception as e:
             res["error"] = f"Whois Error: {str(e)}"
         return res
 
 if __name__ == "__main__":
-    # This allows running the manager standalone for manual testing
     manager = EnrichmentManager()
     manager.process_report()

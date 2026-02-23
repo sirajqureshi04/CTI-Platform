@@ -548,3 +548,67 @@ NameError: name 'os' is not defined. Did you forget to import 'os'?
 2026-02-23 10:33:02 | INFO     | [cti_platform.TestRun] | start_dry_run:56 | --- TEST SUMMARY ---
 2026-02-23 10:33:02 | INFO     | [cti_platform.TestRun] | start_dry_run:57 | Total Time: 1.33 seconds
 2026-02-23 10:33:02 | WARNING  | [cti_platform.TestRun] | start_dry_run:60 | ⚠️ Warning: Run was very fast. Check if data was actually processed.
+2026-02-23 10:53:10 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 10:53:10 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 10:53:13 | INFO     | [cti_platform.TestRun] | start_dry_run:37 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-23 10:53:13 | INFO     | [cti_platform.TestRun] | prepare_test_data:24 | 📝 No test file found. Creating a sample IOC report...
+2026-02-23 10:53:13 | WARNING  | [cti_platform.backend.enrichment.geoip_lookup] | __init__:48 | MaxMind DB missing. Using Public API fallback for dry run.
+2026-02-23 10:53:13 | INFO     | [cti_platform.backend.enrichment.whois_lookup] | __init__:33 | WHOIS Enrichment module initialized.
+2026-02-23 10:53:13 | INFO     | [cti_platform.TestRun] | start_dry_run:56 | --- TEST SUMMARY ---
+2026-02-23 10:53:13 | INFO     | [cti_platform.TestRun] | start_dry_run:57 | Total Time: 0.09 seconds
+2026-02-23 10:53:13 | WARNING  | [cti_platform.TestRun] | start_dry_run:60 | ⚠️ Warning: Run was very fast. Check if data was actually processed.
+2026-02-23 10:59:22 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 10:59:22 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 10:59:22 | INFO     | [cti_platform.TestRun] | start_dry_run:37 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-23 10:59:22 | WARNING  | [cti_platform.backend.enrichment.geoip_lookup] | __init__:48 | MaxMind DB missing. Using Public API fallback for dry run.
+2026-02-23 10:59:22 | INFO     | [cti_platform.backend.enrichment.whois_lookup] | __init__:33 | WHOIS Enrichment module initialized.
+2026-02-23 10:59:22 | INFO     | [cti_platform.TestRun] | start_dry_run:56 | --- TEST SUMMARY ---
+2026-02-23 10:59:22 | INFO     | [cti_platform.TestRun] | start_dry_run:57 | Total Time: 0.00 seconds
+2026-02-23 10:59:22 | WARNING  | [cti_platform.TestRun] | start_dry_run:60 | ⚠️ Warning: Run was very fast. Check if data was actually processed.
+2026-02-23 10:59:50 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 10:59:50 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 10:59:51 | INFO     | [cti_platform.TestRun] | start_dry_run:37 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-23 10:59:51 | WARNING  | [cti_platform.backend.enrichment.geoip_lookup] | __init__:48 | MaxMind DB missing. Using Public API fallback for dry run.
+2026-02-23 10:59:51 | INFO     | [cti_platform.backend.enrichment.whois_lookup] | __init__:33 | WHOIS Enrichment module initialized.
+2026-02-23 10:59:51 | INFO     | [cti_platform.TestRun] | start_dry_run:56 | --- TEST SUMMARY ---
+2026-02-23 10:59:51 | INFO     | [cti_platform.TestRun] | start_dry_run:57 | Total Time: 0.00 seconds
+2026-02-23 10:59:51 | WARNING  | [cti_platform.TestRun] | start_dry_run:60 | ⚠️ Warning: Run was very fast. Check if data was actually processed.
+2026-02-23 11:18:40 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:18:40 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:18:41 | INFO     | [cti_platform.TestRun] | start_dry_run:46 | 🚀 INITIALIZING ENRICHMENT TEST RUN...
+2026-02-23 11:18:41 | INFO     | [cti_platform.TestRun] | prepare_test_data:26 | 📝 Preparing fresh test data in storage/final/final_intelligence.json...
+2026-02-23 11:18:41 | WARNING  | [cti_platform.backend.enrichment.geoip_lookup] | __init__:48 | MaxMind DB missing. Using Public API fallback for dry run.
+2026-02-23 11:18:41 | INFO     | [cti_platform.backend.enrichment.whois_lookup] | __init__:33 | WHOIS Enrichment module initialized.
+2026-02-23 11:18:45 | INFO     | [cti_platform.TestRun] | start_dry_run:76 | ✅ Verification: 3/3 indicators enriched.
+2026-02-23 11:18:45 | INFO     | [cti_platform.TestRun] | start_dry_run:80 | --- TEST SUMMARY ---
+2026-02-23 11:18:45 | INFO     | [cti_platform.TestRun] | start_dry_run:81 | Total Time: 3.69 seconds
+2026-02-23 11:25:40 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:25:40 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:26:00 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:26:00 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:26:01 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: vulnerability_parser
+2026-02-23 11:26:43 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:26:43 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:28:53 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:28:53 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:37:07 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:37:07 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:44:05 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:44:05 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:46:08 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:46:08 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 11:55:43 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 11:55:43 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:26:06 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:27:17 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:27:17 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:28:57 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:28:57 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:29:29 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:29:29 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:31:35 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:31:35 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:31:52 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:31:52 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:32:43 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:32:43 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager

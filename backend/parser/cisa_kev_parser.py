@@ -22,7 +22,7 @@ def normalize_severity(text: str) -> str:
         return "medium"
     return "medium"
 
-class CisaKevParser(BaseParser):
+class CISAKEVParser(BaseParser):
     """
     CTI-grade parser for CISA Known Exploited Vulnerabilities.
     Refined to work with the multi-source Deduplicator.

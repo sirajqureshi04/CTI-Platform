@@ -12,10 +12,11 @@ from backend.db.Indicator_dao import IndicatorDAO
 from backend.db.victim_dao import VictimDAO
 from backend.db.feed_dao import FeedDAO
 
-# Parsers
+# Parsers - Synchronized with your file structure
 from backend.parser.malpedia_parser import MalpediaParser
 from backend.parser.ransomware_parser import RansomwareParser
-from backend.parser.vulnerability_parser import VulnerabilityParser
+from backend.parser.cisa_kev_parser import CISAKEVParser
+from backend.parser.alienvault_otx_parser import AlienVaultOTXParser
 
 # Processors
 from backend.processors.deduplicator import Deduplicator
@@ -39,25 +40,24 @@ class CTIPipeline:
         self.deduplicator = Deduplicator()
         self.risk_engine = RiskEngine()
         
-        # 3. Parsers Mapping
+        # 3. Parsers Mapping - FIXED: Using actual imported class instances
         self.parsers = {
             "ransomware": RansomwareParser(),
-            "malware": MalwareParser(),
-            "vulnerability": VulnerabilityParser()
+            "malpedia": MalpediaParser(),
+            "alienvault": AlienVaultParser(),
+            "cisa_kev": CISAKEVParser()
         }
         logger.info("Initialized CTI pipeline with Dark Web Monitor support")
 
     def process_feed(self, feed_instance) -> Dict[str, Any]:
         """
         Orchestrates the lifecycle of a single feed.
-        Supports both Clearweb (fetch -> parse) and Darkweb (integrated fetch).
         """
         feed_name = feed_instance.name
         logger.info(f"🚀 Processing pipeline for: {feed_name}")
         
         try:
-            # 1. Ingestion & Pre-Parsing
-            # Darkweb Monitor returns structured 'detections' directly.
+            # 1. Ingestion
             raw_data = feed_instance.fetch()
             
             # 2. Intellectual Routing
@@ -73,8 +73,6 @@ class CTIPipeline:
 
     def _handle_ransomware_flow(self, feed_instance, data: Dict[str, Any]) -> Dict[str, Any]:
         """Specialized flow for dark web ransomware victims."""
-        # The Monitor (refined monitor.py) returns a 'detections' dict
-        # We extract all victims across all onion sources
         all_victims = []
         if "detections" in data:
             for source_id, info in data["detections"].items():
@@ -86,12 +84,10 @@ class CTIPipeline:
                         "discovery_date": victim.get("discovered_at")
                     })
         
-        # Deduplicate and Ingest
         clean_victims = self.deduplicator.deduplicate(all_victims)
         if clean_victims:
             self.victim_dao.bulk_ingest(clean_victims)
             
-        # NESA Audit: Save raw JSON evidence
         feed_instance.save_raw_data(data)
         self.feed_dao.update_stats(feed_instance.name, success=True, count=len(clean_victims))
         
@@ -100,8 +96,10 @@ class CTIPipeline:
     def _handle_standard_ioc_flow(self, feed_instance, raw_data: Any) -> Dict[str, Any]:
         """Standard flow for Clearweb IOCs (CISA, OTX, etc.)"""
         parser = self._select_parser(feed_instance.name)
+        if not parser:
+            raise ValueError(f"No parser found for feed: {feed_instance.name}")
+
         parsed_data = parser.parse(raw_data)
-        
         normalized = self.normalizer.normalize_batch(parsed_data)
         clean_data = self.deduplicator.deduplicate(normalized)
         
@@ -109,16 +107,22 @@ class CTIPipeline:
         scored_data = self.risk_engine.score_batch(clean_data)
         self.indicator_dao.upsert_batch(scored_data)
         
-        # NESA Audit
         feed_instance.save_raw_data(raw_data)
         self.feed_dao.update_stats(feed_instance.name, success=True, count=len(clean_data))
         
         return {"success": True, "feed": feed_instance.name, "count": len(clean_data), "type": "Indicators"}
 
     def _select_parser(self, feed_name: str):
+        """Logic to route feed names to the correct parser instance."""
         fn = feed_name.lower()
-        if any(x in fn for x in ["cisa", "kev", "otx"]): return self.parsers["vulnerability"]
-        return self.parsers["malware"]
+        if "otx" in fn: 
+            return self.parsers["alienvault"]
+        if "cisa" in fn or "kev" in fn: 
+            return self.parsers["cisa_kev"]
+        if "ransomware" in fn: 
+            return self.parsers["ransomware"]
+        # Default fallback
+        return self.parsers["malpedia"]
 
     def run_all_feeds(self, feed_instances: List) -> Dict[str, Any]:
         """Executes all enabled feeds in sequence."""

@@ -5,7 +5,7 @@ from backend.parser.base_parser import BaseParser
 
 logger = CTILogger.get_logger(__name__)
 
-class AlienVaultOTXParser(BaseParser):
+class AlienVaultParser(BaseParser):
     """
     CTI-grade parser for AlienVault OTX Pulses.
     Extracts individual indicators from nested pulse structures.

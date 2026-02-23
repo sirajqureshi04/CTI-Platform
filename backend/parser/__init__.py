@@ -1,13 +1,13 @@
-"""Parser modules for processing raw feed data."""
+"""
+Parser modules for processing raw feed data.
+"""
 
-# Explicit exports for easier importing
-from backend.parser.malpedia_parser import MalwareParser, MalpediaParser
-from backend.parser.ransomware_parser import RansomwareParser
-from backend.parser.vulnerability_parser import VulnerabilityParser
+# Keep this empty or use absolute imports without referencing the parent 'backend' package if possible.
+# By removing the eager imports here, we stop the circular crash.
 
 __all__ = [
-    "MalwareParser",
     "MalpediaParser",
     "RansomwareParser",
-    "VulnerabilityParser"
-]       
+    "AlienVaultOTXParser",
+    "CISAKEVParser",
+]

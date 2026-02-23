@@ -12,7 +12,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from backend.parser.ransomware_parser import RansomwareParser
 from backend.parser.vulnerability_parser import VulnerabilityParser
 from backend.parser.malpedia_parser import MalpediaParser
-from backend.models.indcator import ProcessedIndicator
+from backend.models.indicator import ProcessedIndicator
 
 
 RAW_BASE = PROJECT_ROOT / "storage" / "raw"

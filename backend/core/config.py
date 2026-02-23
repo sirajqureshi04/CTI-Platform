@@ -19,15 +19,22 @@ class Settings(BaseSettings):
     ENV: str = "development"
     
     # Root calculation: Points to the CTI-Platform root directory
+    # If config.py is in backend/core/config.py, we need to go up 3 levels
     BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
-    DATA_DIR: Path = BASE_DIR / "data"
+    
+    # Storage paths (Ensuring these align with manager.py)
+    STORAGE_DIR: Path = BASE_DIR / "storage"
+    FINAL_INTEL_FILE: Path = STORAGE_DIR / "final" / "final_intelligence.json"
+    
+    # MaxMind Path
+    MAXMIND_DB_PATH: Path = BASE_DIR / "data" / "GeoLite2-City.mmdb"
 
     # --------------------------------------------------
     # .env Configuration
     # --------------------------------------------------
     model_config = SettingsConfigDict(
-        # Explicitly joining the path as a string to ensure compatibility
-        env_file=os.path.join(Path(__file__).resolve().parent.parent.parent, ".env"),
+        # Use an absolute path for the .env file to avoid issues during -m execution
+        env_file=str(Path(__file__).resolve().parent.parent.parent / ".env"),
         env_file_encoding='utf-8',
         case_sensitive=True,
         extra='ignore'
@@ -36,13 +43,12 @@ class Settings(BaseSettings):
     # --------------------------------------------------
     # API Keys (Loaded from .env)
     # --------------------------------------------------
-    # Ensure these aliases match the keys in your .env file exactly
-    VIRUSTOTAL_API_KEY: Optional[str] = Field(None, alias="VIRUSTOTAL_API_KEY")
-    ABUSEIPDB_API_KEY: Optional[str] = Field(None, alias="ABUSEIPDB_API_KEY")
-    OTX_API_KEY: Optional[str] = Field(None, alias="OTX_API_KEY")
-    MALPEDIA_API_KEY: Optional[str] = Field(None, alias="MALPEDIA_API_KEY")
-    OPENAI_API_KEY: Optional[str] = Field(None, alias="OPENAI_API_KEY")
-    MAXMIND_LICENSE_KEY: Optional[str] = Field(None, alias="MAXMIND_LICENSE_KEY")
+    VIRUSTOTAL_API_KEY: Optional[str] = Field(None)
+    ABUSEIPDB_API_KEY: Optional[str] = Field(None)
+    OTX_API_KEY: Optional[str] = Field(None)
+    MALPEDIA_API_KEY: Optional[str] = Field(None)
+    OPENAI_API_KEY: Optional[str] = Field(None)
+    MAXMIND_LICENSE_KEY: Optional[str] = Field(None)
 
     # --------------------------------------------------
     # Database Settings
@@ -59,12 +65,15 @@ class Settings(BaseSettings):
     OTX_INCREMENTAL_ENABLED: bool = False
     OTX_MAX_PAGES: int = 5 
     VT_RATE_LIMIT_DELAY: int = 15  # Seconds between VT requests
+    
+    # NEW: Clearweb Feed Toggle for Dry Runs
+    DRY_RUN_MOCK_FEEDS: bool = True
 
     def validate_startup(self):
         """
         Validates critical settings before the pipeline starts.
         """
-        # 1. Critical Guardrail for AlienVault OTX
+        # 1. Guardrail for OTX
         if self.OTX_INCREMENTAL_ENABLED:
             logger.error("OTX_INCREMENTAL_ENABLED is True. This causes 404s on the OTX API.")
             raise ValueError("Fix OTX_INCREMENTAL_ENABLED in your .env or config.py")
@@ -76,11 +85,17 @@ class Settings(BaseSettings):
         }
         
         for name, key in required_keys.items():
-            # Check if key is None, empty string, or whitespace
-            if not key or not str(key).strip():
+            # More robust check for "None" string or empty values
+            if not key or str(key).lower() in ["none", "", "your_key_here"]:
                 logger.warning(f"⚠️ {name} API Key is missing. Enrichment via {name} will be disabled.")
             else:
-                logger.info(f"✅ {name} API Key loaded successfully.")
+                # Obfuscate key in logs for security
+                masked_key = f"{key[:4]}...{key[-4:]}" if len(str(key)) > 8 else "****"
+                logger.info(f"✅ {name} API Key loaded successfully: {masked_key}")
+
+        # 3. Check for MaxMind DB
+        if not self.MAXMIND_DB_PATH.exists():
+            logger.warning(f"⚠️ MaxMind DB not found at {self.MAXMIND_DB_PATH}. GeoIP lookups will use fallback.")
 
 @lru_cache()
 def get_settings():
@@ -91,9 +106,6 @@ def get_settings():
         return _settings
     except Exception as e:
         logger.critical(f"Failed to load configuration: {e}")
-        # Log the expected .env path to help debug if it's still missing
-        expected_env = os.path.join(Path(__file__).resolve().parent.parent.parent, ".env")
-        logger.info(f"Looking for .env at: {expected_env}")
         raise
 
 # Singleton instance
