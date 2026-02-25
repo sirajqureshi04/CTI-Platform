@@ -1,9 +1,8 @@
 import json
 import sys
 from pathlib import Path
+from datetime import datetime
 
-# Ensure project root (directory that contains `backend/`) is on sys.path
-# so `import backend` works when run from backend/ or from project root
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -12,52 +11,54 @@ from backend.core.logger import CTILogger
 
 logger = CTILogger.get_logger(__name__)
 
-def run_dry_run_test():
+def run_final_merge():
     processed_path = PROJECT_ROOT / "storage" / "processed"
     dedup = Deduplicator()
-    all_raw_data = []
+    today_data = []
 
-    print(f"--- 🔍 Scanning: {processed_path.absolute()} ---")
+    # Format matches your parser output naming: YYYY-MM-DD
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    
+    print(f"--- 🔍 Collecting Processed Feeds for: {today_str} ---")
 
-    # 3. FIX: Use rglob("*") to find files inside subfolders (cisa, malpedia, ransomware_live)
     if not processed_path.exists():
         print(f"❌ Error: {processed_path} folder not found.")
         return
 
-    for file_path in processed_path.rglob("*.json"):
+    # Search for files containing today's date in their filename
+    for file_path in processed_path.rglob(f"*{today_str}*.json"):
         with open(file_path, 'r', encoding='utf-8') as f:
             try:
                 data = json.load(f)
-                # Handle files that contain a single object or a list of objects
                 if isinstance(data, list):
-                    all_raw_data.extend(data)
+                    today_data.extend(data)
                 else:
-                    all_raw_data.append(data)
+                    today_data.append(data)
                 print(f"✅ Loaded {len(data) if isinstance(data, list) else 1} records from {file_path.name}")
             except Exception as e:
                 print(f"❌ Failed to load {file_path.name}: {e}")
 
-    if not all_raw_data:
-        print("⚠️ No data found to deduplicate. Check your storage/processed subfolders.")
+    if not today_data:
+        print(f"⚠️ No processed data found for {today_str}. Run your parsers first!")
         return
 
-    print(f"\n🚀 Total records found: {len(all_raw_data)}")
+    print(f"\n🚀 Merging {len(today_data)} total records into single report...")
 
-    # 4. ACTION: Run the fixed deduplication logic
-    # This will now apply your Source Mapping and save to storage/final
-    final_output = dedup.deduplicate(all_raw_data)
+    final_output = dedup.deduplicate(today_data)
 
-    print("\n--- 🧪 Dry Run Summary ---")
-    print(f"Unique Records: {len(final_output)}")
-    print(f"Duplicate/Merged Count: {len(all_raw_data) - len(final_output)}")
-    print(f"Final file location: storage/final/final_intelligence.json")
+    # Naming convention verification
+    final_filename = f"{datetime.now().strftime('%d-%m-%Y')}_single.json"
+    
+    print("\n--- 🏁 Final Integration Summary ---")
+    print(f"Unique Global Indicators: {len(final_output)}")
+    print(f"Output File: storage/final/{final_filename}")
 
-    # 5. Spot check: Ensure sources are mapped correctly
-    if final_output:
-        print("\n--- 🕵️ Spot Check (First Record) ---")
-        sample = final_output[0]
-        print(f"Value: {sample.get('value')}")
-        print(f"Mapped Sources: {sample.get('sources')}")
+    # Spot check for source merging
+    multi_source = [i for i in final_output if len(i.get('sources', [])) > 1]
+    if multi_source:
+        print(f"✨ Found {len(multi_source)} indicators appearing in multiple feeds!")
+        sample = multi_source[0]
+        print(f"Sample: {sample['value']} | Sources: {sample['sources']}")
 
 if __name__ == "__main__":
-    run_dry_run_test()
+    run_final_merge()

@@ -1,15 +1,14 @@
-import logging
+"""
+Centralized application configuration with startup guardrails.
+Enforces OTX non-incremental constraints and automated .env loading.
+"""
+
 import os
 from functools import lru_cache
 from pathlib import Path
 from typing import Optional
-
-from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Setup basic logging for startup checks
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("Config")
 
 class Settings(BaseSettings):
     # --------------------------------------------------
@@ -18,95 +17,73 @@ class Settings(BaseSettings):
     APP_NAME: str = "CTI Platform"
     ENV: str = "development"
     
-    # Root calculation: Points to the CTI-Platform root directory
-    # If config.py is in backend/core/config.py, we need to go up 3 levels
+    # Automatically locate the project root
     BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
-    
-    # Storage paths (Ensuring these align with manager.py)
-    STORAGE_DIR: Path = BASE_DIR / "storage"
-    FINAL_INTEL_FILE: Path = STORAGE_DIR / "final" / "final_intelligence.json"
-    
-    # MaxMind Path
-    MAXMIND_DB_PATH: Path = BASE_DIR / "data" / "GeoLite2-City.mmdb"
+    DATA_DIR: Path = BASE_DIR / "data"
 
     # --------------------------------------------------
-    # .env Configuration
+    # .env File Configuration (NEW & OPTIMIZED)
     # --------------------------------------------------
+    # Load from the existing backend/.env file in this project.
     model_config = SettingsConfigDict(
-        # Use an absolute path for the .env file to avoid issues during -m execution
-        env_file=str(Path(__file__).resolve().parent.parent.parent / ".env"),
+        env_file=Path(__file__).resolve().parent.parent / ".env",
         env_file_encoding='utf-8',
         case_sensitive=True,
         extra='ignore'
     )
 
     # --------------------------------------------------
-    # API Keys (Loaded from .env)
-    # --------------------------------------------------
-    VIRUSTOTAL_API_KEY: Optional[str] = Field(None)
-    ABUSEIPDB_API_KEY: Optional[str] = Field(None)
-    OTX_API_KEY: Optional[str] = Field(None)
-    MALPEDIA_API_KEY: Optional[str] = Field(None)
-    OPENAI_API_KEY: Optional[str] = Field(None)
-    MAXMIND_LICENSE_KEY: Optional[str] = Field(None)
-
-    # --------------------------------------------------
-    # Database Settings
+    # MySQL Database (Automatically filled from .env)
     # --------------------------------------------------
     DB_HOST: str = "localhost"
     DB_USER: str = "cti_user"
     DB_PASSWORD: str = "secure_password"
     DB_NAME: str = "cti_database"
     DB_PORT: int = 3306
+    DB_POOL_SIZE: int = 10
 
     # --------------------------------------------------
-    # Feed & Enrichment Constraints
+    # Feed Constraints (GUARDRAIL FIX)
     # --------------------------------------------------
+    # Enforced as False to prevent 404 errors on AlienVault OTX
     OTX_INCREMENTAL_ENABLED: bool = False
     OTX_MAX_PAGES: int = 5 
-    VT_RATE_LIMIT_DELAY: int = 15  # Seconds between VT requests
-    
-    # NEW: Clearweb Feed Toggle for Dry Runs
-    DRY_RUN_MOCK_FEEDS: bool = True
+
+    # --------------------------------------------------
+    # API Keys (Automatically filled from .env)
+    # --------------------------------------------------
+    OTX_API_KEY: Optional[str] = None
+    MALPEDIA_API_KEY: Optional[str] = None
+    OPENAI_API_KEY: Optional[str] = None
+    VIRUSTOTAL_API_KEY: Optional[str] = None
+    MAXMIND_LICENSE_KEY: Optional[str] = None
+
+    # --------------------------------------------------
+    # Orchestrator Settings
+    # --------------------------------------------------
+    SCRAPE_INTERVAL_MINUTES: int = 60
+    MAX_PARALLEL_SCRAPERS: int = 5
 
     def validate_startup(self):
         """
-        Validates critical settings before the pipeline starts.
+        Critical startup checks to prevent pipeline failures.
         """
-        # 1. Guardrail for OTX
-        if self.OTX_INCREMENTAL_ENABLED:
-            logger.error("OTX_INCREMENTAL_ENABLED is True. This causes 404s on the OTX API.")
-            raise ValueError("Fix OTX_INCREMENTAL_ENABLED in your .env or config.py")
-
-        # 2. Check for missing enrichment keys
-        required_keys = {
-            "VirusTotal": self.VIRUSTOTAL_API_KEY,
-            "AbuseIPDB": self.ABUSEIPDB_API_KEY
-        }
+        if not self.OTX_API_KEY:
+            print("⚠️ WARNING: OTX_API_KEY is missing. OTX feed will default to Public pulses.")
         
-        for name, key in required_keys.items():
-            # More robust check for "None" string or empty values
-            if not key or str(key).lower() in ["none", "", "your_key_here"]:
-                logger.warning(f"⚠️ {name} API Key is missing. Enrichment via {name} will be disabled.")
-            else:
-                # Obfuscate key in logs for security
-                masked_key = f"{key[:4]}...{key[-4:]}" if len(str(key)) > 8 else "****"
-                logger.info(f"✅ {name} API Key loaded successfully: {masked_key}")
-
-        # 3. Check for MaxMind DB
-        if not self.MAXMIND_DB_PATH.exists():
-            logger.warning(f"⚠️ MaxMind DB not found at {self.MAXMIND_DB_PATH}. GeoIP lookups will use fallback.")
+        # Hard guardrail against the 404 error logic
+        if self.OTX_INCREMENTAL_ENABLED:
+            raise ValueError(
+                "CRITICAL CONFIG ERROR: OTX_INCREMENTAL_ENABLED is True. "
+                "The AlienVault API will return 404. Change this to False in your .env file."
+            )
 
 @lru_cache()
 def get_settings():
-    """Returns a singleton instance of settings."""
-    try:
-        _settings = Settings()
-        _settings.validate_startup()
-        return _settings
-    except Exception as e:
-        logger.critical(f"Failed to load configuration: {e}")
-        raise
+    """Returns a cached instance of settings to avoid reloading .env constantly."""
+    settings = Settings()
+    settings.validate_startup()
+    return settings
 
-# Singleton instance
+# Create a singleton instance for easy import
 settings = get_settings()

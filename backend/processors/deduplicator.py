@@ -4,12 +4,21 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Any
 
-# factor 3: Map internal parser keys to professional display sources
+# FIXED: Comprehensive mapping of internal parser names to professional sources
 SOURCE_MAP = {
-    "cisa_parser": "CISA KEV",
-    "alienvault_parser": "AlienVault OTX",
-    "malpedia": "Malpedia",
+    # CISA Parser naming variations
+    "vulnerability_parser": "CISA KEV",
+    "cisa_kev": "CISA KEV",
+    
+    # Ransomware Parser naming variations
     "ransomware_parser": "Ransomware.live",
+    "ransomware": "Ransomware.live",
+    
+    # Other parsers
+    "malpedia": "Malpedia",
+    "alienvault_parser": "AlienVault OTX",
+    "alienvault_otx": "AlienVault OTX",
+    
     "unknown": "Community OSINT"
 }
 
@@ -27,37 +36,54 @@ class Deduplicator:
 
     def deduplicate(self, iocs: List[Dict]) -> List[Dict]:
         """
-        Merges IOCs and outputs unique daily files.
+        Merges IOCs and outputs a single daily file: DD-MM-YYYY_single.json
         """
         for ioc in iocs:
-            val = ioc.get("value")
-            if not val: continue
+            # Handle different field names for the indicator value
+            val = ioc.get("ioc_value") or ioc.get("value")
+            if not val: 
+                continue
             
-            # Factor 1 & 3: Resolve specific parser name to clean display name
-            raw_src = ioc.get("source") or (ioc.get("sources")[0] if ioc.get("sources") else "unknown")
+            # Resolve the raw source string from possible keys
+            raw_src = ioc.get("source") or ioc.get("name") or "unknown"
+            
+            # Use SOURCE_MAP to get the clean name, or fallback to raw_src
             clean_src = SOURCE_MAP.get(raw_src, raw_src)
 
             if val in self._cached_records:
                 master = self._cached_records[val]
-                if "sources" not in master: master["sources"] = []
+                
+                # Update sources list (unique set)
+                if "sources" not in master:
+                    master["sources"] = []
                 if clean_src not in master["sources"]: 
                     master["sources"].append(clean_src)
                 
-                # Merge tags and update timestamp
-                master["tags"] = list(set(master.get("tags", []) + ioc.get("tags", [])))
-                master["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                # Merge tags from metadata or direct keys
+                incoming_tags = ioc.get("metadata", {}).get("tags", []) or ioc.get("tags", [])
+                master["tags"] = list(set(master.get("tags", []) + incoming_tags))
+                
+                # Update hit count and timestamp
+                master["last_seen"] = datetime.now().isoformat()
+                master["hit_count"] = len(master["sources"])
             else:
-                # Initialize new record with mapped source
-                ioc["sources"] = [clean_src]
-                ioc.pop("source", None) # Remove technical parser name
-                ioc["first_seen"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                self._cached_records[val] = ioc
+                # Initialize new record with your ProcessedIndicator schema
+                self._cached_records[val] = {
+                    "value": val,
+                    "type": ioc.get("ioc_type") or ioc.get("type", "unknown"),
+                    "sources": [clean_src],
+                    "severity": ioc.get("metadata", {}).get("severity") or ioc.get("severity", "medium"),
+                    "confidence": ioc.get("metadata", {}).get("confidence") or ioc.get("confidence", 50),
+                    "last_seen": datetime.now().isoformat(),
+                    "tags": ioc.get("metadata", {}).get("tags", []) or ioc.get("tags", []),
+                    "hit_count": 1
+                }
         
         self._save_cache()
         
-        # Factor 2: Save as separate JSON files with the date
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        output_path = self.final_dir / f"intel_report_{current_date}.json"
+        # SAVE LOGIC: 24-02-2026_single.json format
+        current_date_str = datetime.now().strftime("%d-%m-%Y")
+        output_path = self.final_dir / f"{current_date_str}_single.json"
         
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(list(self._cached_records.values()), f, indent=4)
@@ -67,8 +93,12 @@ class Deduplicator:
     def _load_cache(self):
         cache_file = self.cache_dir / "master_records.pkl"
         if cache_file.exists():
-            with open(cache_file, "rb") as f:
-                self._cached_records = pickle.load(f)
+            try:
+                with open(cache_file, "rb") as f:
+                    self._cached_records = pickle.load(f)
+            except Exception as e:
+                print(f"⚠️ Cache load failed: {e}. Starting fresh.")
+                self._cached_records = {}
 
     def _save_cache(self):
         with open(self.cache_dir / "master_records.pkl", "wb") as f:

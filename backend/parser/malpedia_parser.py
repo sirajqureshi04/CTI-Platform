@@ -5,10 +5,10 @@ from backend.parser.base_parser import BaseParser
 
 logger = CTILogger.get_logger(__name__)
 
-class MalwareParser(BaseParser):
+class MalpediaParser(BaseParser):
     """
-    Optimized parser for Malpedia Public MISP Galaxy data.
-    Does not require a Malpedia account.
+    Optimized parser for Malpedia data.
+    Implements extract_iocs to satisfy BaseParser requirements.
     """
 
     def __init__(self, config: Dict[str, Any] = None):
@@ -19,25 +19,35 @@ class MalwareParser(BaseParser):
 
     def parse(self, raw_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
-        Parses the Malpedia MISP Galaxy format.
-        Structure: raw_data['data']['families'] -> list of malware clusters.
+        Parses Malpedia family data. 
+        Adjusted to match the payload structure from the feed storage.
         """
         normalized_items = []
         
-        # Malpedia's /get/misp endpoint returns a 'values' list in the galaxy format
-        families = raw_data.get("data", {}).get("families", [])
+        # Your test_parser extracts 'data' from the raw file wrapper.
+        # This payload usually contains the 'families' list directly.
+        families = raw_data.get("families", [])
         
+        # Fallback for different API response versions
+        if not families and isinstance(raw_data, dict):
+            families = raw_data.get("values", [])
+
         for entry in families:
-            # Main family name (e.g., 'Emotet')
             family_name = entry.get("value")
+            if not family_name:
+                continue
+
             meta = entry.get("meta", {})
             
-            # 1. Normalize the Malware Family itself as an IOC
+            # 1. Normalize the Malware Family
             family_metadata = {
                 "synonyms": meta.get("synonyms", []),
                 "description": entry.get("description", ""),
                 "attribution": meta.get("attribution", []),
-                "type": meta.get("type", "malware_family")
+                "type": meta.get("type", "malware_family"),
+                "severity": "high",
+                "confidence": 90,
+                "tags": ["malpedia", "malware"]
             }
             
             normalized_items.append(
@@ -48,21 +58,27 @@ class MalwareParser(BaseParser):
                 )
             )
 
-            # 2. Extract External References (URLs) if available in the meta
+            # 2. Extract External References as secondary IOCs (URLs)
             for ref in meta.get("refs", []):
                 normalized_items.append(
                     self.normalize_ioc(
                         ioc_type="url",
                         ioc_value=ref,
-                        metadata={"malware_family": family_name, "context": "reference_link"}
+                        metadata={
+                            "malware_family": family_name, 
+                            "context": "reference_link",
+                            "severity": "low"
+                        }
                     )
                 )
 
+        logger.info(f"Parsed {len(normalized_items)} items from Malpedia.")
         return normalized_items
 
     def extract_iocs(self, parsed_data: List[Dict[str, Any]]) -> Dict[str, Set[str]]:
         """
-        Efficiently groups IOCs by type using Sets for automatic deduplication.
+        FIXES THE TYPEERROR.
+        Groups IOCs by type and includes synonyms for better search coverage.
         """
         iocs_by_type: Dict[str, Set[str]] = {}
 
@@ -75,14 +91,9 @@ class MalwareParser(BaseParser):
             
             iocs_by_type[itype].add(ivalue)
             
-            # If it's a malware family, we also want to index its synonyms as searchable IOCs
+            # Index synonyms to make them searchable as family names
             if itype == "malware_family":
-                for synonym in ioc["metadata"].get("synonyms", []):
+                for synonym in ioc.get("metadata", {}).get("synonyms", []):
                     iocs_by_type[itype].add(synonym)
 
         return iocs_by_type
-
-
-# Backwards-compatible export: much of the code imports MalpediaParser.
-# Keep both names pointing to the same implementation.
-MalpediaParser = MalwareParser

@@ -1,0 +1,1402 @@
+[
+    {
+        "value": "thegentlemen:silver_lake_medical_center",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.454985",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "silentransomgroup:orrick_herrington__sutcliffe",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455037",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "silentransomgroup"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:rocky_mountain_care",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455046",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:spire_payments",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455053",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:generon",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455059",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:rivages_du_monde",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455066",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "dragonforce:zelenkofske_axelrod",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455072",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "dragonforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "cipherforce:accuick",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455105",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "cipherforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:twu_local_100",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455111",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:plan-it_office_solutions",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455118",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:family_eyecare_llc",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455124",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "cipherforce:zip24_-_shipox",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455131",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "cipherforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "cipherforce:findnear",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455137",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "cipherforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "cipherforce:tektreeinc.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455144",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "cipherforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "cipherforce:hiringsteps.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455150",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "cipherforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "cipherforce:biaodianyun_group_ltd",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455156",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "cipherforce"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "rhysida:rohner",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455162",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "rhysida"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "incransom:primepak.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455169",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "incransom"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "incransom:rainier_clinical_research_center",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455175",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "incransom"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "incransom:the_city_of_cocoa",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455209",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "incransom"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "kittykatkrew:test",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455216",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "kittykatkrew"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:atlantic_design_engineers",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455222",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:faulknerlocke",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455228",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:hendrick_construction",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455234",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:young__associates_consulting_engineers",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455241",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:penlink",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455247",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:gulfstream_services",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455254",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:chemical_computing_group",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455260",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:cumberland_international_trucks",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455267",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:allchem_industries",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455273",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:north_woodlands_medical_centre",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455279",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:okanogan_county_vets",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455285",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:tactis",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455292",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:maintenance__project_engineering",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455298",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:complete_thermal_svc",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455304",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:cymot",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455311",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:us_trading",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455317",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:bluefish_dental__orthodontics",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455323",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:grupo_tomza",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455329",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:wtsmedia",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455336",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "incransom:testcompany",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455342",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "incransom"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:sawafi",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455348",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "killsec:onlinedivorcetexas.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455355",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "killsec"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "anubis:micaforce_technology",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455361",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "anubis"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:esperance_metaland",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455367",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:madison_services_inc.",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455373",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "tengu:www.shora.ma",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455417",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "tengu"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:abar_s.p.a.",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455423",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "incransom:polymedicure.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455455",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "incransom"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "akira:the_cherokee_group",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455461",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "akira"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "akira:fabcon",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455467",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "akira"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "akira:mcfarlane_agencies",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455474",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "akira"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:the_corradino_group",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455481",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "sinobi:graymatter",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455487",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "sinobi"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "sinobi:iblesoft",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455493",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "sinobi"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "sinobi:mayfair_hotels__resorts",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455499",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "sinobi"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:sika_technology",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455505",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:paisley_products_of_canada",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455516",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:kirbor_homes",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455535",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:tropic_tool__mold",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455541",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:arizona_lighting_sales",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455570",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "sinobi:gentegra",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455576",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "sinobi"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "sinobi:electriduct",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455582",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "sinobi"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "sinobi:saltech_systems",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455589",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "sinobi"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:wilhelmsen.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455595",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:perfumeria_pigmento",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455602",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:hugs_insurance",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455608",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:associated.org",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455643",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "securotrop:universal_mailing_service",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455650",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "securotrop"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:yfynqygs.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455685",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:grupo_progresso",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455692",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:qingtian_express_co.",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455698",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lynx:keylogistics_chile",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455705",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lynx"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lynx:stera_chemicals",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455711",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lynx"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:moa.gov.eg",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455717",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:line_up_korea",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455723",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:sasin_colleges__universities",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455729",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:pollo_cibao",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455736",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:smilescare.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455765",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:xpressnebs.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455771",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "qilin:labaguette",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455777",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "qilin"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:true_value",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455783",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:fcc-inc.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455789",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:humsnlr.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455795",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:czkingdee.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455801",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:dmxm.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455807",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:lasevillanita.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455813",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:maxusacorp.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455819",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:mengseng.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455826",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:utc.com.kw",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455831",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:vilati.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455837",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "incransom:acwapower.com__httpswww.larsentoubro.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455843",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "incransom"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lynx:altalingua",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455849",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lynx"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:crystalcoastpm.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455856",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "nightspire:pearl_institute_for_clinical_research_llc",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455862",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "nightspire"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:wjnklaw.com",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455868",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "lockbit5:davila.cl",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455873",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "lockbit5"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "play:marwood",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455879",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "play"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:seac",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455885",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    },
+    {
+        "value": "thegentlemen:garuda_indonesia_airlines",
+        "type": "ransomware_victim",
+        "sources": [],
+        "severity": "high",
+        "confidence": 85,
+        "last_seen": "2026-02-24 10:58:16.455891",
+        "tags": [
+            "ransomware",
+            "leak_site",
+            "thegentlemen"
+        ],
+        "hit_count": 1
+    }
+]

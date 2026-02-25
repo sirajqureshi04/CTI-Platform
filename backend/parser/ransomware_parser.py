@@ -1,12 +1,11 @@
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Set, Optional
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 
 from backend.core.logger import CTILogger
 from backend.parser.base_parser import BaseParser
 
 logger = CTILogger.get_logger(__name__)
-
 
 class RansomwareParser(BaseParser):
     """
@@ -16,7 +15,7 @@ class RansomwareParser(BaseParser):
 
     def __init__(self, config: Dict[str, Any] = None):
         super().__init__(
-            name="ransomware_parser",
+            name="ransomware",
             config=config or {}
         )
 
@@ -29,17 +28,18 @@ class RansomwareParser(BaseParser):
             return "unknown"
         name = name.strip().lower()
         name = re.sub(r"\s+", "_", name)
-        name = re.sub(r"[^a-z0-9_\\-\\.]", "", name)
+        name = re.sub(r"[^a-z0-9_.\-]", "", name)
         return name
 
-    def _parse_timestamp(self, ts: Any) -> str | None:
+    def _parse_timestamp(self, ts: Any) -> Optional[str]:
         if not ts:
             return None
         try:
             if isinstance(ts, (int, float)):
-                return datetime.utcfromtimestamp(ts).isoformat() + "Z"
+                return datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
             if isinstance(ts, str):
-                return datetime.fromisoformat(ts.replace("Z", "")).isoformat() + "Z"
+                # Handle Z or offset-less strings
+                return datetime.fromisoformat(ts.replace("Z", "+00:00")).isoformat()
         except Exception:
             return None
         return None
@@ -49,17 +49,21 @@ class RansomwareParser(BaseParser):
     # ----------------------------
 
     def parse(self, raw_data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        source = raw_data.get("source", "unknown")
+        """
+        Parses the ransomware.live payload.
+        Aligned with test_parser_storage extracting the 'data' key.
+        """
         items: List[Dict[str, Any]] = []
 
-        if source != "ransomware.live":
-            logger.warning(f"Unsupported source for RansomwareParser: {source}")
-            return items
+        # The raw_data passed here is the 'data' object from the raw JSON file.
+        # Based on your feed, it contains the 'victims' list directly.
+        victims = raw_data.get("victims", [])
 
-        victims = raw_data.get("data", {}).get("victims")
+        if not victims and isinstance(raw_data, list):
+            victims = raw_data
 
-        if not isinstance(victims, list):
-            logger.error("ransomware.live payload missing 'victims' list")
+        if not victims:
+            logger.warning("No victims found in Ransomware raw data.")
             return items
 
         for v in victims:
@@ -77,7 +81,7 @@ class RansomwareParser(BaseParser):
             norm_name = self._normalize_name(raw_name)
             norm_group = self._normalize_name(group)
 
-            # Stable identity
+            # Stable identity for deduplication
             ioc_value = f"{norm_group}:{norm_name}"
 
             metadata = {
@@ -91,8 +95,9 @@ class RansomwareParser(BaseParser):
                     v.get("discovered") or v.get("discovered_at")
                 ),
                 "published_at": self._parse_timestamp(v.get("published")),
-                "source": "ransomware.live",
-                "raw_id": v.get("id"),
+                "severity": "high",
+                "confidence": 85,
+                "tags": ["ransomware", "leak_site", group.lower()]
             }
 
             items.append(
@@ -103,7 +108,7 @@ class RansomwareParser(BaseParser):
                 )
             )
 
-        logger.info(f"Parsed {len(items)} ransomware victims from ransomware.live")
+        logger.info(f"Parsed {len(items)} ransomware victims.")
         return items
 
     # ----------------------------
@@ -112,8 +117,8 @@ class RansomwareParser(BaseParser):
 
     def extract_iocs(self, parsed_data: List[Dict[str, Any]]) -> Dict[str, Set[str]]:
         """
-        Group normalized items by IOC type, using sets for deduplication.
-        Defensive against malformed records.
+        Satisfies BaseParser requirement.
+        Groups normalized items by IOC type.
         """
         iocs_by_type: Dict[str, Set[str]] = {}
 

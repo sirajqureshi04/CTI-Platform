@@ -612,3 +612,213 @@ NameError: name 'os' is not defined. Did you forget to import 'os'?
 2026-02-23 12:31:52 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
 2026-02-23 12:32:43 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
 2026-02-23 12:32:43 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:36:15 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:36:15 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 12:38:24 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 12:38:24 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 16:29:06 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 16:29:06 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-23 16:29:16 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-23 16:29:16 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 10:55:30 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 10:55:30 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 10:58:09 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 10:58:09 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:05:13 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 11:05:13 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:22:34 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev (Incremental: True)
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia (Incremental: True)
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from cisa_kev...
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from malpedia...
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx (Incremental: True)
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live (Incremental: True)
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from alienvault_otx...
+2026-02-24 11:22:34 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:98 | [DRY RUN] Fetching (full) data from ransomware_live...
+2026-02-24 11:22:35 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public
+2026-02-24 11:22:35 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/public | Error: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-02-17T11%3A22%3A34.675356&limit=100
+2026-02-24 11:22:35 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:79 | OTX Fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-02-17T11%3A22%3A34.675356&limit=100
+2026-02-24 11:22:35 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\alienvault_otx\alienvault_otx_20260224_112235.json
+2026-02-24 11:22:35 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ alienvault_otx: Fetched 0 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\alienvault_otx\alienvault_otx_20260224_112235.json
+2026-02-24 11:22:35 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.02.20 (1526 entries)
+2026-02-24 11:22:35 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\cisa_kev\cisa_kev_20260224_112235.json
+2026-02-24 11:22:35 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ cisa_kev: Fetched 1526 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\cisa_kev\cisa_kev_20260224_112235.json
+2026-02-24 11:22:36 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 321 groups entries
+2026-02-24 11:22:38 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3664 malware families.
+2026-02-24 11:22:38 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-02-24 11:22:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\ransomware_live\ransomware_live_20260224_112238.json
+2026-02-24 11:22:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ ransomware_live: Fetched 421 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\ransomware_live\ransomware_live_20260224_112238.json
+2026-02-24 11:22:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:74 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\data\raw\malpedia\malpedia_20260224_112238.json
+2026-02-24 11:22:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:114 | [DRY RUN] ✓ malpedia: Fetched 3664 items and saved snapshot to C:\Users\HP\Desktop\CTI-Platform\data\raw\malpedia\malpedia_20260224_112238.json
+2026-02-24 11:41:38 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: ransomware_live at C:\Users\HP\Desktop\CTI-Platform\storage\raw\ransomware_live
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: cisa_kev at C:\Users\HP\Desktop\CTI-Platform\storage\raw\cisa_kev
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:86 | [DRY RUN] Fetching data from ransomware_live...
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:86 | [DRY RUN] Fetching data from cisa_kev...
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: malpedia at C:\Users\HP\Desktop\CTI-Platform\storage\raw\malpedia
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx at C:\Users\HP\Desktop\CTI-Platform\storage\raw\alienvault_otx
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:86 | [DRY RUN] Fetching data from malpedia...
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:86 | [DRY RUN] Fetching data from alienvault_otx...
+2026-02-24 11:41:38 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:43 | Initiating bulk fetch from Malpedia (MISP Galaxy format)...
+2026-02-24 11:41:39 | INFO     | [cti_platform.backend.feeds.clearweb.cisa_kev] | fetch:45 | Successfully fetched KEV v2026.02.20 (1526 entries)
+2026-02-24 11:41:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:69 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\storage\raw\cisa_kev\cisa_kev_2026-02-24_11-41-39.json
+2026-02-24 11:41:39 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public
+2026-02-24 11:41:39 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/public | Error: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-02-10T11%3A41%3A38&limit=100
+2026-02-24 11:41:39 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:57 | OTX Retrieval Error: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?modified_since=2026-02-10T11%3A41%3A38&limit=100
+2026-02-24 11:41:39 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:69 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\storage\raw\alienvault_otx\alienvault_otx_2026-02-24_11-41-39.json
+2026-02-24 11:41:40 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 321 groups entries
+2026-02-24 11:41:40 | INFO     | [cti_platform.backend.feeds.clearweb.malpedia] | fetch:74 | Successfully scraped 3664 malware families.
+2026-02-24 11:41:40 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:69 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\storage\raw\malpedia\malpedia_2026-02-24_11-41-40.json
+2026-02-24 11:41:42 | INFO     | [cti_platform.backend.feeds.clearweb.ransomware_live] | fetch:57 | Fetched 100 victims entries
+2026-02-24 11:41:42 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:69 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\storage\raw\ransomware_live\ransomware_live_2026-02-24_11-41-42.json
+2026-02-24 11:51:48 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 11:51:48 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:51:49 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | __init__:36 | Initialized feed: alienvault_otx at C:\Users\HP\Desktop\CTI-Platform\storage\raw\alienvault_otx
+2026-02-24 11:51:49 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | dry_run:86 | [DRY RUN] Fetching data from alienvault_otx...
+2026-02-24 11:51:49 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/public
+2026-02-24 11:51:49 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/public | Error: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=100&modified_since=2026-01-25T11%3A51%3A49
+2026-02-24 11:51:49 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:48 | Failed to fetch from https://otx.alienvault.com/api/v1/pulses/public: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/public?limit=100&modified_since=2026-01-25T11%3A51%3A49
+2026-02-24 11:51:49 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:69 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\storage\raw\alienvault_otx\alienvault_otx_2026-02-24_11-51-49.json
+2026-02-24 11:53:19 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 11:53:19 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:53:19 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:33 | Fetching OTX pulses from https://otx.alienvault.com/api/v1/pulses/subscribed since 2026-01-25T11:53:19
+2026-02-24 11:53:20 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/subscribed
+2026-02-24 11:53:20 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/subscribed | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/subscribed?limit=100&modified_since=2026-01-25T11%3A53%3A19
+2026-02-24 11:53:20 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:58 | OTX Fetch Critical Failure: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/subscribed?limit=100&modified_since=2026-01-25T11%3A53%3A19
+2026-02-24 11:53:20 | INFO     | [cti_platform.backend.feeds.clearweb.base_feed] | save_raw_data:53 | Saved raw data to C:\Users\HP\Desktop\CTI-Platform\storage\raw\alienvault_otx\2026-02-24_raw.json
+2026-02-24 11:55:56 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 11:55:56 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 11:55:57 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:39 | Attempting OTX fetch: https://otx.alienvault.com/api/v1/pulses/subscribed
+2026-02-24 11:55:57 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/subscribed
+2026-02-24 11:55:57 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/subscribed | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/subscribed?limit=50&modified_since=2026-01-25T11%3A55%3A57
+2026-02-24 11:55:57 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:53 | Error fetching from https://otx.alienvault.com/api/v1/pulses/subscribed: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/subscribed?limit=50&modified_since=2026-01-25T11%3A55%3A57
+2026-02-24 11:55:57 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:39 | Attempting OTX fetch: https://otx.alienvault.com/api/v1/pulses/user/AlienVault/pulses
+2026-02-24 11:56:00 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/user/AlienVault/pulses
+2026-02-24 11:56:00 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/user/AlienVault/pulses | Error: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault/pulses?limit=50&modified_since=2026-01-25T11%3A55%3A57
+2026-02-24 11:56:00 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:53 | Error fetching from https://otx.alienvault.com/api/v1/pulses/user/AlienVault/pulses: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault/pulses?limit=50&modified_since=2026-01-25T11%3A55%3A57
+2026-02-24 11:56:00 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | validate:65 | Validation Failed: No pulses found in data.
+2026-02-24 12:04:08 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:04:08 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:04:10 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:24 | No OTX_API_KEY found. Feed will operate in public-only mode.
+2026-02-24 12:04:10 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:44 | Attempting OTX fetch: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:04:11 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:04:11 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/user/AlienVault | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-01-25T12%3A04%3A10
+2026-02-24 12:04:11 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:65 | Error fetching from https://otx.alienvault.com/api/v1/pulses/user/AlienVault: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-01-25T12%3A04%3A10
+2026-02-24 12:04:11 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | validate:76 | Validation Failed: No pulses found in data.
+2026-02-24 12:05:36 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:05:36 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:05:37 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:29 | OTX Feed: No API Key found, using unauthenticated access.
+2026-02-24 12:05:37 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:45 | Attempting OTX fetch: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:05:38 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:05:38 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/user/AlienVault | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-02-10T12%3A05%3A37
+2026-02-24 12:05:38 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:64 | OTX Fetch Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-02-10T12%3A05%3A37
+2026-02-24 12:05:38 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | validate:75 | Validation Failed: No pulses found.
+2026-02-24 12:10:50 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:10:50 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:10:50 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:29 | OTX Feed: No API Key found, using unauthenticated access.
+2026-02-24 12:10:50 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:45 | Attempting OTX fetch: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:10:51 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:10:51 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/user/AlienVault | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-02-10T12%3A10%3A50
+2026-02-24 12:10:51 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:64 | OTX Fetch Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-02-10T12%3A10%3A50
+2026-02-24 12:10:51 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | validate:75 | Validation Failed: No pulses found.
+2026-02-24 12:11:31 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:11:31 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:11:31 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:29 | OTX Feed: No API Key found, using unauthenticated access.
+2026-02-24 12:11:31 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:45 | Attempting OTX fetch: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:11:32 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/user/AlienVault
+2026-02-24 12:11:32 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/user/AlienVault | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-02-10T12%3A11%3A31
+2026-02-24 12:11:32 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:64 | OTX Fetch Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/user/AlienVault?limit=100&modified_since=2026-02-10T12%3A11%3A31
+2026-02-24 12:11:32 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | validate:75 | Validation Failed: No pulses found.
+2026-02-24 12:13:59 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:13:59 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:13:59 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:29 | OTX Feed: No API Key found, using unauthenticated access.
+2026-02-24 12:13:59 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:45 | Attempting OTX fetch: https://otx.alienvault.com/pulses/user/AlienVault
+2026-02-24 12:14:00 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:64 | OTX Fetch Error: Expecting value: line 1 column 1 (char 0)
+2026-02-24 12:14:00 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | validate:75 | Validation Failed: No pulses found.
+2026-02-24 12:17:16 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:17:16 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:17:17 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:26 | No OTX_API_KEY found in .env. Falling back to public mode.
+2026-02-24 12:17:17 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:44 | Attempting clean public fetch from AlienVault user...
+2026-02-24 12:17:26 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:17:26 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:17:27 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:26 | No OTX_API_KEY found in .env. Falling back to public mode.
+2026-02-24 12:17:27 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:44 | Attempting clean public fetch from AlienVault user...
+2026-02-24 12:37:41 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:37:41 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:37:41 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:39 | No valid OTX_API_KEY found. OTX feed will fail validation.
+2026-02-24 12:37:41 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:45 | OTX API key is required for subscribed pulses endpoint.
+2026-02-24 12:42:54 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:42:54 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:43:17 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:43:17 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:43:18 | WARNING  | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:39 | No valid OTX_API_KEY found. OTX feed will fail validation.
+2026-02-24 12:43:18 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:45 | OTX API key is required for subscribed pulses endpoint.
+2026-02-24 12:50:03 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:50:03 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:50:44 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 12:50:44 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 12:50:45 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:37 | OTX API key detected and loaded.
+2026-02-24 12:50:45 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/pulses/subscribed
+2026-02-24 12:50:45 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/subscribed | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/subscribed?limit=50
+2026-02-24 12:50:45 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:63 | OTX fetch failed: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/pulses/subscribed?limit=50
+2026-02-24 13:01:31 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 13:01:31 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 13:01:32 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | OTX API key detected and loaded.
+2026-02-24 13:01:35 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/users/me
+2026-02-24 13:01:35 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/users/me | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/users/me
+2026-02-24 13:01:35 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | _verify_api_key:128 | OTX key verification error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/users/me
+2026-02-24 13:01:35 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:54 | OTX API key verification failed (403).
+2026-02-24 13:03:47 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 13:03:47 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 13:03:47 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | OTX API key detected and loaded.
+2026-02-24 13:03:48 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 403 Error | URL: https://otx.alienvault.com/api/v1/users/me
+2026-02-24 13:03:48 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/users/me | Error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/users/me
+2026-02-24 13:03:48 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | _verify_api_key:128 | OTX key verification error: 403 Client Error: Forbidden for url: https://otx.alienvault.com/api/v1/users/me
+2026-02-24 13:03:48 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:54 | OTX API key verification failed (403).
+2026-02-24 13:14:25 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 13:14:25 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 13:14:25 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | OTX API key detected and loaded.
+2026-02-24 13:14:25 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | _verify_api_key:121 | OTX API key verification successful.
+2026-02-24 13:14:29 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:64 | Fetching pulses from user: sirajqureshi
+2026-02-24 13:14:32 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:95 | Total pulses fetched: 0
+2026-02-24 13:24:01 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 13:24:01 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 13:26:53 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 13:26:53 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 13:28:10 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 13:28:10 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 14:24:22 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 14:24:22 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 14:28:48 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 14:28:48 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 14:29:37 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 14:29:37 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 14:30:20 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 14:30:20 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 14:30:21 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: alienvault_otx
+2026-02-24 14:30:21 | INFO     | [cti_platform.backend.parser.alienvault_otx_parser] | parse:60 | Parsed 0 indicators from OTX pulses.
+2026-02-24 14:30:21 | INFO     | [cti_platform.backend.parser.alienvault_otx_parser] | parse:60 | Parsed 0 indicators from OTX pulses.
+2026-02-24 14:30:21 | INFO     | [cti_platform.backend.parser.alienvault_otx_parser] | parse:60 | Parsed 0 indicators from OTX pulses.
+2026-02-24 14:58:14 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 14:58:14 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: alienvault_otx
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.alienvault_otx_parser] | parse:60 | Parsed 0 indicators from OTX pulses.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.alienvault_otx_parser] | parse:60 | Parsed 0 indicators from OTX pulses.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.alienvault_otx_parser] | parse:60 | Parsed 0 indicators from OTX pulses.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: cisa_kev
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.cisa_kev_parser] | parse:74 | Parsed 1526 vulnerabilities from CISA KEV.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: malpedia
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.malpedia_parser] | parse:75 | Parsed 0 items from Malpedia.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.malpedia_parser] | parse:75 | Parsed 0 items from Malpedia.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.malpedia_parser] | parse:75 | Parsed 0 items from Malpedia.
+2026-02-24 14:58:15 | INFO     | [cti_platform.backend.parser.malpedia_parser] | parse:75 | Parsed 28998 items from Malpedia.
+2026-02-24 14:58:16 | INFO     | [cti_platform.backend.parser.base_parser] | __init__:35 | Initialized parser: ransomware
+2026-02-24 14:58:16 | WARNING  | [cti_platform.backend.parser.ransomware_parser] | parse:66 | No victims found in Ransomware raw data.
+2026-02-24 14:58:16 | WARNING  | [cti_platform.backend.parser.ransomware_parser] | parse:66 | No victims found in Ransomware raw data.
+2026-02-24 14:58:16 | WARNING  | [cti_platform.backend.parser.ransomware_parser] | parse:66 | No victims found in Ransomware raw data.
+2026-02-24 14:58:16 | INFO     | [cti_platform.backend.parser.ransomware_parser] | parse:111 | Parsed 100 ransomware victims.
+2026-02-24 15:32:49 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-24 15:32:49 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager

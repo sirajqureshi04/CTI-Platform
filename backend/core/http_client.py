@@ -1,5 +1,5 @@
 """
-HTTP client module with Cloudflare bypass, rate limiting, and session management.
+HTTP client module with Cloudflare bypass, rate limiting, and Tor support.
 Refined for enhanced error logging and parameter isolation.
 """
 import time
@@ -31,18 +31,13 @@ class SecureHTTPClient:
         self.rate_limit_delay = rate_limit_delay
         self._last_request_time: Dict[str, float] = {}
         
-        # 1. Standard Session for APIs
         self.standard_session = requests.Session()
-        
-        # 2. Cloudflare-ready Scraper
         self.cloudflare_scraper = cloudscraper.create_scraper(
             browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True}
         )
         
-        # Compatibility property
         self.session = self.standard_session
         
-        # Configure Retries
         retry_strategy = Retry(
             total=max_retries,
             backoff_factor=1.0,
@@ -70,46 +65,47 @@ class SecureHTTPClient:
         self._last_request_time[domain] = time.time()
 
     def fetch(self, url: str, bypass_cloudflare: bool = False, **kwargs) -> requests.Response:
-        """
-        Unified fetch method with explicit parameter isolation and diagnostic logging.
-        """
         self._enforce_rate_limit(url)
-        
-        # Fresh headers for every request
         headers = kwargs.get("headers", {}).copy()
         if "User-Agent" not in headers:
             headers["User-Agent"] = self._get_random_ua()
         kwargs["headers"] = headers
 
-        # Diagnostic info for logging
-        params = kwargs.get("params", {})
-        
         try:
             if bypass_cloudflare or "ransomware.live" in url:
                 response = self.cloudflare_scraper.get(url, timeout=self.timeout, **kwargs)
             else:
                 response = self.standard_session.get(url, timeout=self.timeout, **kwargs)
             
-            # Explicitly check for 404/403 to provide better debugging
             if response.status_code in [403, 404]:
-                logger.error(f"HTTP {response.status_code} Error | URL: {url} | Params: {params}")
+                logger.error(f"HTTP {response.status_code} Error | URL: {url}")
             
             response.raise_for_status()
             return response
-
-        except requests.exceptions.HTTPError as e:
-            # OPTIONAL BUT IMPORTANT: Log full details on failure
-            logger.error(f"Request Failed: {url} | Status: {e.response.status_code} | Params: {params}")
-            raise
         except Exception as e:
             logger.error(f"Network Error: {url} | Error: {str(e)}")
             raise
 
     def get(self, url: str, **kwargs) -> requests.Response:
-        """Alias for fetch() for compatibility."""
         bypass_cloudflare = kwargs.pop("bypass_cloudflare", False)
         return self.fetch(url, bypass_cloudflare=bypass_cloudflare, **kwargs)
 
     def close(self):
         self.standard_session.close()
         self.cloudflare_scraper.close()
+
+class TorHTTPClient(SecureHTTPClient):
+    """
+    Missing class required by backend/__init__.py.
+    Routes traffic through a local Tor proxy for Dark Web feeds.
+    """
+    def __init__(self, proxy_url: str = "socks5h://127.0.0.1:9050", **kwargs):
+        super().__init__(**kwargs)
+        self.proxies = {'http': proxy_url, 'https': proxy_url}
+        self.standard_session.proxies.update(self.proxies)
+        logger.info(f"TorHTTPClient initialized using proxy: {proxy_url}")
+
+def tor_session(proxy_url: str = "socks5h://127.0.0.1:9050"):
+    """Utility function often called in backend.utils"""
+    client = TorHTTPClient(proxy_url=proxy_url)
+    return client.standard_session

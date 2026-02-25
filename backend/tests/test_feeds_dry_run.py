@@ -76,7 +76,9 @@ def main():
     all_feeds = {
         "ransomware_live": (RansomwareLiveFeed, {"bypass_cloudflare": True}),
         "cisa_kev": (CISAKEVFeed, {}),
-        "alienvault_otx": (AlienVaultOTXFeed, {"api_key": settings.OTX_API_KEY}),
+        "alienvault_otx": (
+        AlienVaultOTXFeed,
+        {"OTX_API_KEY": settings.OTX_API_KEY}),
         "malpedia": (MalpediaFeed, {"api_key": settings.MALPEDIA_API_KEY})
     }
 

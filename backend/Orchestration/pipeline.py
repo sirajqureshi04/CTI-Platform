@@ -44,7 +44,7 @@ class CTIPipeline:
         self.parsers = {
             "ransomware": RansomwareParser(),
             "malpedia": MalpediaParser(),
-            "alienvault": AlienVaultParser(),
+            "alienvault": AlienVaultOTXParser(),
             "cisa_kev": CISAKEVParser()
         }
         logger.info("Initialized CTI pipeline with Dark Web Monitor support")

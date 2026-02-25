@@ -1,5 +1,5 @@
 import re
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Set
 from backend.core.logger import CTILogger
 from backend.parser.base_parser import BaseParser
 
@@ -12,71 +12,76 @@ def extract_urls(text: str) -> List[str]:
 
 def normalize_severity(text: str) -> str:
     if not text:
-        return "medium"
+        return "high" # KEVs are exploited, default to high
     t = text.lower()
     if any(kw in t for kw in ["remote code execution", "rce", "critical"]):
         return "critical"
     if any(kw in t for kw in ["code injection", "privilege escalation", "high"]):
         return "high"
-    if "information disclosure" in t:
-        return "medium"
-    return "medium"
+    return "high"
 
 class CISAKEVParser(BaseParser):
     """
     CTI-grade parser for CISA Known Exploited Vulnerabilities.
-    Refined to work with the multi-source Deduplicator.
+    Implements extract_iocs to fix the TypeError.
     """
 
     def __init__(self, config: Dict[str, Any] = None):
         super().__init__(
-            name="cisa_parser",  # Internal name for mapping
+            # name matches your test_parser mapping
+            name="cisa_kev",  
             config=config or {}
         )
 
     def parse(self, raw_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         items = []
 
-        # Extract metadata from ingestion layer
-        meta = raw_data.get("metadata", {})
-        # FORCE source to 'cisa_parser' for the Deduplicator SOURCE_MAP
-        feed_source = "cisa_parser" 
-        ingested_at = meta.get("ingested_at")
-
-        vulnerabilities = raw_data.get("data", {}).get("data", {}).get("vulnerabilities", [])
+        # Your feed saves data as {"vulnerabilities": [...]} inside the 'data' wrapper
+        # We access it directly from the payload passed by test_parser_storage
+        vulnerabilities = raw_data.get("vulnerabilities", [])
 
         for v in vulnerabilities:
             cve_id = v.get("cveID")
             if not cve_id:
                 continue
 
-            # Standardized Record for Deduplication
-            record = {
-                "value": cve_id.upper(),            # The unique ID used by Deduplicator
-                "type": "cve",
-                "source": feed_source,              # Used by Deduplicator to map to 'CISA KEV'
-                
-                # Contextual Data
+            # Contextual Data
+            metadata = {
                 "vendor": v.get("vendorProject"),
                 "product": v.get("product"),
                 "title": v.get("vulnerabilityName"),
                 "description": v.get("shortDescription"),
-
-                # Technical Details
                 "cwe": v.get("cwes", []),
                 "ransomware_used": v.get("knownRansomwareCampaignUse"),
                 "first_seen": v.get("dateAdded"),
                 "due_date": v.get("dueDate"),
                 "references": extract_urls(v.get("notes", "")),
-
-                # System Metadata
-                "ingested_at": ingested_at,
                 "severity": normalize_severity(v.get("shortDescription")),
-                "confidence": 95,                   # Higher confidence for official gov sources
+                "confidence": 95,
                 "tags": ["cisa", "kev", "vulnerability", "exploited"]
             }
+
+            # Normalize into the unified format expected by to_processed_indicators
+            # This ensures keys like 'ioc_type' and 'ioc_value' exist
+            record = self.normalize_ioc(
+                ioc_type="cve",
+                ioc_value=cve_id.upper(),
+                metadata=metadata
+            )
 
             items.append(record)
 
         logger.info(f"Parsed {len(items)} vulnerabilities from CISA KEV.")
         return items
+
+    def extract_iocs(self, parsed_data: List[Dict[str, Any]]) -> Dict[str, Set[str]]:
+        """
+        FIXES THE TYPEERROR.
+        Groups unique CVEs for the summary report.
+        """
+        iocs = {"cve": set()}
+        for item in parsed_data:
+            val = item.get("ioc_value")
+            if val:
+                iocs["cve"].add(val)
+        return iocs
