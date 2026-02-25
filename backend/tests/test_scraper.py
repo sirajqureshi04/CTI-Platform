@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import sys
 import os
+import json
 from pathlib import Path
+from datetime import datetime
 import requests
 from dotenv import load_dotenv
 
@@ -50,7 +52,7 @@ def run_diagnostic():
 
     try:
         # Initialize with merged .env config
-        monitor = RansomwareMonitorFeed(config=ENV_CONFIG)
+        monitor = RansomwareMonitorFeed(config=ENV_CONFIG, logger=logger)
         print("\n📡 Connecting to Tor and Scraping Onion Sites...")
         results = monitor.fetch()
         
@@ -58,6 +60,9 @@ def run_diagnostic():
         print(f"{'📊 SCRAPER TEST RESULTS':^60}")
         print("="*60)
         
+        standardized_iocs = []
+        today_str = datetime.now().strftime("%Y-%m-%d")
+
         for source, info in results.get("detections", {}).items():
             count = info.get("count", 0)
             sc = info.get("status_code")
@@ -73,6 +78,34 @@ def run_diagnostic():
                 print("📝 Sample Victims:")
                 for v in info.get("victims", [])[:3]:
                     print(f"   - {v}")
+                
+                # --- NEW: Build Standardized IOCs for Deduplication ---
+                for victim in info.get("victims", []):
+                    standardized_iocs.append({
+                        "ioc_value": f"{source.lower()}:{victim.lower().replace(' ', '_')}",
+                        "ioc_type": "ransomware_victim",
+                        "source": "ransomware_onion",
+                        "metadata": {
+                            "victim_name": victim,
+                            "group": source,
+                            "leak_url": info.get("url"),
+                            "tags": ["darkweb", "onion", source.lower()]
+                        }
+                    })
+
+        # --- NEW: Save to storage/processed/darkweb/ ---
+        if standardized_iocs:
+            processed_dir = PROJECT_ROOT / "storage" / "processed" / "darkweb"
+            processed_dir.mkdir(parents=True, exist_ok=True)
+            
+            output_file = processed_dir / f"{today_str}_processed.json"
+            with open(output_file, "w", encoding="utf-8") as f:
+                json.dump(standardized_iocs, f, indent=4)
+            
+            print("\n" + "-"*60)
+            print(f"📦 SUCCESS: {len(standardized_iocs)} records saved to:")
+            print(f"📂 {output_file}")
+            print("-"*60)
 
         print("\n" + "="*60)
         

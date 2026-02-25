@@ -14,6 +14,9 @@ SOURCE_MAP = {
     "ransomware_parser": "Ransomware.live",
     "ransomware": "Ransomware.live",
     
+    # DARK WEB: Added mapping for your new Tor scraper
+    "ransomware_onion": "DarkWeb Onion Scraper",
+    
     # Other parsers
     "malpedia": "Malpedia",
     "alienvault_parser": "AlienVault OTX",
@@ -81,7 +84,7 @@ class Deduplicator:
         
         self._save_cache()
         
-        # SAVE LOGIC: 24-02-2026_single.json format
+        # SAVE LOGIC: DD-MM-YYYY_single.json format
         current_date_str = datetime.now().strftime("%d-%m-%Y")
         output_path = self.final_dir / f"{current_date_str}_single.json"
         
