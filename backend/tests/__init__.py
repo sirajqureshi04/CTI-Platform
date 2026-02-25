@@ -1,13 +1,19 @@
-"""Scripts for the CTI platform."""
+"""Tests for the CTI Platform"""
 
-# Explicit exports for easier importing
-from backend.tests.test_tor import test_connection
-from backend.tests.test_scraper import run_diagnostic          # noqa: F401
-from backend.tests.test_tor import test_connection
-from backend.tests.test_enrichment import start_dry_run          # noqa: F401
+# Import test modules for easier access
+from backend.tests.test_deduplicator import *      # noqa: F401,F403
+from backend.tests.test_enrichment import *        # noqa: F401,F403
+from backend.tests.test_feeds_dry_run import *     # noqa: F401,F403
+from backend.tests.test_parser_storage import *    # noqa: F401,F403
+from backend.tests.test_scraper import *           # noqa: F401,F403
+from backend.tests.test_storage import *           # noqa: F401,F403
 
+# Define what should be available when importing *
 __all__ = [
-    "run_diagnostic",
-    "test_connection",
-    "start_dry_run",
-    ]       
+    # Add specific functions/classes you want to expose
+    # For example:
+    # 'TestDeduplicator',
+    # 'TestEnrichment',
+    # 'run_diagnostic',
+]
+

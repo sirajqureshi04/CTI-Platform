@@ -822,3 +822,20 @@ NameError: name 'os' is not defined. Did you forget to import 'os'?
 2026-02-24 14:58:16 | INFO     | [cti_platform.backend.parser.ransomware_parser] | parse:111 | Parsed 100 ransomware victims.
 2026-02-24 15:32:49 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
 2026-02-24 15:32:49 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-25 12:04:34 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-25 12:04:34 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-25 12:05:21 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-25 12:05:21 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-25 12:13:11 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-25 12:13:11 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-25 12:13:13 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:34 | OTX API key detected and loaded.
+2026-02-25 12:13:15 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | _verify_api_key:121 | OTX API key verification successful.
+2026-02-25 12:13:16 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:64 | Fetching pulses from user: sirajqureshi
+2026-02-25 12:13:20 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:95 | Total pulses fetched: 0
+2026-02-25 12:43:46 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-02-25 12:43:46 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-02-25 12:43:47 | INFO     | [cti_platform.backend.feeds.clearweb.alienvault_otx] | __init__:33 | OTX API key detected and loaded.
+2026-02-25 12:43:50 | ERROR    | [cti_platform.backend.core.http_client] | fetch:81 | HTTP 404 Error | URL: https://otx.alienvault.com/api/v1/pulses/all
+2026-02-25 12:43:50 | ERROR    | [cti_platform.backend.core.http_client] | fetch:86 | Network Error: https://otx.alienvault.com/api/v1/pulses/all | Error: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/all?limit=50&page=1
+2026-02-25 12:43:50 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | fetch:92 | OTX fetch failed: 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/all?limit=50&page=1
+2026-02-25 12:43:50 | ERROR    | [cti_platform.backend.feeds.clearweb.alienvault_otx] | _error_response:153 | 404 Client Error: Not Found for url: https://otx.alienvault.com/api/v1/pulses/all?limit=50&page=1
