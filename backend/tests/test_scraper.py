@@ -23,9 +23,12 @@ except ImportError as e:
 
 logger = CTILogger.get_logger("ScraperTest")
 
-# 2. Dynamic Configuration from .env
+# 2. Dynamic Configuration: Updated for Tor Browser (9150)
+# We prioritize .env, then 9150 (Browser), then fallback to 9050 (Service)
+DEFAULT_PROXY = os.getenv("TOR_SOCKS_PROXY", "socks5h://127.0.0.1:9150")
+
 ENV_CONFIG = {
-    "TOR_SOCKS_PROXY": os.getenv("TOR_SOCKS_PROXY", "socks5h://127.0.0.1:9050"),
+    "TOR_SOCKS_PROXY": DEFAULT_PROXY,
     "timeout": int(os.getenv("SCRAPER_TIMEOUT", 90)),
     "max_retries": int(os.getenv("SCRAPER_RETRIES", 5)),
     "sources": {
@@ -35,25 +38,38 @@ ENV_CONFIG = {
 }
 
 def check_tor_status():
-    """Verify Tor connectivity and anonymity."""
+    """Verify Tor connectivity and anonymity via Tor Browser port."""
+    proxy_to_check = ENV_CONFIG["TOR_SOCKS_PROXY"]
     try:
-        proxies = {"http": ENV_CONFIG["TOR_SOCKS_PROXY"], "https": ENV_CONFIG["TOR_SOCKS_PROXY"]}
-        response = requests.get("https://check.torproject.org", proxies=proxies, timeout=20)
+        proxies = {"http": proxy_to_check, "https": proxy_to_check}
+        # Short timeout for the check to see if the port is even open
+        response = requests.get("https://check.torproject.org", proxies=proxies, timeout=10)
         return "Congratulations" in response.text
-    except:
+    except Exception as e:
+        logger.debug(f"Tor check failed on {proxy_to_check}: {e}")
         return False
 
 def run_diagnostic():
-    logger.info("Starting Dark Web Scraper Diagnostic...")
+    logger.info("Starting Dark Web Scraper Diagnostic (Tor Browser Mode)...")
     
+    # Check if Tor Browser is actually open
     if not check_tor_status():
-        logger.error("❌ Tor Proxy Offline. Verify Tor is running on port 9050.")
+        print("\n" + "!"*60)
+        print("❌ ERROR: Tor Proxy Offline.")
+        print(f"Target Port: {ENV_CONFIG['TOR_SOCKS_PROXY']}")
+        print("Steps to fix:")
+        print("1. Open the Tor Browser.")
+        print("2. Ensure you have clicked 'Connect' inside the browser.")
+        print("3. Verify the browser is working by visiting a website.")
+        print("!"*60 + "\n")
         return
 
     try:
-        # Initialize with merged .env config
+        # Initialize with merged config
         monitor = RansomwareMonitorFeed(config=ENV_CONFIG, logger=logger)
-        print("\n📡 Connecting to Tor and Scraping Onion Sites...")
+        print(f"\n📡 Connected! Using Proxy: {ENV_CONFIG['TOR_SOCKS_PROXY']}")
+        print("🕵️  Scraping Onion Sites (this may take a minute)...")
+        
         results = monitor.fetch()
         
         print("\n" + "="*60)
@@ -79,7 +95,6 @@ def run_diagnostic():
                 for v in info.get("victims", [])[:3]:
                     print(f"   - {v}")
                 
-                # --- NEW: Build Standardized IOCs for Deduplication ---
                 for victim in info.get("victims", []):
                     standardized_iocs.append({
                         "ioc_value": f"{source.lower()}:{victim.lower().replace(' ', '_')}",
@@ -93,7 +108,7 @@ def run_diagnostic():
                         }
                     })
 
-        # --- NEW: Save to storage/processed/darkweb/ ---
+        # Save Logic
         if standardized_iocs:
             processed_dir = PROJECT_ROOT / "storage" / "processed" / "darkweb"
             processed_dir.mkdir(parents=True, exist_ok=True)
@@ -105,7 +120,9 @@ def run_diagnostic():
             print("\n" + "-"*60)
             print(f"📦 SUCCESS: {len(standardized_iocs)} records saved to:")
             print(f"📂 {output_file}")
-            print("-"*60)
+            print("-" * 60)
+        else:
+            print("\n⚠️ No victims were parsed. Check if the onion sites are up.")
 
         print("\n" + "="*60)
         
