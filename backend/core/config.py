@@ -1,89 +1,59 @@
-"""
-Centralized application configuration with startup guardrails.
-Enforces OTX non-incremental constraints and automated .env loading.
-"""
-
 import os
-from functools import lru_cache
 from pathlib import Path
-from typing import Optional
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from dotenv import load_dotenv
 
+# Load variables from .env (API Keys, etc.)
+load_dotenv()
 
-class Settings(BaseSettings):
-    # --------------------------------------------------
-    # Application & Paths
-    # --------------------------------------------------
-    APP_NAME: str = "CTI Platform"
-    ENV: str = "development"
+class Config:
+    """
+    Centralized configuration for the CTI Platform.
+    Handles Secrets, Network Settings, and Enrichment Paths.
+    """
     
-    # Automatically locate the project root
-    BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
-    DATA_DIR: Path = BASE_DIR / "data"
+    # --- 1. PROJECT PATHS (Absolute) ---
+    BACKEND_DIR = Path(__file__).parent.absolute()
+    PROJECT_ROOT = BACKEND_DIR.parent
+    
+    # Enrichment Data
+    VENDOR_LIST_PATH = BACKEND_DIR / "enrichment" / "data" / "my_vendors.txt"
+    
+    # Storage Paths
+    RAW_STORAGE = PROJECT_ROOT / "storage" / "raw"
+    FINAL_STORAGE = PROJECT_ROOT / "storage" / "final"
+    ENRICHED_OUTPUT = FINAL_STORAGE / "enriched_intelligence.json"
+    
+    # --- 2. SECRETS & API TOKENS (From .env) ---
+    NVD_API_KEY = os.getenv("NVD_API_KEY", "")
+    MALPEDIA_TOKEN = os.getenv("MALPEDIA_TOKEN", "")
+    
+    # --- 3. NETWORK & TOR SETTINGS ---
+    # Fixed to 9050 to match your successful netstat diagnostic
+    TOR_SOCKS_PROXY = "socks5h://127.0.0.1:9050"
+    REQUEST_TIMEOUT = 20
+    USER_AGENT = "CTI-Intelligence-Enricher/1.0"
 
-    # --------------------------------------------------
-    # .env File Configuration (NEW & OPTIMIZED)
-    # --------------------------------------------------
-    # Load from the existing backend/.env file in this project.
-    model_config = SettingsConfigDict(
-        env_file=Path(__file__).resolve().parent.parent / ".env",
-        env_file_encoding='utf-8',
-        case_sensitive=True,
-        extra='ignore'
-    )
+    # --- 4. ENRICHMENT SOURCE URLS ---
+    CISA_KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+    EPSS_API_URL = "https://api.first.org/data/v1/epss"
+    RANSOMWARE_LIVE_API = "https://api.ransomware.live/v2/recentvictims"
+    NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 
-    # --------------------------------------------------
-    # MySQL Database (Automatically filled from .env)
-    # --------------------------------------------------
-    DB_HOST: str = "localhost"
-    DB_USER: str = "cti_user"
-    DB_PASSWORD: str = "secure_password"
-    DB_NAME: str = "cti_database"
-    DB_PORT: int = 3306
-    DB_POOL_SIZE: int = 10
+    # --- 5. ENRICHMENT LOGIC SETTINGS ---
+    EPSS_THRESHOLD = 0.45  # Scores above this are flagged as high risk
+    CONFIDENCE_LEVEL_MIN = 50
+    DEBUG_MODE = True
 
-    # --------------------------------------------------
-    # Feed Constraints (GUARDRAIL FIX)
-    # --------------------------------------------------
-    # Enforced as False to prevent 404 errors on AlienVault OTX
-    OTX_INCREMENTAL_ENABLED: bool = False
-    OTX_MAX_PAGES: int = 5 
+    @staticmethod
+    def ensure_dirs():
+        """Creates necessary directories if they don't exist."""
+        dirs = [
+            Config.FINAL_STORAGE, 
+            Config.RAW_STORAGE, 
+            Config.BACKEND_DIR / "enrichment" / "data"
+        ]
+        for d in dirs:
+            d.mkdir(parents=True, exist_ok=True)
 
-    # --------------------------------------------------
-    # API Keys (Automatically filled from .env)
-    # --------------------------------------------------
-    OTX_API_KEY: Optional[str] = None
-    MALPEDIA_API_KEY: Optional[str] = None
-    OPENAI_API_KEY: Optional[str] = None
-    VIRUSTOTAL_API_KEY: Optional[str] = None
-    MAXMIND_LICENSE_KEY: Optional[str] = None
-
-    # --------------------------------------------------
-    # Orchestrator Settings
-    # --------------------------------------------------
-    SCRAPE_INTERVAL_MINUTES: int = 60
-    MAX_PARALLEL_SCRAPERS: int = 5
-
-    def validate_startup(self):
-        """
-        Critical startup checks to prevent pipeline failures.
-        """
-        if not self.OTX_API_KEY:
-            print("⚠️ WARNING: OTX_API_KEY is missing. OTX feed will default to Public pulses.")
-        
-        # Hard guardrail against the 404 error logic
-        if self.OTX_INCREMENTAL_ENABLED:
-            raise ValueError(
-                "CRITICAL CONFIG ERROR: OTX_INCREMENTAL_ENABLED is True. "
-                "The AlienVault API will return 404. Change this to False in your .env file."
-            )
-
-@lru_cache()
-def get_settings():
-    """Returns a cached instance of settings to avoid reloading .env constantly."""
-    settings = Settings()
-    settings.validate_startup()
-    return settings
-
-# Create a singleton instance for easy import
-settings = get_settings()
+# Run directory check on import
+Config.ensure_dirs()
