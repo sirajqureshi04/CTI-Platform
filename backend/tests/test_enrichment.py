@@ -1,87 +1,63 @@
-import time
-import json
-import os 
-from pathlib import Path
-from dotenv import load_dotenv
-from backend.enrichment.manager import EnrichmentManager
-from backend.core.logger import CTILogger
+import sys
+import os
+from datetime import datetime
+
+# Ensure project root is in the path to recognize 'backend' as a package
+project_root = os.path.abspath(os.path.dirname(__file__))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from backend.core.config import settings
+from backend.enrichment.run_enrichment import EnrichmentRunner
+from backend.processors.deduplicator import Deduplicator
+from backend.core.logger import CTILogger
+logger = CTILogger.get_logger(__name__)
+def execute_pipeline():
+    logger.info("="*60)
+    logger.info(f"🛡️  CTI PLATFORM INTEGRATION TEST - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    logger.info("="*60)
 
-# Force load environment variables at the very start
-load_dotenv()
-
-logger = CTILogger.get_logger("TestRun")
-
-def prepare_test_data():
-    """Ensures final_intelligence.json exists with fresh data for enrichment."""
-    # Build path consistently with manager.py expectations
-    # Project root is assumed to be the current working directory
-    storage_dir = Path("storage/final")
-    storage_dir.mkdir(parents=True, exist_ok=True)
-    
-    test_file = storage_dir / "final_intelligence.json"
-    
-    # FOR DRY RUNS: We overwrite to ensure there are no existing "enrichment" keys
-    # This prevents the manager from skipping the indicators.
-    logger.info("📝 Preparing fresh test data in storage/final/final_intelligence.json...")
-    
-    sample_data = {
-        "metadata": {
-            "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "scan_type": "dry_run"
+    # 1. Mock Data for Testing
+    mock_iocs = [
+        {
+            "type": "cve",
+            "value": "CVE-2023-38831",
+            "source": "cisa_kev",
+            "tags": ["ransomware"]
         },
-        "indicators": [
-            {"type": "ipv4", "value": "1.1.1.1", "source": "cloudflare_dns"},
-            {"type": "ipv4", "value": "8.8.8.8", "source": "google_dns"},
-            {"type": "domain", "value": "malware-traffic-analysis.net", "source": "clearweb_feed"}
-        ]
-    }
-    
-    with open(test_file, "w") as f:
-        json.dump(sample_data, f, indent=4)
-        
-    return test_file
+        {
+            "type": "cve",
+            "value": "CVE-2021-44228",
+            "source": "vulnerability_parser",
+            "tags": ["critical"]
+        }
+    ]
 
-def start_dry_run():
-    logger.info("🚀 INITIALIZING ENRICHMENT TEST RUN...")
-    
-    # 1. Prepare Environment & Data
-    test_file = prepare_test_data()
-    
-    if not test_file.exists():
-        logger.error("❌ Failed to create test data file.")
+    # 2. Run Deduplication
+    print("\n[STEP 1] Deduplication Stage...")
+    try:
+        # This will now correctly save to storage/final/dd-mm-yy/single.json
+        dedup = Deduplicator()
+        deduplicated_data = dedup.deduplicate(mock_iocs)
+        print(f"✅ Success: {len(deduplicated_data)} items deduplicated.")
+    except Exception as e:
+        print(f"❌ Deduplication Failed: {e}")
         return
 
-    start_time = time.time()
-    
-    # 2. Initialize and Run Manager
+    # 3. Run Enrichment
+    print("\n[STEP 2] Enrichment Stage...")
     try:
-        manager = EnrichmentManager()
-        # This will now find the file at storage/final/final_intelligence.json
-        manager.process_report() 
+        # This will pick up the file created in Step 1
+        runner = EnrichmentRunner()
+        runner.run()
     except Exception as e:
-        logger.error(f"❌ Test Run Failed: {e}")
-        import traceback
-        logger.error(traceback.format_exc())
+        print(f"❌ Enrichment Failed: {e}")
         return
 
-    duration = time.time() - start_time
-    
-    # 3. Verification Step: Check if the file was actually updated
-    try:
-        with open(test_file, 'r') as f:
-            results = json.load(f)
-            # Count how many have enrichment keys now
-            enriched = [i for i in results.get("indicators", []) if "enrichment" in i]
-            logger.info(f"✅ Verification: {len(enriched)}/{len(results['indicators'])} indicators enriched.")
-    except Exception as e:
-        logger.warning(f"⚠️ Could not verify results: {e}")
-
-    logger.info("--- TEST SUMMARY ---")
-    logger.info(f"Total Time: {duration:.2f} seconds")
-    
-    if duration < 0.1: 
-        logger.warning("⚠️ Warning: Run was near-instant. Check logs for path or API errors.")
+    print("\n" + "="*60)
+    print(f"✨ TEST COMPLETE")
+    print(f"📂 Results location: {settings.CURRENT_FINAL_DIR}")
+    print("="*60)
 
 if __name__ == "__main__":
-    start_dry_run()
+    execute_pipeline()

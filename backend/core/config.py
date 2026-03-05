@@ -1,59 +1,72 @@
+"""
+Central configuration settings for the CTI Platform.
+All global runtime settings should live here.
+"""
+
 import os
+from dataclasses import dataclass
 from pathlib import Path
-from dotenv import load_dotenv
 
-# Load variables from .env (API Keys, etc.)
-load_dotenv()
 
-class Config:
-    """
-    Centralized configuration for the CTI Platform.
-    Handles Secrets, Network Settings, and Enrichment Paths.
-    """
-    
-    # --- 1. PROJECT PATHS (Absolute) ---
-    BACKEND_DIR = Path(__file__).parent.absolute()
-    PROJECT_ROOT = BACKEND_DIR.parent
-    
-    # Enrichment Data
-    VENDOR_LIST_PATH = BACKEND_DIR / "enrichment" / "data" / "my_vendors.txt"
-    
-    # Storage Paths
-    RAW_STORAGE = PROJECT_ROOT / "storage" / "raw"
-    FINAL_STORAGE = PROJECT_ROOT / "storage" / "final"
-    ENRICHED_OUTPUT = FINAL_STORAGE / "enriched_intelligence.json"
-    
-    # --- 2. SECRETS & API TOKENS (From .env) ---
-    NVD_API_KEY = os.getenv("NVD_API_KEY", "")
-    MALPEDIA_TOKEN = os.getenv("MALPEDIA_TOKEN", "")
-    
-    # --- 3. NETWORK & TOR SETTINGS ---
-    # Fixed to 9050 to match your successful netstat diagnostic
-    TOR_SOCKS_PROXY = "socks5h://127.0.0.1:9050"
-    REQUEST_TIMEOUT = 20
-    USER_AGENT = "CTI-Intelligence-Enricher/1.0"
+@dataclass
+class Settings:
 
-    # --- 4. ENRICHMENT SOURCE URLS ---
-    CISA_KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
-    EPSS_API_URL = "https://api.first.org/data/v1/epss"
-    RANSOMWARE_LIVE_API = "https://api.ransomware.live/v2/recentvictims"
-    NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+    # =============================
+    # PROJECT PATHS
+    # =============================
+    PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
+    STORAGE_PATH: Path = PROJECT_ROOT / "storage"
+    PROCESSED_PATH: Path = STORAGE_PATH / "processed"
+    FINAL_PATH: Path = STORAGE_PATH / "final"
 
-    # --- 5. ENRICHMENT LOGIC SETTINGS ---
-    EPSS_THRESHOLD = 0.45  # Scores above this are flagged as high risk
-    CONFIDENCE_LEVEL_MIN = 50
-    DEBUG_MODE = True
+    # =============================
+    # DATABASE
+    # =============================
+    DB_HOST: str = os.getenv("DB_HOST", "localhost")
+    DB_PORT: int = int(os.getenv("DB_PORT", "3306"))
+    DB_USER: str = os.getenv("DB_USER", "cti_user")
+    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "cti_password")
+    DB_NAME: str = os.getenv("DB_NAME", "cti_platform")
 
-    @staticmethod
-    def ensure_dirs():
-        """Creates necessary directories if they don't exist."""
-        dirs = [
-            Config.FINAL_STORAGE, 
-            Config.RAW_STORAGE, 
-            Config.BACKEND_DIR / "enrichment" / "data"
-        ]
-        for d in dirs:
-            d.mkdir(parents=True, exist_ok=True)
+    # =============================
+    # SCRAPER / PIPELINE
+    # =============================
+    SCRAPE_INTERVAL_MINUTES: int = int(os.getenv("SCRAPE_INTERVAL_MINUTES", "60"))
 
-# Run directory check on import
-Config.ensure_dirs()
+    # =============================
+    # LOGGING
+    # =============================
+    LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
+
+    # =============================
+    # API KEYS
+    # =============================
+    OTX_API_KEY: str = os.getenv("OTX_API_KEY", "")
+    VIRUSTOTAL_API_KEY: str = os.getenv("VIRUSTOTAL_API_KEY", "")
+    NVD_API_KEY: str = os.getenv("NVD_API_KEY", "")
+
+    # =============================
+    # API ENDPOINTS
+    # =============================
+    NVD_API_URL: str = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+    EPSS_API_URL: str = "https://api.first.org/data/v1/epss"
+
+    # =============================
+    # TOR SETTINGS
+    # =============================
+    TOR_PROXY: str = os.getenv("TOR_PROXY", "socks5h://127.0.0.1:9050")
+
+    # =============================
+    # OUTPUT FILES
+    # =============================
+    ENRICHED_OUTPUT: Path = FINAL_PATH / "enriched.json"
+
+    def ensure_dirs(self):
+        """Ensure required directories exist."""
+        self.STORAGE_PATH.mkdir(exist_ok=True)
+        self.PROCESSED_PATH.mkdir(exist_ok=True)
+        self.FINAL_PATH.mkdir(exist_ok=True)
+
+
+# Global settings object
+settings = Settings()

@@ -1,0 +1,9 @@
+# Internal Supply Chain & Partner List
+# The VictimProvider will flag any name containing these strings.
+
+mcdonalds
+mecmatica
+virginia records
+sandberg
+triapex
+pao hwa

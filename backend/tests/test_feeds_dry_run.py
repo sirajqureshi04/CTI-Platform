@@ -1,6 +1,7 @@
 import sys
 import argparse
 import time
+import os
 from pathlib import Path
 from typing import List, Dict, Any
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -9,7 +10,6 @@ PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from backend.core.logger import CTILogger
-from backend.core.config import get_settings
 from backend.feeds.clearweb import (
     RansomwareLiveFeed,
     CISAKEVFeed,
@@ -18,7 +18,6 @@ from backend.feeds.clearweb import (
 )
 
 logger = CTILogger.get_logger(__name__)
-settings = get_settings()
 
 
 def test_feed_worker(feed_info: tuple) -> Dict[str, Any]:
@@ -91,9 +90,9 @@ def main():
         "cisa_kev": (CISAKEVFeed, {}),
         "alienvault_otx": (
             AlienVaultOTXFeed,
-            {"OTX_API_KEY": settings.OTX_API_KEY}
+            {"OTX_API_KEY": os.getenv("OTX_API_KEY")}
         ),
-        "malpedia": (MalpediaFeed, {"api_key": settings.MALPEDIA_API_KEY})
+        "malpedia": (MalpediaFeed, {"api_key": os.getenv("MALPEDIA_API_KEY")})
     }
 
     selected = all_feeds if args.feed == "all" else {args.feed: all_feeds[args.feed]}

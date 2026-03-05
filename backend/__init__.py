@@ -28,6 +28,8 @@ __all__ = [
     "db",
     "parser",
     "feeds",
+    "enrichment",
+    "tests",
     "processors",
     "Orchestration",
     "utils"

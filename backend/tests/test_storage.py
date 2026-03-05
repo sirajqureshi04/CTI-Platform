@@ -6,13 +6,13 @@ from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Any
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
+import os
+        
 # Add project root to path
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from backend.core.logger import CTILogger
-from backend.core.config import get_settings
 from backend.feeds.clearweb import (
     RansomwareLiveFeed,
     CISAKEVFeed,
@@ -21,7 +21,6 @@ from backend.feeds.clearweb import (
 )
 
 logger = CTILogger.get_logger(__name__)
-settings = get_settings()
 
 def store_raw_data(feed_name: str, data: Any) -> str:
     """
@@ -62,8 +61,7 @@ def test_feed_worker(feed_info: tuple) -> Dict[str, Any]:
     start_time = time.time()
     
     try:
-        instance_config = {**settings.model_dump(), **config}
-        feed = feed_class(config=instance_config)
+        feed = feed_class(config=config)
         
         # 1. SCRAPE: Execute actual data collection
         # Assuming your feed classes have a fetch() or similar method
@@ -118,8 +116,8 @@ def main():
     all_feeds = {
         "ransomware_live": (RansomwareLiveFeed, {"bypass_cloudflare": True}),
         "cisa_kev": (CISAKEVFeed, {}),
-        "alienvault_otx": (AlienVaultOTXFeed, {"api_key": settings.OTX_API_KEY}),
-        "malpedia": (MalpediaFeed, {"api_key": settings.MALPEDIA_API_KEY})
+        "alienvault_otx": (AlienVaultOTXFeed, {"api_key": os.getenv("OTX_API_KEY")}),
+        "malpedia": (MalpediaFeed, {"api_key": os.getenv("MALPEDIA_API_KEY")})
     }
 
     selected = all_feeds if args.feed == "all" else {args.feed: all_feeds[args.feed]}

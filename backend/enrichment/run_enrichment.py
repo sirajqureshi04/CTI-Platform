@@ -1,54 +1,85 @@
 import json
-import os
-import sys
+import re
+from pathlib import Path
 from datetime import datetime
-
-# Ensure the backend directory is in the path for absolute imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from backend.enrichment.manager import EnrichmentManager
 
-class EnrichmentTester:
-    def __init__(self, input_file="single.json", output_file="enriched_output.json"):
-        self.input_file = input_file
-        self.output_file = output_file
+
+class EnrichmentRunner:
+
+    def __init__(self):
+
+        self.project_root = Path(__file__).resolve().parents[2]
+
+        # storage/final directory
+        self.final_storage = self.project_root / "storage" / "final"
+
         self.manager = EnrichmentManager()
 
-    def load_data(self):
-        if not os.path.exists(self.input_file):
-            print(f"❌ Error: {self.input_file} not found. Please ensure your feed data is in the root.")
-            return None
-        with open(self.input_file, 'r') as f:
-            return json.load(f)
+        # Regex pattern to detect date based files
+        self.pattern = re.compile(r"(\d{2}-\d{2}-\d{4})_single\.json")
 
-    def save_data(self, data):
-        with open(self.output_file, 'w') as f:
-            json.dump(data, f, indent=4)
-        print(f"✅ Success: Enriched data saved to {self.output_file}")
+    def get_target_files(self):
+        """
+        Finds all single.json files and returns only the ones
+        that do not already have enriched outputs.
+        """
+
+        targets = []
+
+        for file in self.final_storage.glob("*_single.json"):
+
+            match = self.pattern.match(file.name)
+
+            if not match:
+                continue
+
+            date_part = match.group(1)
+
+            enriched_file = self.final_storage / f"{date_part}_enriched.json"
+
+            if enriched_file.exists():
+                continue
+
+            targets.append((file, enriched_file, date_part))
+
+        return targets
+
+    def enrich_file(self, input_file, output_file, date):
+
+        print(f"\n🚀 Enrichment started for {date}")
+
+        with open(input_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        print(f"📦 Processing {len(data)} records")
+
+        enriched_data = []
+
+        for item in data:
+            enriched_item = self.manager.process_item(item)
+            enriched_data.append(enriched_item)
+
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(enriched_data, f, indent=4)
+
+        print(f"✅ Enriched file created → {output_file.name}")
 
     def run(self):
-        raw_data = self.load_data()
-        if not raw_data:
+
+        targets = self.get_target_files()
+
+        if not targets:
+            print("⚠️ No new files found for enrichment.")
             return
 
-        print(f"🚀 Starting Enrichment Pipeline at {datetime.now().strftime('%H:%M:%S')}")
-        print(f"📊 Processing {len(raw_data)} items from {self.input_file}...")
-        
-        enriched_results = []
-        
-        for index, item in enumerate(raw_data):
-            val = item.get("value", "Unknown")
-            type_ = item.get("type", "Unknown")
-            
-            print(f"  [{index+1}/{len(raw_data)}] Enriching {type_}: {val}...", end="\r")
-            
-            # Use the manager to route to the correct provider
-            enriched_item = self.manager.process_item(item)
-            enriched_results.append(enriched_item)
+        for input_file, output_file, date in targets:
+            self.enrich_file(input_file, output_file, date)
 
-        print("\n✨ All items processed.")
-        self.save_data(enriched_results)
+        print("\n🎯 Enrichment pipeline finished")
+
 
 if __name__ == "__main__":
-    tester = EnrichmentTester()
-    tester.run()
+    runner = EnrichmentRunner()
+    runner.run()

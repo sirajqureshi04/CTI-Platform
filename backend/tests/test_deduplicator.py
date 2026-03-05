@@ -8,7 +8,6 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from backend.processors.deduplicator import Deduplicator
 from backend.core.logger import CTILogger
-
 logger = CTILogger.get_logger(__name__)
 
 def run_final_merge():

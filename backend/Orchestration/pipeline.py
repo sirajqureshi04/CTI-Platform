@@ -19,7 +19,6 @@ from backend.parser.cisa_kev_parser import CISAKEVParser
 from backend.parser.alienvault_otx_parser import AlienVaultOTXParser
 
 # Processors
-from backend.processors.deduplicator import Deduplicator
 from backend.processors.normalizer import IOCNormalizer
 from backend.processors.risk_engine import RiskEngine
 
