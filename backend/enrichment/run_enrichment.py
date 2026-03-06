@@ -1,85 +1,87 @@
 import json
 import re
 from pathlib import Path
-from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from backend.enrichment.manager import EnrichmentManager
 
+FINAL_DIR = Path("storage/final")
 
-class EnrichmentRunner:
+DATE_PATTERN = re.compile(r"(\d{2}-\d{2}-\d{4})_single\.json")
 
-    def __init__(self):
+MAX_WORKERS = 10
 
-        self.project_root = Path(__file__).resolve().parents[2]
 
-        # storage/final directory
-        self.final_storage = self.project_root / "storage" / "final"
+def get_files_to_process():
+    files_to_process = []
 
-        self.manager = EnrichmentManager()
+    for file in FINAL_DIR.glob("*_single.json"):
+        match = DATE_PATTERN.search(file.name)
 
-        # Regex pattern to detect date based files
-        self.pattern = re.compile(r"(\d{2}-\d{2}-\d{4})_single\.json")
+        if not match:
+            continue
 
-    def get_target_files(self):
-        """
-        Finds all single.json files and returns only the ones
-        that do not already have enriched outputs.
-        """
+        date = match.group(1)
 
-        targets = []
+        enriched_file = FINAL_DIR / f"{date}_enriched.json"
 
-        for file in self.final_storage.glob("*_single.json"):
+        if not enriched_file.exists():
+            files_to_process.append((file, enriched_file, date))
 
-            match = self.pattern.match(file.name)
+    return files_to_process
 
-            if not match:
-                continue
 
-            date_part = match.group(1)
+def enrich_record(manager, item):
+    try:
+        return manager.process_item(item)
+    except Exception:
+        return item
 
-            enriched_file = self.final_storage / f"{date_part}_enriched.json"
 
-            if enriched_file.exists():
-                continue
+def enrich_file(input_file: Path, output_file: Path, date: str):
 
-            targets.append((file, enriched_file, date_part))
+    print(f"\n🚀 Enrichment started for {date}")
 
-        return targets
+    with open(input_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    def enrich_file(self, input_file, output_file, date):
+    total = len(data)
 
-        print(f"\n🚀 Enrichment started for {date}")
+    print(f"📦 Records: {total}")
+    print(f"⚡ Using {MAX_WORKERS} threads")
 
-        with open(input_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
+    manager = EnrichmentManager()
 
-        print(f"📦 Processing {len(data)} records")
+    enriched_data = []
 
-        enriched_data = []
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
 
-        for item in data:
-            enriched_item = self.manager.process_item(item)
-            enriched_data.append(enriched_item)
+        futures = [executor.submit(enrich_record, manager, item) for item in data]
 
-        with open(output_file, "w", encoding="utf-8") as f:
-            json.dump(enriched_data, f, indent=4)
+        for i, future in enumerate(as_completed(futures), start=1):
 
-        print(f"✅ Enriched file created → {output_file.name}")
+            enriched_data.append(future.result())
 
-    def run(self):
+            if i % 1000 == 0:
+                print(f"Processed {i}/{total}")
 
-        targets = self.get_target_files()
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(enriched_data, f, indent=4)
 
-        if not targets:
-            print("⚠️ No new files found for enrichment.")
-            return
+    print(f"✅ Saved → {output_file}")
 
-        for input_file, output_file, date in targets:
-            self.enrich_file(input_file, output_file, date)
 
-        print("\n🎯 Enrichment pipeline finished")
+def main():
+
+    files = get_files_to_process()
+
+    if not files:
+        print("⚠ No new files found for enrichment")
+        return
+
+    for input_file, output_file, date in files:
+        enrich_file(input_file, output_file, date)
 
 
 if __name__ == "__main__":
-    runner = EnrichmentRunner()
-    runner.run()
+    main()
