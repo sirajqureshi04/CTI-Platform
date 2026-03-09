@@ -913,3 +913,5 @@ NameError: name 'os' is not defined. Did you forget to import 'os'?
 2026-03-06 11:36:51 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
 2026-03-09 12:09:20 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
 2026-03-09 12:09:20 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager
+2026-03-09 12:46:49 | INFO     | [cti_platform] | setup_logging:67 | Logging initialized. Audit trail: C:\Users\HP\Desktop\CTI-Platform\logs\cti_platform.log
+2026-03-09 12:46:49 | INFO     | [cti_platform.backend.db.connection] | __init__:22 | Initialized database connection manager

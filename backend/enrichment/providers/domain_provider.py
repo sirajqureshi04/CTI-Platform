@@ -1,23 +1,40 @@
 import socket
+from functools import lru_cache
+
 
 class DomainProvider:
 
-    def enrich(self, ioc):
-
-        domain = ioc["value"]
+    @lru_cache(maxsize=10000)
+    def resolve_domain(self, domain):
 
         try:
 
-            ip = socket.gethostbyname(domain)
+            # get all IPs associated with domain
+            _, _, ip_list = socket.gethostbyname_ex(domain)
+
+            return ip_list
+
+        except socket.gaierror:
+
+            return []
+
+    def enrich(self, ioc):
+
+        domain = ioc.get("value")
+
+        try:
+
+            ips = self.resolve_domain(domain)
 
             ioc["enrichment"] = {
-                "resolved_ip": ip
+                "resolved_ips": ips
             }
 
-        except:
+        except Exception as e:
 
             ioc["enrichment"] = {
-                "resolved_ip": None
+                "resolved_ips": [],
+                "error": str(e)
             }
 
         return ioc

@@ -1,18 +1,34 @@
+from functools import lru_cache
 from backend.utils.web_scraper import OSINTScraper
+
 
 class URLProvider:
 
     def __init__(self):
+        pass
 
-        self.scraper = OSINTScraper()
+    @lru_cache(maxsize=5000)
+    def scrape_url(self, url):
 
-    def enrich(self, ioc):
-
-        url = ioc["value"]
+        scraper = OSINTScraper()  # thread-safe instance per call
 
         try:
 
-            scraped = self.scraper.scrape(url)
+            scraped = scraper.scrape(url)
+
+            return scraped
+
+        except Exception:
+
+            return []
+
+    def enrich(self, ioc):
+
+        url = ioc.get("value")
+
+        try:
+
+            scraped = self.scrape_url(url)
 
             ioc["enrichment"] = {
                 "scraped_iocs": scraped
