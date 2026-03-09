@@ -1,5 +1,6 @@
 import json
 import re
+import os
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -9,13 +10,17 @@ FINAL_DIR = Path("storage/final")
 
 DATE_PATTERN = re.compile(r"(\d{2}-\d{2}-\d{4})_single\.json")
 
-MAX_WORKERS = 10
+# better thread scaling for I/O workloads
+MAX_WORKERS = min(32, os.cpu_count() * 5)
+
+CHUNK_SIZE = 1000
 
 
 def get_files_to_process():
     files_to_process = []
 
     for file in FINAL_DIR.glob("*_single.json"):
+
         match = DATE_PATTERN.search(file.name)
 
         if not match:
@@ -31,11 +36,30 @@ def get_files_to_process():
     return files_to_process
 
 
-def enrich_record(manager, item):
+def enrich_record(item):
+    """
+    Thread-safe enrichment wrapper
+    """
+    manager = EnrichmentManager()
+
     try:
         return manager.process_item(item)
     except Exception:
         return item
+
+
+def process_chunk(chunk):
+
+    results = []
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+
+        futures = [executor.submit(enrich_record, item) for item in chunk]
+
+        for future in as_completed(futures):
+            results.append(future.result())
+
+    return results
 
 
 def enrich_file(input_file: Path, output_file: Path, date: str):
@@ -48,25 +72,22 @@ def enrich_file(input_file: Path, output_file: Path, date: str):
     total = len(data)
 
     print(f"📦 Records: {total}")
-    print(f"⚡ Using {MAX_WORKERS} threads")
-
-    manager = EnrichmentManager()
+    print(f"⚡ Threads: {MAX_WORKERS}")
 
     enriched_data = []
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    for i in range(0, total, CHUNK_SIZE):
 
-        futures = [executor.submit(enrich_record, manager, item) for item in data]
+        chunk = data[i:i + CHUNK_SIZE]
 
-        for i, future in enumerate(as_completed(futures), start=1):
+        results = process_chunk(chunk)
 
-            enriched_data.append(future.result())
+        enriched_data.extend(results)
 
-            if i % 1000 == 0:
-                print(f"Processed {i}/{total}")
+        print(f"Processed {min(i+CHUNK_SIZE,total)}/{total}")
 
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(enriched_data, f, indent=4)
+        json.dump(enriched_data, f)   # removed indent (much faster)
 
     print(f"✅ Saved → {output_file}")
 

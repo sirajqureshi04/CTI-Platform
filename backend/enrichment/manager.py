@@ -14,38 +14,26 @@ class EnrichmentManager:
 
     def __init__(self):
 
-        self.cve = CVEProvider()
-        self.malware = MalwareProvider()
-        self.url = URLProvider()
-        self.ip = IPProvider()
-        self.domain = DomainProvider()
-        self.victim = VictimProvider()
+        self.providers = {
+            "cve": CVEProvider(),
+            "malware_family": MalwareProvider(),
+            "url": URLProvider(),
+            "ip": IPProvider(),
+            "domain": DomainProvider(),
+            "ransomware_victim": VictimProvider(),
+        }
 
     def process_item(self, ioc: dict):
 
         ioc_type = ioc.get("type")
 
-        try:
+        provider = self.providers.get(ioc_type)
 
-            if ioc_type == "cve":
-                return self.cve.enrich(ioc)
-
-            elif ioc_type == "malware_family":
-                return self.malware.enrich(ioc)
-
-            elif ioc_type == "url":
-                return self.url.enrich(ioc)
-
-            elif ioc_type == "ip":
-                return self.ip.enrich(ioc)
-
-            elif ioc_type == "domain":
-                return self.domain.enrich(ioc)
-
-            elif ioc_type == "ransomware_victim":
-                return self.victim.enrich(ioc)
-
+        if not provider:
             return ioc
+
+        try:
+            return provider.enrich(ioc)
 
         except Exception as e:
 
